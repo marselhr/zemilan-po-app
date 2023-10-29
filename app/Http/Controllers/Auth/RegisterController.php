@@ -42,22 +42,6 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
-
-    //     /**
-    //  * Write code on Method
-    //  *
-    //  * @return response()
-    //  */
-    // public function register(Request $request)
-    // {
-    //     // dd($request->all());
-    //     $this->validator($request->all())->validate();
-  
-    //     $this->create($request->all());
-  
-    //     // return redirect("dashboard");
-    // }
-
     /**
      * Get a validator for an incoming registration request.
      *
