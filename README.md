@@ -79,7 +79,7 @@ MAIL_PORT=2525
 MAIL_USERNAME=your_username_here
 MAIL_PASSWORD=your_password
 ```
-## Rules Repository
+## Rules Repository ❗❗❗
 
 - always push to your own branch not to the ``main`` or ``development`` branch.
 - when you feel your code task is complete, please make a pull request to the ``development`` branch.
