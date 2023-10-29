@@ -33,13 +33,20 @@
 </head>
 
 <body>
-    <main>
-        @if (!Request::routeIs('login') && !Request::routeIs('register') && !Request::routeIs('verification.notice'))
-            @include('layouts.partials.navbar')
-        @endif
+    <main id="db-wrapper">
+        @include('admin.layouts.partials.sidebar')
 
+        <section id="page-content">
 
-        @yield('content')
+            @include('admin.layouts.partials.navbar')
+
+            <div class="container-fluid p-4">
+
+                @yield('content')
+
+            </div>
+        </section>
+
     </main>
 
     <script src="{{ asset('assets/libs/jquery/dist/jquery.min.js') }}"></script>
