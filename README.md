@@ -82,7 +82,7 @@ MAIL_PASSWORD=your_password
 ## Rules Repository
 
 - always push to your own branch not to the main branch.
-- when you feel your code task is complete, please make a pull request to the main branch.
-- the project leader will review your code and merge it to the main branch.
-- to avoid conflicts, don't forget to pull first from the main branch.
+- when you feel your code task is complete, please make a pull request to the development branch.
+- the project leader will review your code and merge it to the development branch.
+- to avoid conflicts, don't forget to pull first from the development branch.
 - give a commit message that is easy to understand
