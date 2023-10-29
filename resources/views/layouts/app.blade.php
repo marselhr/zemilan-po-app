@@ -37,7 +37,7 @@
 
 <body>
     <main>
-        @if (!Request::routeIs('login') && !Request::routeIs('register') && !Request::routeIs('email'))
+        @if (!Request::routeIs('login') && !Request::routeIs('register') && !Request::routeIs('verification.notice'))
             @include('layouts.partials.navbar')
         @endif
 
