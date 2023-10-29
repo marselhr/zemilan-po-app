@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg">
-    <div class="container-fluid px-0">
+    <div class="container px-0">
         <h1 class="navbar-brand"><a href="#">Zemilan</a></h1>
         <!-- Mobile view nav wrap -->
 

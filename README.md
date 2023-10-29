@@ -69,6 +69,16 @@ php artisan serve
 ```
 Open [http://localhost:8000](http://localhost:8000) from your browser.
 
+### Setup Email Testing
+Please create your mailtrap account at [mailtrap.io](https://mailtrap.io/email-sandbox/) to capture SMTP traffic from staging and dev environments. Then configure your mailing configuration by setting these values in the .env file
+```
+MAIL_MAILER=smtp
+MAIL_HOST=sandbox.smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=your_username_here
+MAIL_PASSWORD=your_password
+```
+
 ## Rules Repository
 
 - always push to your own branch not to the main branch.
