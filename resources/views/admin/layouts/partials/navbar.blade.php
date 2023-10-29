@@ -1,29 +1,35 @@
-<nav class="navbar navbar-expand-lg">
-    <div class="container px-0">
-        <h1 class="navbar-brand"><a href="#">Zemilan</a></h1>
-        <!-- Mobile view nav wrap -->
+<div class="header">
+    <!-- navbar -->
+    <nav class="navbar-default navbar navbar-expand-lg">
+        <a id="nav-toggle" href="#">
+            <i class="fe fe-menu"></i>
+        </a>
+        <div class="ms-lg-3 d-none d-md-none d-lg-block">
+            <!-- Form -->
+            <form class="d-flex align-items-center">
+                <span class="position-absolute ps-3 search-icon">
+                    <i class="fe fe-search"></i>
+                </span>
+                <input type="search" class="form-control ps-6" placeholder="Cari...">
+            </form>
+        </div>
+        <!--Navbar nav -->
+        <div class="ms-auto d-flex">
+            <a href="#" class="form-check form-switch theme-switch btn btn-light btn-icon rounded-circle ">
+                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault"></label>
 
-        <div class="ms-auto d-flex align-items-center  order-lg-3">
-
-            <!-- Theme toggle -->
-            <div>
-                <a href="#" class="form-check form-switch theme-switch btn btn-light btn-icon rounded-circle">
-                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                    <label class="form-check-label" for="flexSwitchCheckDefault"></label>
-                </a>
-            </div>
-            <!-- Theme toggle -->
-
+            </a>
             @auth
-                <ul class="navbar-nav navbar-right-wrap mx-2 flex-row">
-                    <li class="dropdown d-inline-block stopevent position-static">
-                        <a class="btn btn-light btn-icon rounded-circle text-muted indicator indicator-primary"
-                            href="#" role="button" id="dropdownNotificationSecond" data-bs-toggle="dropdown"
+                <ul class="navbar-nav navbar-right-wrap ms-2 d-flex nav-top-wrap">
+                    <li class="dropdown stopevent">
+                        <a class="btn btn-light btn-icon rounded-circle indicator indicator-primary text-muted"
+                            href="#" role="button" id="dropdownNotification" data-bs-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
-                            <i class="fe fe-bell"> </i>
+                            <i class="fe fe-bell"></i>
                         </a>
-                        <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg position-absolute mx-3 my-5"
-                            aria-labelledby="dropdownNotificationSecond">
+                        <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg"
+                            aria-labelledby="dropdownNotification">
                             <div>
                                 <div class="border-bottom px-3 pb-3 d-flex justify-content-between align-items-center">
                                     <span class="h4 mb-0">Notifications</span>
@@ -106,8 +112,7 @@
                             </div>
                         </div>
                     </li>
-
-                    <!-- Component Show if user auth -->
+                    <!-- List -->
                     <li class="dropdown ms-2">
                         <a class="rounded-circle" href="#" role="button" id="dropdownUser" data-bs-toggle="dropdown"
                             aria-expanded="false">
@@ -159,40 +164,6 @@
 
                 </ul>
             @endauth
-
         </div>
-        <div>
-            <!-- Hamburger Button -->
-            <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbar-default" aria-controls="navbar-default" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="icon-bar top-bar mt-0"></span>
-                <span class="icon-bar middle-bar"></span>
-                <span class="icon-bar bottom-bar"></span>
-            </button>
-        </div>
-        <!-- Collapse -->
-        <div class="collapse navbar-collapse gap-5 flex justify-content-between" id="navbar-default">
-            <ul class="navbar-nav  d-flex gap-lg-6 justify-content-start">
-                <li class="nav-item">
-                    <a href="#" class="nav-link active">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">FAQ</a>
-                </li>
-
-            </ul>
-            <form class="mt-3 me-lg-5 mt-lg-0 ms-lg-3 d-flex align-items-center">
-                <span class="position-absolute ps-3 search-icon">
-                    <i class="fe fe-search"></i>
-                </span>
-                <input type="search" class="form-control ps-6" placeholder="Cari...">
-            </form>
-
-        </div>
-
-    </div>
-</nav>
+    </nav>
+</div>
