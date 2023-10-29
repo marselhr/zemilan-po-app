@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg">
     <div class="container px-0">
         <a href="#" class="navbar-brand fw-bold fs-3">Zemilan</a>
-        
+
         <!-- Mobile view nav wrap -->
         <div class="ms-auto d-flex align-items-center  order-lg-3">
 
@@ -194,10 +194,13 @@
                 <input type="search" class="form-control ps-6" placeholder="Cari...">
             </form>
 
-            <div class="me-lg-2 d-lg-flex gap-3 mt-3 mt-lg-0">
-                <a href="{{ route('login') }}" class="btn btn-outline-primary col-12 col-lg-auto">Sign in</a>
-                <a href="{{ route('register') }}" class="btn btn-primary col-12 col-lg-auto mt-2 mt-lg-0">Sign up</a>
-            </div>
+            @guest
+                <!-- Link to sign up and sign in -->
+                <div class="me-lg-2 d-lg-flex gap-3 mt-3 mt-lg-0">
+                    <a href="{{ route('login') }}" class="btn btn-outline-primary col-12 col-lg-auto">Sign in</a>
+                    <a href="{{ route('register') }}" class="btn btn-primary col-12 col-lg-auto mt-2 mt-lg-0">Sign up</a>
+                </div>
+            @endguest
         </div>
 
 
