@@ -1,7 +1,7 @@
 <nav class="navbar-vertical navbar">
     <div class="vh-100" data-simplebar>
         <!-- Brand logo -->
-        <h1 class="navbar-brand"><a href="#">Zemilan</a></h1>
+        <a href="#" class="navbar-brand fw-bold fs-3">Zemilan</a>
         <!-- Navbar nav -->
         <ul class="navbar-nav flex-column" id="sideNavbar">
             <li class="nav-item">

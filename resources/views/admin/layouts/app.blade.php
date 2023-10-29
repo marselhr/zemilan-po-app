@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
-<!-- Mirrored from geeksui.codescandy.com/geeks/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 31 May 2023 01:55:21 GMT -->
-
 <head>
 
 
@@ -68,8 +65,5 @@
 
 
 </body>
-
-
-<!-- Mirrored from geeksui.codescandy.com/geeks/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 31 May 2023 01:55:22 GMT -->
 
 </html>
