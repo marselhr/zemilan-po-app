@@ -21,6 +21,7 @@ Route::get('/', function () {
 Auth::routes(['verify' => true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/about', [App\Http\Controllers\AboutController::class, 'index'])->name('about');
 
 Route::fallback(function () {
     return view('fallback.notice');

@@ -14,11 +14,9 @@
               <!-- heading -->
            <h1 class="display-3 fw-bold mb-3">Zemilan Keripik Baso Goreng</h1>
             <!-- para -->
-           <p class="pe-lg-10 mb-5">Start, switch, or advance your career with more than 5,000 courses, Professional
-             Certificates, and degrees from world-class universities and companies.</p>
+           <p class="pe-lg-10 mb-5">Selamat Datang di Zemilan Keripik Baso Goreng! Rasakan Sensasi Nikmat Keripik Baso Goreng Kami Kualitas Terbaik, Harga Terjangkau.</p>
               <!-- btn -->
-           <a href="#" class="btn btn-primary">Join Free Now</a>
-           <a href="https://www.youtube.com/watch?v=JRzWRZahOVU" class="glightbox fs-4 text-inherit ms-3"><img src="../assets/images/svg/play-btn.svg" alt="" class="me-2">Watch Demo</a>
+           <a href="#" class="btn btn-primary">Go To The Catalog</a>
          </div>
        </div>
         <!-- col -->
