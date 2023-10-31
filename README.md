@@ -67,7 +67,7 @@ To serve the laravel app, you need to run the following command in the project d
 ```php
 php artisan serve
 ```
-Open [http://localhost:8000](http://localhost:8000) from your browser.
+Open [http://localhost:8000](http://localhost:8000) from your browser
 
 ### Setup Email Testing
 Please create your mailtrap account at [mailtrap.io](https://mailtrap.io/email-sandbox/) to capture SMTP traffic from staging and dev environments. Then configure your mailing configuration by setting these values in the .env file
@@ -85,4 +85,22 @@ MAIL_PASSWORD=your_password
 - when you feel your code task is complete, please make a pull request to the main branch.
 - the project leader will review your code and merge it to the main branch.
 - to avoid conflicts, don't forget to pull first from the main branch.
+- give a commit message that is easy to understand
+=======
+
+### Setup Email Testing
+Please create your mailtrap account at [mailtrap.io](https://mailtrap.io/email-sandbox/) to capture SMTP traffic from staging and dev environments. Then configure your mailing configuration by setting these values in the .env file
+```
+MAIL_MAILER=smtp
+MAIL_HOST=sandbox.smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=your_username_here
+MAIL_PASSWORD=your_password
+```
+## Rules Repository ❗
+
+- always push to your own branch not to the ``main`` or ``development`` branch.
+- when you feel your code task is complete, please make a pull request to the ``development`` branch.
+- the project leader will review your code and merge it to the ``development`` branch.
+- to avoid conflicts, don't forget to pull first from the ``development`` branch.
 - give a commit message that is easy to understand
