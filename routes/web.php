@@ -22,6 +22,9 @@ Auth::routes(['verify' => true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile');
+Route::post('/profile/save', [App\Http\Controllers\ProfileController::class, 'saveProfile'])->name('profileSave');
+
+
 
 Route::fallback(function () {
     return view('fallback.notice');
