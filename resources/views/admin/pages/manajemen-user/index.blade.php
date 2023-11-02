@@ -16,6 +16,30 @@
 @endpush
 @section('content')
     <div class="row">
+        <!-- Page Header -->
+        <div class="col-lg-12 col-md-12 col-12">
+            <div class="border-bottom pb-3 mb-3 d-md-flex align-items-center justify-content-between">
+                <div class="mb-3 mb-md-0">
+                    <h1 class="mb-1 h2 fw-bold">Data User</h1>
+                    <!-- Breadcrumb -->
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="{{ route('admin.dashboard') }}">Dashboard</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Pengguna</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div>
+                    <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newCatgory">Tambah
+                        Pengguna</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
         <div class="col-lg-12 col-md-12 col-12">
             <div class="card mb-4">
                 <div class="table-responsive border-0 overflow-y-hidden">
