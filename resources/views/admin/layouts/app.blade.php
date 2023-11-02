@@ -29,6 +29,8 @@
     <!-- Theme CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/theme.min.css') }}">
     <link href="{{ asset('assets/libs/tiny-slider/dist/tiny-slider.css') }}" rel="stylesheet">
+
+    @stack('customCss')
     <title>Home</title>
 </head>
 
@@ -63,7 +65,7 @@
     <script src="{{ asset('assets/js/vendors/tnsSlider.js') }}"></script>
     <script src="{{ asset('assets/js/vendors/tooltip.js') }}"></script>
 
-
+    @stack('customJs')
 </body>
 
 </html>

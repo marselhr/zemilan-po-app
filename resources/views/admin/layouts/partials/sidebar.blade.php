@@ -5,10 +5,14 @@
         <!-- Navbar nav -->
         <ul class="navbar-nav flex-column" id="sideNavbar">
             <li class="nav-item">
-                <a href="" class="nav-link active">Dashboard</a>
+                <a href="" class="nav-link {{ Request::routeIs('admin.dashboard') ? 'active' : '' }}">Dashboard</a>
             </li>
             <li class="nav-item">
                 <a href="" class="nav-link ">Produk</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('admin.user.index') }}"
+                    class="nav-link {{ Request::routeIs('admin.user.index') ? 'active' : '' }}">User</a>
             </li>
             <li class="nav-item">
                 <a href="" class="nav-link ">Laporan Keuangan</a>
