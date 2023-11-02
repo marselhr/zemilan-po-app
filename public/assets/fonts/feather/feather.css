@@ -23,6 +23,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Sesuaikan ukuran font sesuai kebutuhan Anda */
+.larger-font {
+    font-size: 18px;
+}
+
 .fe-activity:before {
   content: "\e900";
 }
