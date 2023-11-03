@@ -20,7 +20,7 @@
         <div class="col-lg-12 col-md-12 col-12">
             <div class="border-bottom pb-3 mb-3 d-md-flex align-items-center justify-content-between">
                 <div class="mb-3 mb-md-0">
-                    <h1 class="mb-1 h2 fw-bold">Data Pengguna</h1>
+                    <h1 class="mb-1 h2 fw-bold">Data User</h1>
                     <!-- Breadcrumb -->
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
