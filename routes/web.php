@@ -22,8 +22,8 @@ Auth::routes(['verify' => true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/about', [App\Http\Controllers\AboutController::class, 'index'])->name('about');
-Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile');
-Route::post('/profile/save', [App\Http\Controllers\ProfileController::class, 'saveProfile'])->name('profileSave');
+Route::get('/profile', [App\Http\Controllers\Profile\ProfileController::class, 'index'])->name('profile');
+Route::post('/profile/save', [App\Http\Controllers\Profile\ProfileController::class, 'saveProfile'])->name('profileSave');
 
 
 
