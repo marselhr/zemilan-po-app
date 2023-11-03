@@ -75,10 +75,12 @@
             <!-- Your navigation links -->
             <ul class="navbar-nav d-flex gap-lg-6 justify-content-start">
                 <li class="nav-item">
-                    <a href="{{ route('home') }}" class="nav-link active">Home</a>
+                    <a href="{{ route('home') }}"
+                        class="nav-link {{ Request::routeIs('home') ? 'active' : '' }}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('about') }}" class="nav-link">About</a>
+                    <a href="{{ route('about') }}"
+                        class="nav-link {{ Request::routeIs('about') ? 'active' : '' }}">About</a>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">FAQ</a>
