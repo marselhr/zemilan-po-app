@@ -22,9 +22,20 @@
     <link href="{{ asset('assets/libs/bootstrap-icons/font/bootstrap-icons.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/libs/%40mdi/font/css/materialdesignicons.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/libs/simplebar/dist/simplebar.min.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
-
+    <style>
+        #navbar {
+            transition: top 0.3s ease;
+            /* Animasi perubahan posisi */
+            position: fixed;
+            top: -100px;
+            /* Sembunyikan navbar ke atas */
+            width: 100%;
+            z-index: 1000;
+            /* Z-index untuk memastikan navbar muncul di atas konten lain */
+        }
+    </style>
 
 
     <!-- Theme CSS -->
@@ -61,7 +72,20 @@
     <script src="{{ asset('assets/libs/tippy.js/dist/tippy-bundle.umd.min.js') }}"></script>
     <script src="{{ asset('assets/js/vendors/tnsSlider.js') }}"></script>
     <script src="{{ asset('assets/js/vendors/tooltip.js') }}"></script>
+    <script>
+        var prevScrollpos = window.pageYOffset; /* Mengambil posisi scroll sebelumnya */
 
+        window.onscroll = function() {
+            var currentScrollPos = window.pageYOffset;
+            if (prevScrollpos > currentScrollPos) {
+                document.getElementById("navbar").style.top = "0"; /* Munculkan navbar saat scroll ke atas */
+            } else {
+                document.getElementById("navbar").style.top =
+                    "-100px"; /* Sembunyikan navbar ke atas saat scroll ke bawah */
+            }
+            prevScrollpos = currentScrollPos;
+        };
+    </script>
 
 </body>
 
