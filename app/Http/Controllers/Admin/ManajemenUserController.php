@@ -14,4 +14,11 @@ class ManajemenUserController extends Controller
 
         return view('admin.pages.manajemen-user.index', compact('users'));
     }
+
+    public function show($user)
+    {
+        $user = User::findOrFail($user);
+
+        return view('admin.pages.manajemen-user.show', compact('user'));
+    }
 }

@@ -88,7 +88,8 @@
                                                 <span class="dropdown-header">Action</span>
                                                 <a class="dropdown-item" href="#"><i
                                                         class="fe fe-send dropdown-item-icon"></i>Edit</a>
-                                                <a class="dropdown-item" href="#"><i
+
+                                                <a class="dropdown-item" href="{{ route('admin.user.show', $user) }}"><i
                                                         class="fe fe-inbox dropdown-item-icon"></i>Detail</a>
                                                 <a class="dropdown-item" href="#"><i
                                                         class="fe fe-trash dropdown-item-icon"></i>Delete</a>
