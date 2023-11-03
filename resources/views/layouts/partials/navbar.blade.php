@@ -36,7 +36,7 @@
                             <div class="dropdown-divider"></div>
                             <ul class="list-unstyled">
                                 <li>
-                                    <a class="dropdown-item" href="{{ route('profile') }}">
+                                    <a class="dropdown-item" href="{{ route('mainprofile') }}">
                                         <i class="fe fe-user me-2"></i> Profile
                                     </a>
                                 </li>

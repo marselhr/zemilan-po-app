@@ -11,7 +11,7 @@ class ProfileController extends Controller
 {
     public function index()
     {
-        return view('profile');
+        return view('Profile.mainprofile');
     }
 
     public function saveProfile(Request $request)
