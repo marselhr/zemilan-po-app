@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ManajemenUserController;
+
 /*
 |--------------------------------------------------------------------------
 | Admin Routes
@@ -19,4 +20,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'is.admin']], functi
     })->name('admin.dashboard');
     Route::get('/users', [ManajemenUserController::class, 'index'])->name('admin.user.index');
     Route::get('/users/{user}', [ManajemenUserController::class, 'show'])->name('admin.user.show');
+    Route::get('/users/{user}/edit', [ManajemenUserController::class, 'edit'])->name('admin.user.edit');
+    Route::get('/users/{user}/invoice', [ManajemenUserController::class, 'invoice'])->name('admin.user.show.invoice');
 });

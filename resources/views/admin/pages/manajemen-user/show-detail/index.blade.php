@@ -79,14 +79,14 @@
                         <ul class="list-unstyled ms-n2 mb-0">
                             <!-- Nav item -->
                             <li class="nav-item {{ Request::routeIs('admin.user.show') ? 'active' : '' }}">
-                                <a class="nav-link " href="profile-edit.html">
+                                <a class="nav-link " href="{{ route('admin.user.show', $user) }}">
                                     <i class="fe fe-user nav-icon"></i>
                                     Detail Profile
                                 </a>
                             </li>
                             <!-- Nav item -->
-                            <li class="nav-item">
-                                <a class="nav-link" href="profile-edit.html">
+                            <li class="nav-item {{ Request::routeIs('admin.user.edit') ? 'active' : '' }}">
+                                <a class="nav-link" href="{{ route('admin.user.edit', $user) }}">
                                     <i class="fe fe-settings nav-icon"></i>
                                     Edit Profil
                                 </a>
@@ -117,7 +117,7 @@
                                 </a>
                             </li>
                             <!-- Nav item -->
-                            <li class="nav-item">
+                            <li class="nav-item {{ Request::routeIs('admin.user.show.invoice') ? 'active' : '' }}">
                                 <a class="nav-link " href="{{ route('admin.user.show.invoice', $user) }}">
                                     <i class="fe fe-clipboard nav-icon"></i>
                                     Invoice
@@ -131,7 +131,6 @@
         </div>
         <div class="col-lg-9 col-md-8 col-12">
             <!-- Card -->
-
             @yield('card')
 
         </div>
