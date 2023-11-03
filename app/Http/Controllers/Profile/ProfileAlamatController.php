@@ -10,6 +10,7 @@ class ProfileAlamatController extends Controller
 {
     public function index()
     {
-        
+        return view('Profile.alamatprofile');
+
     }
 }

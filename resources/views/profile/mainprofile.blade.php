@@ -6,9 +6,9 @@
     <div class="container-xl px-4 mt-4">
 
         <nav class="nav nav-borders">
-            <a class="nav-link active ms-0" href="#" target="__blank">Profil</a>
-            <a class="nav-link" href="#" target="__blank">Pembayaran</a>
-            <a class="nav-link" href="#" target="__blank">Alamat</a>
+            <a class="nav-link active ms-0" href="{{ route('mainprofile') }}" >Profil</a>
+            <a class="nav-link" href="{{ route('alamatprofile') }}" >Alamat</a>
+            <a class="nav-link" href="#" >Pembayaran</a>
         </nav>
         <hr class="mt-0 mb-4">
         <div class="row">
