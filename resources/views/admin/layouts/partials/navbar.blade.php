@@ -1,6 +1,6 @@
 <div class="header">
     <!-- navbar -->
-    <nav class="navbar-default navbar navbar-expand-lg">
+    <nav class="navbar-default navbar navbar-expand-lg" id="navbar">
         <a id="nav-toggle" href="#">
             <i class="fe fe-menu"></i>
         </a>

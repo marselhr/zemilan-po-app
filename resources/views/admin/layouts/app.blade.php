@@ -25,10 +25,11 @@
 
 
 
-
     <!-- Theme CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/theme.min.css') }}">
     <link href="{{ asset('assets/libs/tiny-slider/dist/tiny-slider.css') }}" rel="stylesheet">
+
+    @stack('customCss')
     <title>Home</title>
 </head>
 
@@ -39,6 +40,7 @@
         <section id="page-content">
 
             @include('admin.layouts.partials.navbar')
+
 
             <div class="container-fluid p-4">
 
@@ -63,7 +65,23 @@
     <script src="{{ asset('assets/js/vendors/tnsSlider.js') }}"></script>
     <script src="{{ asset('assets/js/vendors/tooltip.js') }}"></script>
 
+    <script>
+        var header = document.querySelector('#navbar');
+        var headerHeight = header.offsetHeight; // Mengambil tinggi header
+        var navbarVertical = document.querySelector('.navbar-vertical');
+        window.addEventListener('scroll', function() {
+            var scrollY = window.scrollY;
 
+            if (scrollY > headerHeight) {
+                header.classList.add('fixed-top'); // Menambahkan kelas fixed-top saat di-scroll ke bawah
+                navbarVertical.style.marginTop = headerHeight + 'px';
+            } else {
+                header.classList.remove('fixed-top'); // Menghapus kelas fixed-top saat kembali ke atas
+                navbarVertical.style.marginTop = '0';
+            }
+        });
+    </script>
+    @stack('customJs')
 </body>
 
 </html>
