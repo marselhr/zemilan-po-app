@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Admin\ManajemenUserController;
 /*
 |--------------------------------------------------------------------------
 | Admin Routes
@@ -17,4 +17,5 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'is.admin']], functi
     Route::get('dashboard', function () {
         return view('admin.pages.dashboard.index');
     })->name('admin.dashboard');
+    Route::get('/users', [ManajemenUserController::class, 'index'])->name('admin.user.index');
 });
