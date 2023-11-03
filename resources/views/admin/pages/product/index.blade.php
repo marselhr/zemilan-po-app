@@ -20,20 +20,20 @@
         <div class="col-lg-12 col-md-12 col-12">
             <div class="border-bottom pb-3 mb-3 d-md-flex align-items-center justify-content-between">
                 <div class="mb-3 mb-md-0">
-                    <h1 class="mb-1 h2 fw-bold">Data User</h1>
+                    <h1 class="mb-1 h2 fw-bold">Data Produk</h1>
                     <!-- Breadcrumb -->
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
                                 <a href="{{ route('admin.dashboard') }}">Dashboard</a>
                             </li>
-                            <li class="breadcrumb-item active" aria-current="page">Pengguna</li>
+                            <li class="breadcrumb-item active" aria-current="page">Produk</li>
                         </ol>
                     </nav>
                 </div>
                 <div>
-                    <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newCatgory">Tambah
-                        Pengguna</a>
+                    <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newCategory">Tambah
+                        Produk</a>
                 </div>
             </div>
         </div>
@@ -46,36 +46,21 @@
                     <table class="table mb-0 text-nowrap table-centered table-hover table-with-checkbox" id="datatable"
                         style="width: 100%">
                         <thead class="table-light">
-                            <tr>
-                                <th>
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" id="checkAll" />
-                                        <label class="form-check-label" for="checkAll"></label>
-                                    </div>
-                                </th>
-                                <th>NAMA DEPAN</th>
-                                <th>NAMA BELAKANG</th>
-                                <th>EMAIL</th>
-                                <th></th>
+                                <th>No</th>
+                                <th>Nama Produk</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
+
+                        @php
+                            $no = 1;
+                        @endphp
                         <tbody>
-                            @foreach ($users as $user)
+                            @foreach ($product as $products)
                                 <tr>
+                                    <td>{{ $no++ }}</td>
                                     <td>
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="categoryCheck3" />
-                                            <label class="form-check-label" for="categoryCheck3"></label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        {{ $user->first_name }}
-                                    </td>
-                                    <td>
-                                        {{ $user->last_name }}
-                                    </td>
-                                    <td>
-                                        {{ $user->email }}
+                                        {{ $products->name }}
                                     </td>
                                     <td>
                                         <span class="dropdown dropstart">
@@ -88,8 +73,7 @@
                                                 <span class="dropdown-header">Action</span>
                                                 <a class="dropdown-item" href="#"><i
                                                         class="fe fe-send dropdown-item-icon"></i>Edit</a>
-
-                                                <a class="dropdown-item" href="{{ route('admin.user.show', $user) }}"><i
+                                                <a class="dropdown-item" href="#"><i
                                                         class="fe fe-inbox dropdown-item-icon"></i>Detail</a>
                                                 <a class="dropdown-item" href="#"><i
                                                         class="fe fe-trash dropdown-item-icon"></i>Delete</a>
@@ -103,4 +87,5 @@
                 </div>
             </div>
         </div>
+    </div>
     @endsection
