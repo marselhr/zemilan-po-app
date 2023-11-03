@@ -28,8 +28,8 @@
         #navbar {
             transition: top 0.3s ease;
             /* Animasi perubahan posisi */
-            position: fixed;
-            top: -100px;
+            position: sticky;
+            top: 0;
             /* Sembunyikan navbar ke atas */
             width: 100%;
             z-index: 1000;
