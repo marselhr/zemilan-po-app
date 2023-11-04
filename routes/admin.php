@@ -22,6 +22,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'is.admin']], functi
     Route::prefix('users/{user}')->group(function () {
         Route::get('/', [ManajemenUserController::class, 'show'])->name('admin.user.show');
         Route::get('/edit', [ManajemenUserController::class, 'edit'])->name('admin.user.edit');
+        Route::post('/update', [ManajemenUserController::class, 'update'])->name('admin.user.update');
         Route::get('/invoice', [ManajemenUserController::class, 'invoice'])->name('admin.user.show.invoice');
         Route::delete('/delete', [ManajemenUserController::class, 'destroy'])->name('admin.user.delete');
     });

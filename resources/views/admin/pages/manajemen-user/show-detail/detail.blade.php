@@ -46,7 +46,7 @@
                     </div>
                     <div class="col-12">
                         <!-- Button -->
-                        <button class="btn btn-primary" type="submit">Perbaharui Profil</button>
+                        <a class="btn btn-primary" href="{{ route('admin.user.edit', $user) }}">Perbaharui Profil</a>
                     </div>
                     <!-- Address -->
                     <hr class="my-5" />
