@@ -91,8 +91,15 @@
 
                                                 <a class="dropdown-item" href="{{ route('admin.user.show', $user) }}"><i
                                                         class="fe fe-info dropdown-item-icon"></i>Detail</a>
-                                                <a class="dropdown-item" href="#"><i
-                                                        class="fe fe-trash dropdown-item-icon"></i>Delete</a>
+
+                                                <form action="{{ route('admin.user.delete', $user) }}" method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="dropdown-item">
+                                                        <i class="fe fe-trash dropdown-item-icon"></i>Delete
+
+                                                    </button>
+                                                </form>
                                             </span>
                                         </span>
                                     </td>
