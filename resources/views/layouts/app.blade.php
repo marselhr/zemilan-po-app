@@ -22,10 +22,9 @@
     <link href="{{ asset('assets/libs/bootstrap-icons/font/bootstrap-icons.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/libs/%40mdi/font/css/materialdesignicons.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/libs/simplebar/dist/simplebar.min.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
 
-<<<<<<< HEAD
     <style>
         #navbar {
             transition: top 0.3s ease;
@@ -38,8 +37,6 @@
             /* Z-index untuk memastikan navbar muncul di atas konten lain */
         }
     </style>
-=======
->>>>>>> parent of 48c80e1 (style: posisi navbar saat scroll)
 
 
     <!-- Theme CSS -->
