@@ -86,13 +86,20 @@
                                             </a>
                                             <span class="dropdown-menu" aria-labelledby="courseDropdown3">
                                                 <span class="dropdown-header">Action</span>
-                                                <a class="dropdown-item" href="#"><i
-                                                        class="fe fe-send dropdown-item-icon"></i>Edit</a>
+                                                <a class="dropdown-item" href="{{ route('admin.user.edit', $user) }}"><i
+                                                        class="fe fe-edit dropdown-item-icon"></i>Edit</a>
 
                                                 <a class="dropdown-item" href="{{ route('admin.user.show', $user) }}"><i
-                                                        class="fe fe-inbox dropdown-item-icon"></i>Detail</a>
-                                                <a class="dropdown-item" href="#"><i
-                                                        class="fe fe-trash dropdown-item-icon"></i>Delete</a>
+                                                        class="fe fe-info dropdown-item-icon"></i>Detail</a>
+
+                                                <form action="{{ route('admin.user.delete', $user) }}" method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="dropdown-item">
+                                                        <i class="fe fe-trash dropdown-item-icon"></i>Delete
+
+                                                    </button>
+                                                </form>
                                             </span>
                                         </span>
                                     </td>

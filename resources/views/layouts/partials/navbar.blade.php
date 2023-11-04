@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg" id="navbar">
+<nav class="navbar navbar-expand-lg">
     <div class="container px-0">
         <a href="#" class="navbar-brand fw-bold fs-3">Zemilan</a>
 
