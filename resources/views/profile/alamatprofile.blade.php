@@ -60,7 +60,7 @@
 
                                 <div class="col-md-6">
                                     <label class="small mb-1">Kota</label>
-                                    <input class="form-control" name="kodePos" type="text" placeholder=""
+                                    <input class="form-control" name="kota" id="kota" type="text" placeholder=""
                                         value="{{ Auth::user()->address->city }}">
                                 </div>
                             </div>
