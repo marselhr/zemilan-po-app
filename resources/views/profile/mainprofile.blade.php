@@ -38,21 +38,6 @@
                             </div>
                             <div class="row gx-3 mb-3">
                                 <div class="col-md-6">
-                                    <label class="small mb-1">Jenis Kelamin</label>
-                                    <select class="form-control form-select pb-3 pt-3" name="languages" id="jKelamin">
-                                        <option selected>Open this select menu</option>
-                                        <option value="Laki">Laki Laki</option>
-                                        <option value="Perempuan">Perempuan</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="small mb-1" for="inputBirthday">Tanggal Lahir</label>
-                                    <input class="form-control" id="tglLahir" type="text" name="birthday"
-                                        placeholder="Enter your birthday" value="06/10/1988">
-                                </div>
-                            </div>
-                            <div class="row gx-3 mb-3">
-                                <div class="col-md-6">
                                     <label class="small mb-1" for="inputPhone">Nomor Telepon</label>
                                     <input class="form-control" name="no_telp" id="noTelp" type="text"
                                         placeholder="Enter your phone number" value="012345678">
