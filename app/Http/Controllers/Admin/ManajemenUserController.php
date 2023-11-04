@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\UserAddress;
 use Illuminate\Support\Facades\DB;
 
 class ManajemenUserController extends Controller
@@ -19,7 +20,6 @@ class ManajemenUserController extends Controller
     public function show($user)
     {
         $user = User::findOrFail($user);
-
         return view('admin.pages.manajemen-user.show-detail.detail', compact('user'));
     }
 
