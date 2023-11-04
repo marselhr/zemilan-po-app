@@ -44,14 +44,32 @@
                         <label class="form-label" for="phone">Phone</label>
                         <p>0812345678</p>
                     </div>
+                    <div class="col-12">
+                        <!-- Button -->
+                        <button class="btn btn-primary" type="submit">Perbaharui Profil</button>
+                    </div>
                     <!-- Address -->
+                    <hr class="my-5" />
+                    <h4 class="mb-3">Alamat</h4>
                     <div class="mb-3 col-12 col-md-6">
-                        <label class="form-label" for="address">Address Line </label>
-                        <p>Jalan. Mawar Singaraja</p>
+                        <h5>Provinsi</h5>
+                        <p>{{ $user->address->province }}</p>
+                    </div>
+                    <div class="mb-3 col-12 col-md-6">
+                        <h5>City</h5>
+                        <p>{{ $user->address->city }}</p>
+                    </div>
+                    <div class="mb-3 col-12 col-md-6">
+                        <h5>Kode Pos</h5>
+                        <p>{{ $user->address->post_code }}</p>
+                    </div>
+                    <div class="mb-3 col-12 col-md-6">
+                        <h5>Detail</h5>
+                        <p>{{ $user->address->detail }}</p>
                     </div>
                     <div class="col-12">
                         <!-- Button -->
-                        <button class="btn btn-primary" type="submit">Update Profile</button>
+                        <button class="btn btn-primary" type="submit">Perbaharui Alamat</button>
                     </div>
                 </form>
             </div>
