@@ -32,8 +32,7 @@
                     </nav>
                 </div>
                 <div>
-                    <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newCategory">Tambah
-                        Produk</a>
+                    <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProductModal">Tambah Produk</a>
                 </div>
             </div>
         </div>
@@ -48,6 +47,9 @@
                         <thead class="table-light">
                                 <th>No</th>
                                 <th>Nama Produk</th>
+                                <th>Kategori</th>
+                                <th>Stock</th>
+                                <th>Harga</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -63,6 +65,15 @@
                                         {{ $products->name }}
                                     </td>
                                     <td>
+                                        {{ $products->category->name }}
+                                    </td>
+                                    <td>
+                                        {{ $products->stock }}
+                                    </td>
+                                    <td>
+                                        {{ $products->price }}
+                                    </td>
+                                    <td>
                                         <span class="dropdown dropstart">
                                             <a class="btn-icon btn btn-ghost btn-sm rounded-circle" href="#"
                                                 role="button" id="courseDropdown3" data-bs-toggle="dropdown"
@@ -71,11 +82,11 @@
                                             </a>
                                             <span class="dropdown-menu" aria-labelledby="courseDropdown3">
                                                 <span class="dropdown-header">Action</span>
-                                                <a class="dropdown-item" href="#"><i
+                                                <a class="dropdown-item" href="{{route('admin.product.edit',$products->id)}}" ><i
                                                         class="fe fe-send dropdown-item-icon"></i>Edit</a>
-                                                <a class="dropdown-item" href="#"><i
+                                                <a class="dropdown-item" href="{{ route('admin.product.show', $products) }}"><i
                                                         class="fe fe-inbox dropdown-item-icon"></i>Detail</a>
-                                                <a class="dropdown-item" href="#"><i
+                                                <a class="dropdown-item" href="{{ route('admin.product.delete', $products->id) }}"><i
                                                         class="fe fe-trash dropdown-item-icon"></i>Delete</a>
                                             </span>
                                         </span>
@@ -88,4 +99,8 @@
             </div>
         </div>
     </div>
-    @endsection
+    {{-- Modal START --}}
+    {{-- Modal tambah --}}
+    @include('admin.pages.product.modal.addproduct')
+    {{-- end Modal tambah --}}
+@endsection
