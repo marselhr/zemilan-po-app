@@ -11,12 +11,8 @@
         <div class="card-body">
             <div class="d-lg-flex align-items-center justify-content-between">
                 <div class="d-flex align-items-center mb-4 mb-lg-0">
-                    <img src="{{ asset('images/' . $user->avatar) }}" id="img-uploaded" class="avatar-xl rounded-circle"
-                        alt="avatar" />
-                </div>
-                <div>
-                    <a href="#" class="btn btn-outline-secondary btn-sm">Update</a>
-                    <a href="#" class="btn btn-outline-danger btn-sm">Delete</a>
+                    <img src="{{ $user->avatar ? asset('images/' . $user->avatar) : asset('assets/images/avatar/avatar-dummy.png') }}"
+                        id="img-uploaded" class="avatar-xl rounded-circle" alt="avatar" />
                 </div>
             </div>
             <hr class="my-5" />
@@ -44,10 +40,6 @@
                         <label class="form-label" for="phone">Phone</label>
                         <p>0812345678</p>
                     </div>
-                    <div class="col-12">
-                        <!-- Button -->
-                        <a class="btn btn-primary" href="{{ route('admin.user.edit', $user) }}">Perbaharui Profil</a>
-                    </div>
                     <!-- Address -->
                     <hr class="my-5" />
                     <h4 class="mb-3">Alamat</h4>
@@ -66,10 +58,6 @@
                     <div class="mb-3 col-12 col-md-6">
                         <h5>Detail</h5>
                         <p>{{ $user->address->detail }}</p>
-                    </div>
-                    <div class="col-12">
-                        <!-- Button -->
-                        <button class="btn btn-primary" type="submit">Perbaharui Alamat</button>
                     </div>
                 </form>
             </div>

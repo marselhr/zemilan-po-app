@@ -32,7 +32,7 @@
                 <div class="d-flex align-items-end justify-content-between">
                     <div class="d-flex align-items-center">
                         <div class="me-2 position-relative d-flex justify-content-end align-items-end mt-n5">
-                            <img src="{{ asset('images/' . $user->avatar) }}"
+                            <img src="{{ $user->avatar ? asset('images/' . $user->avatar) : asset('assets/images/avatar/avatar-dummy.png') }}"
                                 class="avatar-xl rounded-circle border border-4 border-white" alt="avatar" />
                         </div>
                         <div class="lh-1">
@@ -82,31 +82,6 @@
                                 <a class="nav-link " href="{{ route('admin.user.show', $user) }}">
                                     <i class="fe fe-user nav-icon"></i>
                                     Detail Profile
-                                </a>
-                            </li>
-                            <!-- Nav item -->
-                            <li class="nav-item {{ Request::routeIs('admin.user.edit') ? 'active' : '' }}">
-                                <a class="nav-link" href="{{ route('admin.user.edit', $user) }}">
-                                    <i class="fe fe-settings nav-icon"></i>
-                                    Edit Profil
-                                </a>
-                            </li>
-                            <!-- Nav item -->
-                            <li class="nav-item">
-                                <a class="nav-link" href="delete-profile.html">
-                                    <i class="fe fe-trash nav-icon"></i>
-                                    Hapus Profil
-                                </a>
-                            </li>
-                        </ul>
-                        <span class="navbar-header">Pembayaran</span>
-                        <!-- List -->
-                        <ul class="list-unstyled ms-n2 mb-4">
-                            <!-- Nav item -->
-                            <li class="nav-item">
-                                <a class="nav-link" href="payment-method.html">
-                                    <i class="fe fe-credit-card nav-icon"></i>
-                                    Payment
                                 </a>
                             </li>
                             <!-- Nav item -->

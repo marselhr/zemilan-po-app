@@ -86,9 +86,6 @@
                                             </a>
                                             <span class="dropdown-menu" aria-labelledby="courseDropdown3">
                                                 <span class="dropdown-header">Action</span>
-                                                <a class="dropdown-item" href="{{ route('admin.user.edit', $user) }}"><i
-                                                        class="fe fe-edit dropdown-item-icon"></i>Edit</a>
-
                                                 <a class="dropdown-item" href="{{ route('admin.user.show', $user) }}"><i
                                                         class="fe fe-info dropdown-item-icon"></i>Detail</a>
 
