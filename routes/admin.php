@@ -2,12 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ManajemenUserController;
-use App\Http\Controllers\Admin\UploadController;
 use App\Http\Controllers\Admin\ProductController;
-
-=========
 use App\Http\Controllers\Admin\UploadController;
->>>>>>>>> Temporary merge branch 2
 
 /*
 |--------------------------------------------------------------------------
