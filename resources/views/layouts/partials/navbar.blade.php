@@ -14,7 +14,7 @@
             <!-- Theme toggle -->
             @auth
                 <!-- Profile dropdown for authenticated users -->
-                <div class="dropdown d-inline-block stopevent position-static">
+                <div class="dropdown d-inline-block stopevent ">
                     <a class="btn btn-light btn-icon rounded-circle text-muted indicator indicator-primary" href="#"
                         role="button" id="dropdownProfile" data-bs-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
@@ -23,12 +23,12 @@
                     <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg position-absolute mx-3 my-5"
                         aria-labelledby="dropdownProfile">
                         <div>
-                            <div class="d-flex border-bottom px-3 pb-3 justify-content-between align-items-center">
+                            <div class="d-flex border-bottom px-3 pb-3  align-items-center">
                                 <div class="avatar avatar-md avatar-indicators avatar-online">
                                     <img alt="avatar" src="{{ asset('assets/images/avatar/avatar-dummy.png') }}"
                                         class="rounded-circle">
                                 </div>
-                                <div>
+                                <div class="ms-3 lh-1">
                                     <h5 class="mb-1">{{ Auth::user()->first_name }}</h5>
                                     <p class="mb-0 text-muted">{{ Auth::user()->email }}</p>
                                 </div>
