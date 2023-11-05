@@ -29,33 +29,39 @@
                 <h4 class="mb-0">Personal Details</h4>
                 <p class="mb-4">Edit your personal information and address.</p>
                 <!-- Form -->
-                <form class="row gx-3 needs-validation" novalidate>
+                <form class="row gx-3 needs-validation" novalidate action="{{ route('admin.user.update', $user) }}"
+                    method="post">
+                    @csrf
                     <!-- First name -->
                     <div class="mb-3 col-12 col-md-6">
                         <label class="form-label" for="fname">First Name</label>
                         <input type="text" id="fname" class="form-control" placeholder="First Name"
-                            value="{{ $user->first_name }}" required />
+                            value="{{ $user->first_name }}" required name="first_name" />
                         <div class="invalid-feedback">Please enter first name.</div>
                     </div>
                     <!-- Last name -->
                     <div class="mb-3 col-12 col-md-6">
                         <label class="form-label" for="lname">Last Name</label>
-                        <input type="text" id="lname" class="form-control" placeholder="Last Name"
-                            value="{{ $user->last_name }}" required />
-                        <div class="invalid-feedback">Please enter last name.</div>
+                        <input type="text" id="lname"
+                            class="form-control {{ $errors->has('last_name') ? 'invalid' : '' }}" placeholder="Last Name"
+                            value="{{ $user->last_name }}" name="last_name" />
+                        @error('last_name')
+                            <div class="invalid-feedback">{{ $error->last_name }}</div>
+                        @enderror
                     </div>
                     <!-- Phone -->
                     <div class="mb-3 col-12 col-md-6">
                         <label class="form-label" for="phone">Phone</label>
-                        <input type="text" id="phone" class="form-control" placeholder="Phone" required />
+                        <input type="text" id="phone" class="form-control" placeholder="Phone" name="phone_number"
+                            value="{{ $user->phone_number }}" required />
                         <div class="invalid-feedback">Please enter phone number.</div>
                     </div>
-                    <!-- Address -->
+                    {{-- <!-- Address -->
                     <div class="mb-3 col-12 col-md-6">
                         <label class="form-label" for="address">Address Line </label>
                         <input type="text" id="address" class="form-control" placeholder="Address" required />
                         <div class="invalid-feedback">Please enter address.</div>
-                    </div>
+                    </div> --}}
                     <div class="col-12">
                         <!-- Button -->
                         <button class="btn btn-primary" type="submit">Update Profile</button>
