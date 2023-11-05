@@ -64,13 +64,6 @@
     <!-- Theme JS -->
     <script src="{{ asset('assets/js/theme.min.js') }}"></script>
 
-    <script src="{{ asset('assets/libs/tiny-slider/dist/min/tiny-slider.js') }}"></script>
-    <script src="{{ asset('assets/libs/%40popperjs/core/dist/umd/popper.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/tippy.js/dist/tippy-bundle.umd.min.js') }}"></script>
-    <script src="{{ asset('assets/js/vendors/tnsSlider.js') }}"></script>
-    <script src="{{ asset('assets/js/vendors/tooltip.js') }}"></script>
-    <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
-    >>>>>>>>> Temporary merge branch 2
     <script>
         var header = document.querySelector('#navbar');
         var headerHeight = header.offsetHeight; // Mengambil tinggi header
