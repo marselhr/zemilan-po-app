@@ -22,43 +22,6 @@
         </div>
     </div>
 
-    <div class="row align-items-center">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-12">
-            <!-- Bg -->
-            <div class="rounded-top"
-                style="background: url({{ asset('assets/images/background/profile-bg.jpg') }}) no-repeat; background-size: cover; height: 100px">
-            </div>
-            <div class="card px-4 pt-2 pb-4 shadow-sm rounded-top-0 rounded-bottom-0 rounded-bottom-md-2">
-                <div class="d-flex align-items-end justify-content-between">
-                    <div class="d-flex align-items-center">
-                        <div class="me-2 position-relative d-flex justify-content-end align-items-end mt-n5">
-                            <img src="{{ asset('images/' . $user->avatar) }}"
-                                class="avatar-xl rounded-circle border border-4 border-white" alt="avatar" />
-                        </div>
-                        <div class="lh-1">
-                            <h2 class="mb-0">
-                                {{ $user->first_name . ' ' . $user->last_name }}
-                                <a href="#" class="" data-bs-toggle="tooltip" data-placement="top"
-                                    title="Beginner">
-                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE">
-                                        </rect>
-                                        <rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9">
-                                        </rect>
-                                        <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9">
-                                        </rect>
-                                    </svg>
-                                </a>
-                            </h2>
-                            <p class="mb-0 d-block">{{ $user->email }}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="row mt-0 mt-md-4">
         <div class="col-lg-3 col-md-4 col-12">
             <!-- Side navbar -->
@@ -82,31 +45,6 @@
                                 <a class="nav-link " href="{{ route('admin.user.show', $user) }}">
                                     <i class="fe fe-user nav-icon"></i>
                                     Detail Profile
-                                </a>
-                            </li>
-                            <!-- Nav item -->
-                            <li class="nav-item {{ Request::routeIs('admin.user.edit') ? 'active' : '' }}">
-                                <a class="nav-link" href="{{ route('admin.user.edit', $user) }}">
-                                    <i class="fe fe-settings nav-icon"></i>
-                                    Edit Profil
-                                </a>
-                            </li>
-                            <!-- Nav item -->
-                            <li class="nav-item">
-                                <a class="nav-link" href="delete-profile.html">
-                                    <i class="fe fe-trash nav-icon"></i>
-                                    Hapus Profil
-                                </a>
-                            </li>
-                        </ul>
-                        <span class="navbar-header">Pembayaran</span>
-                        <!-- List -->
-                        <ul class="list-unstyled ms-n2 mb-4">
-                            <!-- Nav item -->
-                            <li class="nav-item">
-                                <a class="nav-link" href="payment-method.html">
-                                    <i class="fe fe-credit-card nav-icon"></i>
-                                    Payment
                                 </a>
                             </li>
                             <!-- Nav item -->

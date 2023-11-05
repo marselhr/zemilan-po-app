@@ -37,40 +37,6 @@ class ManajemenUserController extends Controller
         return view('admin.pages.manajemen-user.show-detail.edit', compact('user'));
     }
 
-    public function update(UpdateUserRequest $request, $user)
-    {
-        try {
-            DB::beginTransaction();
-
-            $user = User::findOrfail($user);
-
-            if ($user->avatar != null) {
-                $folder = explode('/', $user->avatar)[0];
-                Storage::deleteDirectory('images/' . $folder);
-            }
-            $f = TemporaryFile::firstOrFail();
-
-
-            Storage::copy('images/tmp/' . $f->folder . '/' . $f->file, 'images/' . $f->folder . '/' . $f->file);
-            $avatar = $f->folder . '/' . $f->file;
-            Storage::deleteDirectory('images/tmp/' . $f->folder);
-            $f->delete();
-            $user->first_name = $request->first_name;
-            $user->last_name = $request->last_name;
-            $user->phone_number = $request->phone_number;
-            $user->avatar = $avatar;
-            $user->save();
-
-            DB::commit();
-            toast('Data Pengguna sudah disimpan', 'success', 'top-right');
-            return to_route('admin.user.show', $user);
-        } catch (\Throwable $th) {
-            DB::rollBack();
-            return redirect()->back()->with($th->getMessage());
-        }
-    }
-
-
     public function invoice($user)
     {
         $user = User::findOrFail($user);
