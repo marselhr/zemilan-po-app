@@ -11,7 +11,7 @@
                 <a href="{{ route('admin.category') }}" class="nav-link ">Kategory</a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('admin.product') }}" class="nav-link ">Produk</a>
+                <a href="{{ route('admin.product.index') }}" class="nav-link ">Produk</a>
             </li>
             <li class="nav-item">
                 <a href="{{ route('admin.user.index') }}"

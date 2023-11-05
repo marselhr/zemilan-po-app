@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\ManajemenUserController;
-use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UploadController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ManajemenUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,12 +33,17 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'is.admin']], functi
     });
 
     // category
-    Route::get('/category', [CategoryController::class, 'index'])->name('admin.category');
-    Route::get('/category/create', [CategoryController::class, 'create'])->name('admin.category.create');
-    Route::post('/category/store', [CategoryController::class, 'store'])->name('admin.category.store');
-    Route::get('/category/edit/{id}', [CategoryController::class, 'edit'])->name('admin.category.edit');
-    Route::put('/category/update/{id}', [CategoryController::class, 'update'])->name('admin.category.update');
-    Route::put('/category/destroy/{id}', [CategoryController::class, 'destroy'])->name('admin.category.destroy');
+    Route::prefix('category')->group(function () {
+
+        Route::get('/', [CategoryController::class, 'index'])->name('admin.category');
+        Route::get('/create', [CategoryController::class, 'create'])->name('admin.category.create');
+        Route::post('/store', [CategoryController::class, 'store'])->name('admin.category.store');
+        Route::get('/{id}', [CategoryController::class, 'show'])->name('admin.category.show');
+        Route::get('/edit/{id}', [CategoryController::class, 'edit'])->name('admin.category.edit');
+        Route::put('/update/{id}', [CategoryController::class, 'update'])->name('admin.category.update');
+        Route::delete('/destroy/{id}', [CategoryController::class, 'destroy'])->name('admin.category.destroy');
+    });
+
     Route::get('/product', [ProductController::class, 'index'])->name('admin.product.index');
     // Route::delete('/admin/products/{id}', [ProductController::class, 'destroy'])->name('admin.product.destroy');
     // Route::get('/addproduct', [ProductController::class, 'create'])->name('admin.product.add');

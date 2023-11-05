@@ -17,6 +17,9 @@ class CategoryController extends Controller
     public function index()
     {
         $product_categories = ProductCategory::get();
+        $title = 'Delete Kategori Produk!';
+        $text = "Yakin akan menhapus data?";
+        confirmDelete($title, $text);
         return view('admin.pages.category.index', compact('product_categories'));
     }
 
@@ -38,12 +41,14 @@ class CategoryController extends Controller
             'description' => 'required',
         ]);
 
-        if($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
+        if ($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
 
         $product_categories['name'] = $request->name;
         $product_categories['description'] = $request->description;
 
         ProductCategory::create($product_categories);
+
+        toast('Data Kategori Produk Berhasil Disimpan', 'success', 'top-right');
 
         return redirect()->route('admin.category');
     }
@@ -76,13 +81,14 @@ class CategoryController extends Controller
             'description' => 'required',
         ]);
 
-        if($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
+        if ($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
 
         $product_categories['name'] = $request->name;
         $product_categories['description'] = $request->description;
 
         ProductCategory::whereId($id)->update($product_categories);
 
+        toast('Data Kategori Produk Berhasil Disimpan', 'success', 'top-right');
         return redirect()->route('admin.category');
     }
 
@@ -96,7 +102,7 @@ class CategoryController extends Controller
         if ($product_categories) {
             $product_categories->delete();
         }
-
+        toast('Data Kategori Produk Berhasil Dihapus', 'success', 'top-right');
         return redirect()->route('admin.category');
     }
 }
