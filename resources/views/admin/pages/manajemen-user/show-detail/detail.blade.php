@@ -5,7 +5,7 @@
         <!-- Card header -->
         <div class="card-header">
             <h3 class="mb-0">Detail Profil Pengguna</h3>
-            <p class="mb-0">Anda sepenuhnya memiliki kendali atas pengaturan akun pengguna.</p>
+            <p class="mb-0">Anda hanya dapat melihat akun pengguna.</p>
         </div>
         <!-- Card body -->
         <div class="card-body">
@@ -19,21 +19,21 @@
             <div class=" row gx-4">
                 <!-- First name -->
                 <div class="mb-3 col-12 col-md-6">
-                    <label class="form-label" for="fname">Nama Depan</label>
+                    <label class="form-label" for="fname">First Name</label>
                     <p>
                         {{ $user->first_name }}
                     </p>
                 </div>
                 <!-- Last name -->
                 <div class="mb-3 col-12 col-md-6">
-                    <label class="form-label" for="lname">Nama belakang</label>
+                    <label class="form-label" for="lname">Last Name</label>
                     <p>
                         {{ $user->last_name }}
                     </p>
                 </div>
                 <!-- Phone -->
                 <div class="mb-3 col-12 col-md-6">
-                    <label class="form-label" for="phone">Nomor Telpon</label>
+                    <label class="form-label" for="phone">Phone</label>
                     <p>0812345678</p>
                 </div>
                 <!-- Address -->
@@ -44,7 +44,7 @@
                     <p>{{ $user->address->province }}</p>
                 </div>
                 <div class="mb-3 col-12 col-md-6">
-                    <h5>Kota</h5>
+                    <h5>City</h5>
                     <p>{{ $user->address->city }}</p>
                 </div>
                 <div class="mb-3 col-12 col-md-6">
