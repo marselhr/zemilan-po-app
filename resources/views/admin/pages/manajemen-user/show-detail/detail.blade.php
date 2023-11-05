@@ -16,50 +16,45 @@
                 </div>
             </div>
             <hr class="my-5" />
-            <div>
-                <h4 class="mb-0">Personal Details</h4>
-                <p class="mb-4">Edit your personal information and address.</p>
-                <!-- Form -->
-                <form class="row gx-3 needs-validation" novalidate>
-                    <!-- First name -->
-                    <div class="mb-3 col-12 col-md-6">
-                        <label class="form-label" for="fname">First Name</label>
-                        <p>
-                            {{ $user->first_name }}
-                        </p>
-                    </div>
-                    <!-- Last name -->
-                    <div class="mb-3 col-12 col-md-6">
-                        <label class="form-label" for="lname">Last Name</label>
-                        <p>
-                            {{ $user->last_name }}
-                        </p>
-                    </div>
-                    <!-- Phone -->
-                    <div class="mb-3 col-12 col-md-6">
-                        <label class="form-label" for="phone">Phone</label>
-                        <p>0812345678</p>
-                    </div>
-                    <!-- Address -->
-                    <hr class="my-5" />
-                    <h4 class="mb-3">Alamat</h4>
-                    <div class="mb-3 col-12 col-md-6">
-                        <h5>Provinsi</h5>
-                        <p>{{ $user->address->province }}</p>
-                    </div>
-                    <div class="mb-3 col-12 col-md-6">
-                        <h5>City</h5>
-                        <p>{{ $user->address->city }}</p>
-                    </div>
-                    <div class="mb-3 col-12 col-md-6">
-                        <h5>Kode Pos</h5>
-                        <p>{{ $user->address->post_code }}</p>
-                    </div>
-                    <div class="mb-3 col-12 col-md-6">
-                        <h5>Detail</h5>
-                        <p>{{ $user->address->detail }}</p>
-                    </div>
-                </form>
+            <div class=" row gx-4">
+                <!-- First name -->
+                <div class="mb-3 col-12 col-md-6">
+                    <label class="form-label" for="fname">Nama Depan</label>
+                    <p>
+                        {{ $user->first_name }}
+                    </p>
+                </div>
+                <!-- Last name -->
+                <div class="mb-3 col-12 col-md-6">
+                    <label class="form-label" for="lname">Nama belakang</label>
+                    <p>
+                        {{ $user->last_name }}
+                    </p>
+                </div>
+                <!-- Phone -->
+                <div class="mb-3 col-12 col-md-6">
+                    <label class="form-label" for="phone">Nomor Telpon</label>
+                    <p>0812345678</p>
+                </div>
+                <!-- Address -->
+                <hr class="my-5" />
+                <h4 class="mb-3">Alamat</h4>
+                <div class="mb-3 col-12 col-md-6">
+                    <h5>Provinsi</h5>
+                    <p>{{ $user->address->province }}</p>
+                </div>
+                <div class="mb-3 col-12 col-md-6">
+                    <h5>Kota</h5>
+                    <p>{{ $user->address->city }}</p>
+                </div>
+                <div class="mb-3 col-12 col-md-6">
+                    <h5>Kode Pos</h5>
+                    <p>{{ $user->address->post_code }}</p>
+                </div>
+                <div class="mb-3 col-12 col-md-6">
+                    <h5>Detail</h5>
+                    <p>{{ $user->address->detail }}</p>
+                </div>
             </div>
         </div>
     </div>
