@@ -64,6 +64,7 @@
     <script src="{{ asset('assets/libs/tippy.js/dist/tippy-bundle.umd.min.js') }}"></script>
     <script src="{{ asset('assets/js/vendors/tnsSlider.js') }}"></script>
     <script src="{{ asset('assets/js/vendors/tooltip.js') }}"></script>
+    
 
     <script>
         var header = document.querySelector('#navbar');
