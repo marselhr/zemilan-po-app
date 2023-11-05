@@ -32,7 +32,8 @@
                     </nav>
                 </div>
                 <div>
-                    <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCategoryModal">Tambah Kategory</a>
+                    <a href="#" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#addCategoryModal">Tambah Kategory</a>
                 </div>
             </div>
         </div>
@@ -45,9 +46,9 @@
                     <table class="table mb-0 text-nowrap table-centered table-hover table-with-checkbox" id="datatable"
                         style="width: 100%">
                         <thead class="table-light">
-                                <th>No</th>
-                                <th>Nama Kategory</th>
-                                <th>Action</th>
+                            <th>No</th>
+                            <th>Nama Kategory</th>
+                            <th>Action</th>
                             </tr>
                         </thead>
 
@@ -70,11 +71,15 @@
                                             </a>
                                             <span class="dropdown-menu" aria-labelledby="courseDropdown3">
                                                 <span class="dropdown-header">Action</span>
-                                                <a class="dropdown-item" href="{{ route('admin.category.edit' , ['id'=> $categories->id]) }}"><i
+                                                <a class="dropdown-item"
+                                                    href="{{ route('admin.category.edit', ['id' => $categories->id]) }}"><i
                                                         class="fe fe-send dropdown-item-icon"></i>Edit</a>
-                                                <a class="dropdown-item" href="{{ route('admin.category.show', ['id'=> $categories->id]) }}"><i
+                                                <a class="dropdown-item"
+                                                    href="{{ route('admin.category.show', ['id' => $categories->id]) }}"><i
                                                         class="fe fe-inbox dropdown-item-icon"></i>Detail</a>
-                                                <a class="dropdown-item" href="{{ route('admin.category.destroy' , ['id'=> $categories->id]) }}"><i
+                                                <a class="dropdown-item"
+                                                    href="{{ route('admin.category.destroy', ['id' => $categories->id]) }}"
+                                                    data-confirm-delete="true"><i
                                                         class="fe fe-trash dropdown-item-icon"></i>Delete</a>
                                             </span>
                                         </span>
@@ -89,4 +94,4 @@
     </div>
 
     @include('admin.pages.category.modal.addcategory')
-    @endsection
+@endsection
