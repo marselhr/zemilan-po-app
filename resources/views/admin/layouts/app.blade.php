@@ -34,6 +34,8 @@
 </head>
 
 <body>
+    @include('sweetalert::alert')
+
     <main id="db-wrapper">
         @include('admin.layouts.partials.sidebar')
 

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('user_addresses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->references('id')->on('users');
+            $table->foreignId('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->string('province');
             $table->string('city');
             $table->string('post_code', 13);

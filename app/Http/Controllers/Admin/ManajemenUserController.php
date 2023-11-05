@@ -3,10 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateUserRequest;
-use App\Models\UserAddress;
 use Illuminate\Support\Facades\DB;
 
 class ManajemenUserController extends Controller
@@ -15,6 +13,9 @@ class ManajemenUserController extends Controller
     {
         $users = User::all();
 
+        $title = 'Delete User!';
+        $text = "Are you sure you want to delete?";
+        confirmDelete($title, $text);
         return view('admin.pages.manajemen-user.index', compact('users'));
     }
 
@@ -62,8 +63,13 @@ class ManajemenUserController extends Controller
             $user = User::findOrFail($user);
             $user->delete();
             DB::commit();
-            return to_route('admin.user.index')->with('success', "data user sudah dihapus");
+
+            // menampilkan alert success setelah confirmasi disetujui
+            toast('Data Pengguna sudah dihapus', 'success', 'top-right');
+
+            return to_route('admin.user.index');
         } catch (\Throwable $th) {
+            DB::rollBack();
             return redirect()->back()->with('error', $th->getMessage());
         }
     }
