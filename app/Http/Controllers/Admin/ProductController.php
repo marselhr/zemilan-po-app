@@ -28,6 +28,9 @@ class ProductController extends Controller
     {
         $product_categories = ProductCategory::all();
         $product = Product::all();
+        $title = 'Delete Product!';
+        $text = "Are you sure you want to delete?";
+        confirmDelete($title, $text);
         return view('admin.pages.product.index', compact('product_categories', 'product'));
     }
 
@@ -69,6 +72,7 @@ class ProductController extends Controller
         $product->price = $request->price;
         $product->image = $imagePath; // Simpan path gambar yang diunggah
         $product->save();
+        toast('Data Product Berhasil di tambahkan', 'success', 'top-right');
 
         // Redirect kembali ke halaman produk atau sesuai kebijakan Anda
         return redirect()->route('admin.product.index')->with('success', 'Produk berhasil ditambahkan ');
@@ -125,8 +129,11 @@ class ProductController extends Controller
             // Handle image upload and update logic here.
             // You might want to store the image in a specific directory and update the product's image field.
         }
+        // menampilkan alert success setelah confirmasi disetujui
+
 
         $product->save();
+        toast('Data Product Berhasil di perbaharui', 'success', 'top-right');
 
         return redirect()->route('admin.product.index')->with('success', 'Product updated successfully');
     }
@@ -139,7 +146,8 @@ class ProductController extends Controller
             $product = Product::findOrFail($product);
             $product->delete();
             DB::commit();
-            return to_route('admin.Product.index')->with('success', "data Product sudah dihapus");
+            toast('Data Product Berhasil di hapus', 'success', 'top-right');
+            return to_route('admin.product.index')->with('success', "data Product sudah dihapus");
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', $th->getMessage());
         }

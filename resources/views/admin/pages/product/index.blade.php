@@ -86,7 +86,7 @@
                                                         class="fe fe-send dropdown-item-icon"></i>Edit</a>
                                                 <a class="dropdown-item" href="{{ route('admin.product.show', $products) }}"><i
                                                         class="fe fe-inbox dropdown-item-icon"></i>Detail</a>
-                                                <a class="dropdown-item" href="{{ route('admin.product.delete', $products->id) }}"><i
+                                                <a class="dropdown-item" href="{{ route('admin.product.delete', $products) }}" data-confirm-delete="true"><i
                                                         class="fe fe-trash dropdown-item-icon"></i>Delete</a>
                                             </span>
                                         </span>
