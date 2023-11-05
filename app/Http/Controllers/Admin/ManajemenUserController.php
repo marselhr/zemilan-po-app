@@ -62,7 +62,8 @@ class ManajemenUserController extends Controller
             $user->save();
 
             DB::commit();
-            return to_route('admin.user.show', $user)->with('success', 'data berhasil diperbaharui');
+            toast('Data Pengguna sudah disimpan', 'success', 'top-right');
+            return to_route('admin.user.show', $user);
         } catch (\Throwable $th) {
             DB::rollBack();
             return redirect()->back()->with($th->getMessage());
