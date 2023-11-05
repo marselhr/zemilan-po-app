@@ -17,7 +17,7 @@
            <p class="pe-lg-10 mb-5">Start, switch, or advance your career with more than 5,000 courses, Professional
              Certificates, and degrees from world-class universities and companies.</p>
               <!-- btn -->
-            <a href="#" class="btn btn-primary">Go To The Catalog</a>
+            <a href="{{route('catalog')}}" class="btn btn-primary">See Product</a>
 
          </div>
        </div>
