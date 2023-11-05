@@ -46,7 +46,7 @@
     <title>Home</title>
 </head>
 
-<body>
+<body style="margin-top: 0px;">
     <main>
         @if (
             !Request::routeIs('login') &&
