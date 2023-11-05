@@ -19,25 +19,31 @@
             <div class=" row gx-4">
                 <!-- First name -->
                 <div class="mb-3 col-12 col-md-6">
-                    <label class="form-label" for="fname">First Name</label>
+                    <h5>Nama Depan</h5>
                     <p>
                         {{ $user->first_name }}
                     </p>
                 </div>
                 <!-- Last name -->
                 <div class="mb-3 col-12 col-md-6">
-                    <label class="form-label" for="lname">Last Name</label>
+                    <h5>Nama Belakang</h5>
                     <p>
                         {{ $user->last_name }}
                     </p>
                 </div>
+                <div class="mb-3 col-12 col-md-6">
+                    <h5>Alamat Surel</h5>
+                    <p>
+                        {{ $user->email }}
+                    </p>
+                </div>
                 <!-- Phone -->
                 <div class="mb-3 col-12 col-md-6">
-                    <label class="form-label" for="phone">Phone</label>
-                    <p>0812345678</p>
+                    <h5>Telepon/WA</h5>
+                    <p>{{ $user->phone_number ?? '-' }}</p>
                 </div>
                 <!-- Address -->
-                <hr class="my-5" />
+                <hr class="mb-3" />
                 <h4 class="mb-3">Alamat</h4>
                 <div class="mb-3 col-12 col-md-6">
                     <h5>Provinsi</h5>
