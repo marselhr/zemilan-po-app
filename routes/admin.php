@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ManajemenUserController;
+use App\Http\Controllers\Admin\ProductController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -26,4 +28,17 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'is.admin']], functi
         Route::get('/invoice', [ManajemenUserController::class, 'invoice'])->name('admin.user.show.invoice');
         Route::delete('/delete', [ManajemenUserController::class, 'destroy'])->name('admin.user.delete');
     });
+    Route::get('/product', [ProductController::class, 'index'])->name('admin.product.index');
+    // Route::delete('/admin/products/{id}', [ProductController::class, 'destroy'])->name('admin.product.destroy');
+    // Route::get('/addproduct', [ProductController::class, 'create'])->name('admin.product.add');
+    Route::put('/admin/products/{id}', [ProductController::class, 'update'])->name('admin.product.update');
+    Route::post('/store', [ProductController::class, 'store'])->name('admin.product.store');
+    Route::prefix('product/{product}')->group(function () {
+        Route::get('/addproduct', [ProductController::class, 'create'])->name('admin.product.add');
+        Route::get('/', [ProductController::class, 'show'])->name('admin.product.show');
+        Route::get('/edit', [ProductController::class, 'edit'])->name('admin.product.edit');
+        Route::delete('/destroy', [ProductController::class, 'destroy'])->name('admin.product.delete');
+    });
+
+
 });

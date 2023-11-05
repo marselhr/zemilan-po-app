@@ -3,7 +3,7 @@
         <a href="#" class="navbar-brand fw-bold fs-3">Zemilan</a>
 
         <!-- Mobile view nav wrap -->
-        <div class="ms-auto d-flex align-items-center order-lg-3">
+        <div class="ms-auto d-flex align-items-center order-lg-3 gap-1">
             <!-- Theme toggle -->
             <div>
                 <a href="#" class="form-check form-switch theme-switch btn btn-light btn-icon rounded-circle">
@@ -23,7 +23,7 @@
                     <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg position-absolute mx-3 my-5"
                         aria-labelledby="dropdownProfile">
                         <div>
-                            <div class="d-flex border-bottom px-3 pb-3 justify-content-between align-items-center">
+                            <div class="d-flex border-bottom px-3 pb-3 align-items-center gap-4">
                                 <div class="avatar avatar-md avatar-indicators avatar-online">
                                     <img alt="avatar" src="{{ asset('assets/images/avatar/avatar-dummy.png') }}"
                                         class="rounded-circle">
