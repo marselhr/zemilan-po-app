@@ -11,8 +11,8 @@
         <div class="card-body">
             <div class="d-lg-flex align-items-center justify-content-between">
                 <div class="d-flex align-items-center mb-4 mb-lg-0">
-                    <img src="{{ asset('assets/images/avatar/avatar-dummy.png') }}" id="img-uploaded"
-                        class="avatar-xl rounded-circle" alt="avatar" />
+                    <img src="{{ asset('images/' . $user->avatar) }}" id="img-uploaded" class="avatar-xl rounded-circle"
+                        alt="avatar" />
                 </div>
                 <div>
                     <a href="#" class="btn btn-outline-secondary btn-sm">Update</a>

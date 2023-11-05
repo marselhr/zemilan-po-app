@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ManajemenUserController;
+use App\Http\Controllers\Admin\UploadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'is.admin']], functi
     Route::get('/users', [ManajemenUserController::class, 'index'])->name('admin.user.index');
     Route::prefix('users/{user}')->group(function () {
         Route::get('/', [ManajemenUserController::class, 'show'])->name('admin.user.show');
+        Route::post('/avatar-upload', [UploadController::class, 'uploadFile'])->name('admin.user.avatar.upload');
+        Route::delete('/avatar-delete', [UploadController::class, 'deleteUploadFile'])->name('admin.user.avatar.delete');
         Route::get('/edit', [ManajemenUserController::class, 'edit'])->name('admin.user.edit');
         Route::post('/update', [ManajemenUserController::class, 'update'])->name('admin.user.update');
         Route::get('/invoice', [ManajemenUserController::class, 'invoice'])->name('admin.user.show.invoice');
