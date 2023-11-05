@@ -3,9 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
+use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateUserRequest;
-use Illuminate\Support\Facades\DB;
+use App\Models\TemporaryFile;
+use Illuminate\Support\Facades\Storage;
+use RahulHaque\Filepond\Facades\Filepond;
+
 
 class ManajemenUserController extends Controller
 {
@@ -34,14 +40,29 @@ class ManajemenUserController extends Controller
     public function update(UpdateUserRequest $request, $user)
     {
         try {
-
             DB::beginTransaction();
 
-            $user = User::findOrFail($user);
+            $user = User::findOrfail($user);
 
-            $user->update($request->validated());
+            if ($user->avatar != null) {
+                $folder = explode('/', $user->avatar)[0];
+                Storage::deleteDirectory('images/' . $folder);
+            }
+            $f = TemporaryFile::firstOrFail();
+
+
+            Storage::copy('images/tmp/' . $f->folder . '/' . $f->file, 'images/' . $f->folder . '/' . $f->file);
+            $avatar = $f->folder . '/' . $f->file;
+            Storage::deleteDirectory('images/tmp/' . $f->folder);
+            $f->delete();
+            $user->first_name = $request->first_name;
+            $user->last_name = $request->last_name;
+            $user->phone_number = $request->phone_number;
+            $user->avatar = $avatar;
+            $user->save();
+
             DB::commit();
-            return to_route('admin.user.show')->with('success', 'data berhasil diperbaharui');
+            return to_route('admin.user.show', $user)->with('success', 'data berhasil diperbaharui');
         } catch (\Throwable $th) {
             DB::rollBack();
             return redirect()->back()->with($th->getMessage());

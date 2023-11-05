@@ -32,7 +32,7 @@
                 <div class="d-flex align-items-end justify-content-between">
                     <div class="d-flex align-items-center">
                         <div class="me-2 position-relative d-flex justify-content-end align-items-end mt-n5">
-                            <img src="{{ asset('assets/images/avatar/avatar-dummy.png') }}"
+                            <img src="{{ asset('images/' . $user->avatar) }}"
                                 class="avatar-xl rounded-circle border border-4 border-white" alt="avatar" />
                         </div>
                         <div class="lh-1">
