@@ -8,7 +8,7 @@
                 <a href="" class="nav-link {{ Request::routeIs('admin.dashboard') ? 'active' : '' }}">Dashboard</a>
             </li>
             <li class="nav-item">
-                <a href="" class="nav-link ">Produk</a>
+                <a href="{{route('admin.product.index')}}" class="nav-link ">Produk</a>
             </li>
             <li class="nav-item">
                 <a href="{{ route('admin.user.index') }}"
