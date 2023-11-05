@@ -32,7 +32,7 @@
                 <div class="d-flex align-items-end justify-content-between">
                     <div class="d-flex align-items-center">
                         <div class="me-2 position-relative d-flex justify-content-end align-items-end mt-n5">
-                            <img src="{{ asset('assets/images/avatar/avatar-dummy.png') }}"
+                            <img src="{{ asset('images/' . $user->avatar) }}"
                                 class="avatar-xl rounded-circle border border-4 border-white" alt="avatar" />
                         </div>
                         <div class="lh-1">
@@ -74,7 +74,7 @@
                 <!-- Collapse navbar -->
                 <div class="collapse navbar-collapse" id="sidenav">
                     <div class="navbar-nav flex-column">
-                        <span class="navbar-header">Account Settings</span>
+                        <span class="navbar-header">Pengaturan Akun</span>
                         <!-- List -->
                         <ul class="list-unstyled ms-n2 mb-0">
                             <!-- Nav item -->
@@ -95,14 +95,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="delete-profile.html">
                                     <i class="fe fe-trash nav-icon"></i>
-                                    Delete Profile
-                                </a>
-                            </li>
-                            <!-- Nav item -->
-                            <li class="nav-item">
-                                <a class="nav-link" href="linked-accounts.html">
-                                    <i class="fe fe-user nav-icon"></i>
-                                    Linked Accounts
+                                    Hapus Profil
                                 </a>
                             </li>
                         </ul>
