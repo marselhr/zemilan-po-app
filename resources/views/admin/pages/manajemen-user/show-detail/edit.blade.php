@@ -30,14 +30,14 @@
                     <div class="row gx-3">
                         <!-- First name -->
                         <div class="mb-3 col-12 col-md-6">
-                            <label class="form-label" for="fname">First Name</label>
+                            <label class="form-label" for="fname">Nama Depan</label>
                             <input type="text" id="fname" class="form-control" placeholder="First Name"
                                 value="{{ $user->first_name }}" required name="first_name" />
-                            <div class="invalid-feedback">Please enter first name.</div>
+                            <div class="invalid-feedback">silahkan masukkan nama depan</div>
                         </div>
                         <!-- Last name -->
                         <div class="mb-3 col-12 col-md-6">
-                            <label class="form-label" for="lname">Last Name</label>
+                            <label class="form-label" for="lname">Nama Belakang</label>
                             <input type="text" id="lname"
                                 class="form-control {{ $errors->has('last_name') ? 'invalid' : '' }}"
                                 placeholder="Last Name" value="{{ $user->last_name }}" name="last_name" />
@@ -47,7 +47,7 @@
                         </div>
                         <!-- Phone -->
                         <div class="mb-3 col-12 col-md-6">
-                            <label class="form-label" for="phone">Phone</label>
+                            <label class="form-label" for="phone">Nomor telepon</label>
                             <input type="text" id="phone" class="form-control" placeholder="Phone"
                                 name="phone_number" value="{{ $user->phone_number }}" required />
                             <div class="invalid-feedback">Please enter phone number.</div>
