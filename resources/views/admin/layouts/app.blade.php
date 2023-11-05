@@ -70,6 +70,8 @@
     <script src="{{ asset('assets/js/vendors/tnsSlider.js') }}"></script>
     <script src="{{ asset('assets/js/vendors/tooltip.js') }}"></script>
     <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
+
+
     <script>
         var header = document.querySelector('#navbar');
         var headerHeight = header.offsetHeight; // Mengambil tinggi header
