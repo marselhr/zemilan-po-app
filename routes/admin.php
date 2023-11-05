@@ -30,6 +30,14 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'is.admin']], functi
         Route::get('/invoice', [ManajemenUserController::class, 'invoice'])->name('admin.user.show.invoice');
         Route::delete('/delete', [ManajemenUserController::class, 'destroy'])->name('admin.user.delete');
     });
+
+    // category
+    Route::get('/category', [CategoryController::class, 'index'])->name('admin.category');
+    Route::get('/category/create', [CategoryController::class, 'create'])->name('admin.category.create');
+    Route::post('/category/store', [CategoryController::class, 'store'])->name('admin.category.store');
+    Route::get('/category/edit/{id}', [CategoryController::class, 'edit'])->name('admin.category.edit');
+    Route::put('/category/update/{id}', [CategoryController::class, 'update'])->name('admin.category.update');
+    Route::put('/category/destroy/{id}', [CategoryController::class, 'destroy'])->name('admin.category.destroy');
     Route::get('/product', [ProductController::class, 'index'])->name('admin.product.index');
     // Route::delete('/admin/products/{id}', [ProductController::class, 'destroy'])->name('admin.product.destroy');
     // Route::get('/addproduct', [ProductController::class, 'create'])->name('admin.product.add');

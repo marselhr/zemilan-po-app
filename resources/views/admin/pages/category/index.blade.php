@@ -27,13 +27,12 @@
                             <li class="breadcrumb-item">
                                 <a href="{{ route('admin.dashboard') }}">Dashboard</a>
                             </li>
-                            <li class="breadcrumb-item active" aria-current="page">Kategory</li>
+                            <li class="breadcrumb-item active" aria-current="page">Kategori</li>
                         </ol>
                     </nav>
                 </div>
                 <div>
-                    <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newCategory">Tambah
-                        Kategory</a>
+                    <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCategoryModal">Tambah Kategory</a>
                 </div>
             </div>
         </div>
@@ -71,11 +70,11 @@
                                             </a>
                                             <span class="dropdown-menu" aria-labelledby="courseDropdown3">
                                                 <span class="dropdown-header">Action</span>
-                                                <a class="dropdown-item" href="#"><i
+                                                <a class="dropdown-item" href="{{ route('admin.category.edit' , ['id'=> $categories->id]) }}"><i
                                                         class="fe fe-send dropdown-item-icon"></i>Edit</a>
-                                                <a class="dropdown-item" href="#"><i
+                                                <a class="dropdown-item" href="{{ route('admin.category.show', ['id'=> $categories->id]) }}"><i
                                                         class="fe fe-inbox dropdown-item-icon"></i>Detail</a>
-                                                <a class="dropdown-item" href="#"><i
+                                                <a class="dropdown-item" href="{{ route('admin.category.destroy' , ['id'=> $categories->id]) }}"><i
                                                         class="fe fe-trash dropdown-item-icon"></i>Delete</a>
                                             </span>
                                         </span>
@@ -88,4 +87,6 @@
             </div>
         </div>
     </div>
+
+    @include('admin.pages.category.modal.addcategory')
     @endsection

@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
 {
@@ -16,7 +16,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $product_categories = ProductCategory::all();
+        $product_categories = ProductCategory::get();
         return view('admin.pages.category.index', compact('product_categories'));
     }
 
@@ -25,7 +25,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.pages.category.create');
     }
 
     /**
@@ -33,7 +33,19 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name'     => 'required',
+            'description' => 'required',
+        ]);
+
+        if($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
+
+        $product_categories['name'] = $request->name;
+        $product_categories['description'] = $request->description;
+
+        ProductCategory::create($product_categories);
+
+        return redirect()->route('admin.category');
     }
 
     /**
@@ -41,7 +53,8 @@ class CategoryController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $product_categories = ProductCategory::find($id);
+        return view('admin.pages.category.show-detail.detail', compact('product_categories'));
     }
 
     /**
@@ -49,7 +62,8 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $product_categories = ProductCategory::find($id);
+        return view('admin.pages.category.show-detail.edit', compact('product_categories'));
     }
 
     /**
@@ -57,7 +71,19 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name'     => 'required',
+            'description' => 'required',
+        ]);
+
+        if($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
+
+        $product_categories['name'] = $request->name;
+        $product_categories['description'] = $request->description;
+
+        ProductCategory::whereId($id)->update($product_categories);
+
+        return redirect()->route('admin.category');
     }
 
     /**
@@ -65,6 +91,12 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $product_categories = ProductCategory::find($id);
+
+        if ($product_categories) {
+            $product_categories->delete();
+        }
+
+        return redirect()->route('admin.category');
     }
 }
