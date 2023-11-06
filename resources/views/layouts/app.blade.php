@@ -47,6 +47,7 @@
 </head>
 
 <body style="margin-top: 0px;">
+    @include('sweetalert::alert')
     <main>
         @if (
             !Request::routeIs('login') &&
@@ -84,7 +85,7 @@
                 document.getElementById("navbar").style.top = "0"; /* Munculkan navbar saat scroll ke atas */
             } else {
                 document.getElementById("navbar").style.top =
-                "-100px"; /* Sembunyikan navbar ke atas saat scroll ke bawah */
+                    "-100px"; /* Sembunyikan navbar ke atas saat scroll ke bawah */
             }
             prevScrollpos = currentScrollPos;
         };

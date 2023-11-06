@@ -30,6 +30,7 @@ class ProfileController extends Controller
             'phone_number' => $request->input('no_telp'),
         ]);
 
+        toast('Data Profil Berhasil Disimpan', 'success', 'top-right');
 
         return redirect()->route('mainprofile')->with('success', 'Profile updated successfully.');
     }

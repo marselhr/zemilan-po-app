@@ -45,6 +45,8 @@ class ProfileAlamatController extends Controller
             'detail' => $request->input('detail'),
         ]);
 
+        toast('Data Alamat Berhasil Disimpan', 'success', 'top-right');
+
         return redirect()->route('alamatprofile')->with('success', 'Alamat berhasil diperbarui.');
     }
 
