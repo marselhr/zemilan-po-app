@@ -2,12 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
-class Orders extends Model
+class Order extends Model
 {
     use HasFactory, HasUuids;
     protected $table = 'orders';
@@ -18,7 +17,8 @@ class Orders extends Model
      * @var string
      */
 
-    public function user(){
+    public function user()
+    {
         return $this->hasOne(User::class);
     }
 
