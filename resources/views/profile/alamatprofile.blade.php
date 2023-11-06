@@ -4,35 +4,8 @@
 
 @section('content')
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script>
-        function fillProvinces() {
-            axios.get('/get-provinces')
-                .then(function(response) {
-                    const provinsiDropdown = document.getElementById('provisi');
-                    const selectedValue = provinsiDropdown.value;
-                    provinsiDropdown.innerHTML = '';
-                    const uniqueProvinces = {};
-                    uniqueProvinces[selectedValue] = true;
 
-                    response.data.forEach(function(province) {
-                        uniqueProvinces[province.name] = true;
-                    });
-                    Object.keys(uniqueProvinces).forEach(function(provinceName) {
-                        const option = document.createElement('option');
-                        option.value = provinceName;
-                        option.text = provinceName;
-                        provinsiDropdown.appendChild(option);
-                    });
-                    provinsiDropdown.value = selectedValue;
-                    provinsiDropdown.removeAttribute('disabled');
-                    fillCities(selectedValue);
-                })
-                .catch(function(error) {
-                    console.error(error);
-                });
-        }
-        fillProvinces();
-    </script>
+
     <div class="container-xl px-4 mt-4">
         <nav class="nav nav-borders">
             <a class="nav-link" href="{{ route('mainprofile') }}">Profil</a>
@@ -51,30 +24,35 @@
 
                             <div class="row gx-3 mb-3">
                                 <div class="col-md-6">
-                                    <label class="small mb-1">Provisi</label>
-                                    <select class="form-control form-select pb-3 pt-3" name="provisi" id="provisi">
+                                    <label class="small mb-1">Provinsi</label>
+                                    <select class="form-control form-select pb-3 pt-3" name="provinsi" id="provinsi">
                                         <option value="{{ Auth::user()->address->province }}">
                                             {{ Auth::user()->address->province }}</option>
                                     </select>
+                                    <input type="hidden" id="selectedProvinsiName" name="selectedProvinsiName" value="">
+                                    
+
                                 </div>
 
                                 <div class="col-md-6">
                                     <label class="small mb-1">Kota</label>
-                                    <input class="form-control" name="kota" id="kota" type="text" placeholder=""
-                                        value="{{ Auth::user()->address->city }}">
+                                    <select class="form-control form-select pb-3 pt-3" name="kota" id="kota">
+                                        <option value="{{ Auth::user()->address->city }}">
+                                            {{ Auth::user()->address->city }}</option>
+                                    </select>
                                 </div>
                             </div>
 
                             <div class="row gx-3 mb-3">
                                 <div class="col-md-6">
                                     <label class="small mb-1">Kode Pos</label>
-                                    <input class="form-control" name="kodePos" type="text" placeholder=""
+                                    <input class="form-control" name="kodePos" id="kodePos" type="text" placeholder=""
                                         value="{{ Auth::user()->address->post_code }}">
                                 </div>
 
                                 <div class="col-md-6">
                                     <label class="small mb-1">Detail Lainnya</label>
-                                    <input class="form-control" name="detail" type="text" placeholder=""
+                                    <input class="form-control" name="detail" id="detail" type="text" placeholder=""
                                         value="{{ Auth::user()->address->detail }}">
                                 </div>
                             </div>
@@ -87,4 +65,55 @@
             </div>
         </div>
     </div>
+    <script>
+        const provinsiDropdown = document.getElementById('provinsi');
+        const kotaDropdown = document.getElementById('kota');
+        var selectedProvinsiNameInput = document.getElementById('selectedProvinsiName');
+
+        // Mengambil data provinsi dari rute yang telah Anda buat
+        axios.get('/get-provinces')
+            .then(function(response) {
+                // Iterasi melalui data dan tambahkan setiap provinsi ke dropdown pertama
+                response.data.forEach(province => {
+                    const option = document.createElement('option');
+                    option.value = province.id;
+                    option.text = province.name;
+                    provinsiDropdown.appendChild(option);
+                });
+                // selectedProvinsiNameInput.value = response.data[0].name;
+
+                // console.log("ini "+selectedProvinsiNameInput);
+
+                // Menambahkan event listener untuk perubahan pada dropdown provinsi
+                provinsiDropdown.addEventListener('change', function() {
+                    const selectedProvinsiId = provinsiDropdown.value;
+                    selectedProvinsiNameInput.value = provinsiDropdown.options[provinsiDropdown.selectedIndex].text; // Ambil nama provinsi dari option yang terpilih
+                    
+
+                    // Menghapus semua opsi sebelumnya dari dropdown kota
+                    kotaDropdown.innerHTML = '<option value="" disabled selected>Loading...</option>';
+
+                    // Mengambil data kota dari API berdasarkan ID provinsi yang dipilih
+                    axios.get(`/get-regencies/${selectedProvinsiId}`)
+                        .then(function(kotaResponse) {
+                            // Menghapus opsi "Loading..."
+                            kotaDropdown.removeChild(kotaDropdown.querySelector('option[disabled]'));
+
+                            // Iterasi melalui data kota dan tambahkan setiap kota ke dropdown kedua
+                            kotaResponse.data.forEach(regency => {
+                                const option = document.createElement('option');
+                                option.value = regency.name;
+                                option.text = regency.name;
+                                kotaDropdown.appendChild(option);
+                            });
+                        })
+                        .catch(function(error) {
+                            console.error('Error:', error);
+                        });
+                });
+            })
+            .catch(function(error) {
+                console.error('Error:', error);
+            });
+    </script>
 @endsection

@@ -10,9 +10,12 @@ Route::post('/profile/save', [App\Http\Controllers\Profile\ProfileController::cl
 Route::get('/profile/alamat', [App\Http\Controllers\Profile\ProfileAlamatController::class, 'index'])->name('alamatprofile');
 Route::get('/get-provinces', function () {
     $response = Http::get('https://emsifa.github.io/api-wilayah-indonesia/api/provinces.json');
-    $provisi = $response->json();
+    return $response->json();
+});
 
-    return response()->json($provisi);
+Route::get('/get-regencies/{provinceId}', function ($provinceId) {
+    $response = Http::get("https://emsifa.github.io/api-wilayah-indonesia/api/regencies/{$provinceId}.json");
+    return $response->json();
 });
 Route::post('/profile/alamat/save', [App\Http\Controllers\Profile\ProfileAlamatController::class, 'saveAlamat'])->name('alamatSave');
 

@@ -31,7 +31,7 @@ class ProfileAlamatController extends Controller
         $user = auth()->user();
 
         $request->validate([
-            'provisi' => 'required|string|max:255',
+            'selectedProvinsiName' => 'required|string|max:255',
             'kota' => 'required|string|max:255',
             'kodePos' => 'required|string|max:255',
             'detail' => 'required|string|max:255',
@@ -39,7 +39,7 @@ class ProfileAlamatController extends Controller
 
         // Simpan data alamat ke dalam tabel
         $user->address()->update([
-            'province' => $request->input('provisi'),
+            'province' => $request->input('selectedProvinsiName'),
             'city' => $request->input('kota'),
             'post_code' => $request->input('kodePos'),
             'detail' => $request->input('detail'),
