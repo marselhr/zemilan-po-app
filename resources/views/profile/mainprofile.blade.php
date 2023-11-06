@@ -40,7 +40,7 @@
                                 <div class="col-md-6">
                                     <label class="small mb-1" for="inputPhone">Nomor Telepon</label>
                                     <input class="form-control" name="no_telp" id="noTelp" type="text"
-                                        placeholder="Enter your phone number" value="012345678">
+                                        placeholder="Enter your phone number" value="{{ Auth::user()->phone_number }}">
                                 </div>
                             </div>
 
