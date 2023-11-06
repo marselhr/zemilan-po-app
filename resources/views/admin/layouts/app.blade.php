@@ -16,7 +16,10 @@
         if (localStorage.theme) document.documentElement.setAttribute("data-theme", localStorage.theme);
     </script>
 
-
+    <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
+    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
+        rel="stylesheet" />
+    <link href="https://unpkg.com/filepond-plugin-image-edit/dist/filepond-plugin-image-edit.css" rel="stylesheet" />
     <!-- Libs CSS -->
     <link href="{{ asset('assets/fonts/feather/feather.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/libs/bootstrap-icons/font/bootstrap-icons.css') }}" rel="stylesheet" />
@@ -34,6 +37,8 @@
 </head>
 
 <body>
+    @include('sweetalert::alert')
+
     <main id="db-wrapper">
         @include('admin.layouts.partials.sidebar')
 
@@ -58,12 +63,6 @@
 
     <!-- Theme JS -->
     <script src="{{ asset('assets/js/theme.min.js') }}"></script>
-
-    <script src="{{ asset('assets/libs/tiny-slider/dist/min/tiny-slider.js') }}"></script>
-    <script src="{{ asset('assets/libs/%40popperjs/core/dist/umd/popper.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/tippy.js/dist/tippy-bundle.umd.min.js') }}"></script>
-    <script src="{{ asset('assets/js/vendors/tnsSlider.js') }}"></script>
-    <script src="{{ asset('assets/js/vendors/tooltip.js') }}"></script>
 
     <script>
         var header = document.querySelector('#navbar');

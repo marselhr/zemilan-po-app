@@ -3,11 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
-use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateUserRequest;
-use App\Models\UserAddress;
-use Illuminate\Support\Facades\DB;
+use App\Models\TemporaryFile;
+use Illuminate\Support\Facades\Storage;
+use RahulHaque\Filepond\Facades\Filepond;
+
 
 class ManajemenUserController extends Controller
 {
@@ -15,6 +19,9 @@ class ManajemenUserController extends Controller
     {
         $users = User::all();
 
+        $title = 'Delete User!';
+        $text = "Are you sure you want to delete?";
+        confirmDelete($title, $text);
         return view('admin.pages.manajemen-user.index', compact('users'));
     }
 
@@ -30,24 +37,6 @@ class ManajemenUserController extends Controller
         return view('admin.pages.manajemen-user.show-detail.edit', compact('user'));
     }
 
-    public function update(UpdateUserRequest $request, $user)
-    {
-        try {
-
-            DB::beginTransaction();
-
-            $user = User::findOrFail($user);
-
-            $user->update($request->validated());
-            DB::commit();
-            return to_route('admin.user.show')->with('success', 'data berhasil diperbaharui');
-        } catch (\Throwable $th) {
-            DB::rollBack();
-            return redirect()->back()->with($th->getMessage());
-        }
-    }
-
-
     public function invoice($user)
     {
         $user = User::findOrFail($user);
@@ -62,8 +51,13 @@ class ManajemenUserController extends Controller
             $user = User::findOrFail($user);
             $user->delete();
             DB::commit();
-            return to_route('admin.user.index')->with('success', "data user sudah dihapus");
+
+            // menampilkan alert success setelah confirmasi disetujui
+            toast('Data Pengguna sudah dihapus', 'success', 'top-right');
+
+            return to_route('admin.user.index');
         } catch (\Throwable $th) {
+            DB::rollBack();
             return redirect()->back()->with('error', $th->getMessage());
         }
     }

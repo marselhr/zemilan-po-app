@@ -43,5 +43,6 @@ return new class extends Migration
         Schema::table('product', function (Blueprint $table) {
             $table->dropColumn('category_id');
         });
+
     }
 };
