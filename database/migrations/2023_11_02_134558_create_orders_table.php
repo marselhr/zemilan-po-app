@@ -15,6 +15,7 @@ return new class extends Migration
             $table->uuid('order_id')->primary();
             $table->foreignId('product_id')->references('id')->on('product');
             $table->foreignId('user_id')->references('id')->on('users');
+            $table->string('snapToken')->nullable();
             $table->integer('quantity');
             $table->decimal('gross_amount', 10, 2);
             $table->string('payment_status')->default('unpaid');
