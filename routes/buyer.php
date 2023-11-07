@@ -18,4 +18,5 @@ use App\Http\Controllers\CartItemController;
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/cart', [CartItemController::class, 'index'])->name('buyer.cart');
     Route::get('/checkout/{items}', [CartItemController::class, 'checkout'])->name('buyer.checkout');
+    Route::get('/order', [CartItemController::class, 'showOrder'])->name('buyer.orders');
 });

@@ -4,7 +4,22 @@
 @section('content')
     <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
         data-client-key="{{ config('midtrans.client_key') }}"></script>
-    <button class="btn btn-info" data-token={{ $order->snapToken }} id="pay-button">Bayar</button>
+
+
+
+    <div class="container vh-100 w-100 d-flex justify-content-center align-items-center">
+        <div class="row">
+            <div class="card col-12 mx-auto py-2">
+                <h4>Pembayaran</h4>
+                <h5>Item</h5>
+                <p>Id: {{ $order->order_id }}</p>
+                <p>Item: {{ $order->quantity }} {{ $order->product->name }}</p>
+                <p>Amount: Rp {{ number_format($order->gross_amount, 2, ',', '.') }}</p>
+                <button class="btn btn-info" data-token={{ $order->snapToken }} id="pay-button">Bayar</button>
+            </div>
+        </div>
+    </div>
+    </div>
 
     <script>
         var payButton = document.getElementById('pay-button');
@@ -13,7 +28,7 @@
             window.snap.pay('{{ $snapToken }}', {
                 onSuccess: function(result) {
                     /* You may add your own implementation here */
-                    alert("payment success!");
+                    window.location = '/order';
                     console.log(result);
                 },
                 onPending: function(result) {
