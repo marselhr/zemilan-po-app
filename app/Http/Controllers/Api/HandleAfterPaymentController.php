@@ -28,26 +28,30 @@ class HandleAfterPaymentController extends Controller
             if ($type == 'credit_card') {
                 if ($fraud == 'accept') {
                     // TODO set payment status in merchant's database to 'Success'
-                    Order::where('order_id', $request->order_id)->update(['payment_status' => 'Paid']);
+                    Order::where('order_id', $request->order_id)->update([
+                        'payment_type' => $type,
+                        'bank' => $notif->bank,
+                        'payment_status' => 'Paid',
+                    ]);
                     echo "Transaction order_id: " . $order_id . " successfully captured using " . $type;
                 }
             }
         } else if ($transaction == 'settlement') {
             // TODO set payment status in merchant's database to 'Settlement'
             echo "Transaction order_id: " . $order_id . " successfully transfered using " . $type;
-            Order::where('order_id', $request->order_id)->update(['payment_status' => 'Paid']);
+            Order::where('order_id', $request->order_id)->update(['payment_type' => $type, 'payment_status' => 'Paid',]);
         } else if ($transaction == 'pending') {
             // TODO set payment status in merchant's database to 'Pending'
-            Order::where('order_id', $request->order_id)->update(['payment_status' => 'pending']);
+            Order::where('order_id', $request->order_id)->update(['payment_type' => $type, 'payment_status' => 'pending']);
         } else if ($transaction == 'deny') {
             // TODO set payment status in merchant's database to 'Denied'
-            Order::where('order_id', $request->order_id)->update(['payment_status' => 'deny']);
+            Order::where('order_id', $request->order_id)->update(['payment_type' => $type, 'payment_status' => 'deny']);
         } else if ($transaction == 'expire') {
             // TODO set payment status in merchant's database to 'expire'
-            Order::where('order_id', $request->order_id)->update(['payment_status' => 'expire']);
+            Order::where('order_id', $request->order_id)->update(['payment_type' => $type, 'payment_status' => 'expire']);
         } else if ($transaction == 'cancel') {
             // TODO set payment status in merchant's database to 'Denied'
-            Order::where('order_id', $request->order_id)->update(['payment_status' => 'cancel']);
+            Order::where('order_id', $request->order_id)->update(['payment_type' => $type, 'payment_status' => 'cancel']);
         }
     }
 }

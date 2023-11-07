@@ -13,9 +13,9 @@
                     </div>
 
                     <div class="col-6 col-md-6">
-                        <div class="ms-2 ms-md-6">
+                        <div class="ms-2 ms-md-6 text-break">
                             <h4 class="">{{ $item->product->name }}</h4>
-                            <h6>{{ $item->product->description }}</h6>
+                            <p>{{ $item->product->description }}</p>
                             <p>Jumlah : {{ $item->quantity }}</p>
                             <h5>Total : Rp.{{ $item->quantity * $item->product->price }}</h5>
                         </div>
@@ -23,7 +23,7 @@
 
                     <div class="col-12 d-flex justify-content-end align-items-end  col-md-3  px-2 ">
                         <div>
-                            <button class="btn btn-sm btn-info">Checkout</button>
+                            <a class="btn btn-sm btn-info" href="{{ route('buyer.checkout', $item) }}">Checkout</a>
                         </div>
                     </div>
                 </div>
