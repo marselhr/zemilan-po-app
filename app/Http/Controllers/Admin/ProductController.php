@@ -21,7 +21,7 @@ class ProductController extends Controller
         $this->product = $product;
     }
     /**
-    /**
+ 
      * Display a listing of the resource.
      */
     public function index()
