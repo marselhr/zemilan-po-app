@@ -5,7 +5,6 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\UserAddress;
-use Database\Factories\UserFactory;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -35,7 +34,10 @@ class DatabaseSeeder extends Seeder
         ]);
         UserAddress::factory()->create(['user_id' => 1]);
         $this->call([
+            ProductCategorySeeder::class,
+            ProductSeeder::class,
             UserSeeder::class,
+            CartItemSeeder::class
         ]);
     }
 }
