@@ -40,11 +40,13 @@
 
     <!-- Theme CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/theme.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/profile.css') }}">
     <link href="{{ asset('assets/libs/tiny-slider/dist/tiny-slider.css') }}" rel="stylesheet">
     <title>Home</title>
 </head>
 
-<body>
+<body style="margin-top: 0px;">
+    @include('sweetalert::alert')
     <main>
         @if (
             !Request::routeIs('login') &&
