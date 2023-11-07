@@ -1,4 +1,6 @@
 <?php
+
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartItemController;
 
@@ -36,4 +38,3 @@ Route::get('/get-regencies/{provinceId}', function ($provinceId) {
     return $response->json();
 });
 Route::post('/profile/alamat/save', [App\Http\Controllers\Profile\ProfileAlamatController::class, 'saveAlamat'])->name('alamatSave');
-

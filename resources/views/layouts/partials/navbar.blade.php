@@ -15,28 +15,32 @@
             @auth
                 <!-- Profile dropdown for authenticated users -->
                 <div class="dropdown d-inline-block stopevent ">
-                    <a class="btn btn-light btn-icon rounded-circle text-muted indicator indicator-primary" href="#"
-                        role="button" id="dropdownProfile" data-bs-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
-                        <i class="fe fe-user"> </i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg position-absolute mx-3 my-5"
-                        aria-labelledby="dropdownProfile">
-                        <div>
-                            <div class="d-flex border-bottom px-3 pb-3 align-items-center gap-4">
-                                <div class="avatar avatar-md avatar-indicators avatar-online">
-                                    <img alt="avatar" src="{{ asset('assets/images/avatar/avatar-dummy.png') }}"
-                                        class="rounded-circle">
-                                </div>
-                                <div class="ms-3 lh-1">
-                                    <h5 class="mb-1">{{ Auth::user()->first_name }}</h5>
-                                    <p class="mb-0 text-muted">{{ Auth::user()->email }}</p>
+
+                    <div class="dropdown ms-2">
+                        <a class="rounded-circle" href="#" role="button" id="dropdownUser" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <div class="avatar avatar-md avatar-indicators avatar-online">
+                                <img alt="avatar" src="{{ asset('assets/images/avatar/avatar-dummy.png') }}"
+                                    class="rounded-circle">
+                            </div>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUser">
+                            <div class="dropdown-item">
+                                <div class="d-flex">
+                                    <div class="avatar avatar-md avatar-indicators avatar-online">
+                                        <img alt="avatar" src="{{ asset('assets/images/avatar/avatar-dummy.png') }}"
+                                            class="rounded-circle">
+                                    </div>
+                                    <div class="ms-3 lh-1">
+                                        <h5 class="mb-1">{{ Auth::user()->first_name }}</h5>
+                                        <p class="mb-0 text-muted">{{ Auth::user()->email }}</p>
+                                    </div>
                                 </div>
                             </div>
                             <div class="dropdown-divider"></div>
                             <ul class="list-unstyled">
                                 <li>
-                                    <a class="dropdown-item" href="{{ route('mainprofile') }}">
+                                    <a class="dropdown-item" href="#">
                                         <i class="fe fe-user me-2"></i> Profile
                                     </a>
                                 </li>
@@ -45,11 +49,15 @@
                                         <i class="fe fe-settings me-2"></i> Settings
                                     </a>
                                 </li>
+                            </ul>
+                            <div class="dropdown-divider"></div>
+                            <ul class="list-unstyled">
                                 <li>
                                     <form action="{{ route('logout') }}" method="post">
                                         @csrf
                                         <button type="submit" class="dropdown-item">
-                                            <i class="fe fe-power me-2"></i> Sign Out
+
+                                            <i class="fe fe-power me-2"></i>Sign Out
                                         </button>
                                     </form>
                                 </li>
