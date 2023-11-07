@@ -20,11 +20,11 @@ Route::get('/', function () {
 });
 
 Auth::routes(['verify' => true]);
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/about', [App\Http\Controllers\AboutController::class, 'index'])->name('about');
-Route::get('/catalog', [App\Http\Controllers\CatalogController::class, 'index'])->name('catalog');
-
+Route::group(['middleware' => ['auth', 'verified']], function () {
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/about', [App\Http\Controllers\AboutController::class, 'index'])->name('about');
+    Route::get('/catalog', [App\Http\Controllers\CatalogController::class, 'index'])->name('catalog');
+});
 
 
 
@@ -33,4 +33,3 @@ Route::get('/catalog', [App\Http\Controllers\CatalogController::class, 'index'])
 Route::fallback(function () {
     return view('fallback.notice');
 })->name('fallback.route');
-
