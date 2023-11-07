@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-use App\Http\Controllers\Controller;
 use App\Models\Product;
-use App\Models\ProductCategory;
 use Illuminate\Http\Request;
+use App\Models\ProductCategory;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -21,7 +22,7 @@ class ProductController extends Controller
         $this->product = $product;
     }
     /**
- 
+
      * Display a listing of the resource.
      */
     public function index()
@@ -109,47 +110,55 @@ class ProductController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
+        // Validasi data yang dikirimkan dari formulir
+        $validatedData = $request->validate([
+            'category_id' => 'required',
             'name' => 'required',
             'description' => 'required',
-            'stock' => 'required|integer',
-            'price' => 'required|numeric',
-            'category_id' => 'required|exists:product_categories,id',
-            // Add any other validation rules for the image if needed.
+            'stock' => 'required',
+            'price' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg,gif', // Anda dapat memungkinkan pembaruan gambar opsional
         ]);
 
+        // Temukan produk yang akan diperbarui
         $product = Product::find($id);
-        $product->name = $request->input('name');
-        $product->description = $request->input('description');
-        $product->stock = $request->input('stock');
-        $product->price = $request->input('price');
-        $product->category_id = $request->input('category_id');
+
+        if (!$product) {
+            // Handle jika produk tidak ditemukan, misalnya dengan melempar exception atau menampilkan pesan kesalahan
+            return redirect()->route('admin.product.index')->with('error', 'Produk tidak ditemukan');
+        }
+
+        // Update data produk yang ada
+        $product->category_id = $request->category_id;
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->stock = $request->stock;
+        $product->price = $request->price;
 
         if ($request->hasFile('image')) {
-            // Handle image upload and update logic here.
-            // You might want to store the image in a specific directory and update the product's image field.
+            // Jika ada gambar baru yang diunggah, hapus gambar lama (opsional) dan simpan yang baru
+            Storage::disk('public')->delete($product->image);
+            $imagePath = $request->file('image')->store('product_images', 'public');
+            $product->image = $imagePath;
         }
-        // menampilkan alert success setelah confirmasi disetujui
-
 
         $product->save();
-        toast('Data Product Berhasil di perbaharui', 'success', 'top-right');
 
-        return redirect()->route('admin.product.index')->with('success', 'Product updated successfully');
+
+        toast('Data Product Berhasil di update', 'success', 'top-right');
+        // Redirect kembali ke halaman produk atau sesuai kebijakan Anda
+        return redirect()->route('admin.product.index')->with('success', 'Produk berhasil diperbarui');
     }
 
     public function destroy($product)
 
     {
-        try {
-            DB::beginTransaction();
-            $product = Product::findOrFail($product);
+        $product = Product::find($product);
+
+        if ($product) {
             $product->delete();
-            DB::commit();
-            toast('Data Product Berhasil di hapus', 'success', 'top-right');
-            return to_route('admin.product.index')->with('success', "data Product sudah dihapus");
-        } catch (\Throwable $th) {
-            return redirect()->back()->with('error', $th->getMessage());
         }
+        toast('Data Kategori Produk Berhasil Dihapus', 'success', 'top-right');
+        return redirect()->route('admin.product.index');
     }
 }
