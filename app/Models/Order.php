@@ -10,12 +10,14 @@ class Order extends Model
 {
     use HasFactory, HasUuids;
     protected $table = 'orders';
-    protected $primaryKey = 'order_id'; // Menggunakan 'order_id' sebagai kunci utama
 
     /**
      * the primary key associated with the table
      * @var string
      */
+    protected $primaryKey = 'order_id'; // Menggunakan 'order_id' sebagai kunci utama
+
+
 
     public function user()
     {
