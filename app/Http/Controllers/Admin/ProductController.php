@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\ProductCategory;
@@ -27,7 +28,7 @@ class ProductController extends Controller
     public function index()
     {
         $product_categories = ProductCategory::all();
-        $product = Product::all();
+        $product = Product::whereNull('deleted_at')->get();
         $title = 'Delete Product!';
         $text = "Are you sure you want to delete?";
         confirmDelete($title, $text);
@@ -149,7 +150,8 @@ class ProductController extends Controller
             toast('Data Product Berhasil di hapus', 'success', 'top-right');
             return to_route('admin.product.index')->with('success', "data Product sudah dihapus");
         } catch (\Throwable $th) {
-            return redirect()->back()->with('error', $th->getMessage());
+            return response()->json($th->getMessage());
+            // return redirect()->back()->with('error', $th->getMessage());
         }
     }
 }
