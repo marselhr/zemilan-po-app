@@ -41,11 +41,13 @@
 
     <!-- Theme CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/theme.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/profile.css') }}">
     <link href="{{ asset('assets/libs/tiny-slider/dist/tiny-slider.css') }}" rel="stylesheet">
     <title>Home</title>
 </head>
 
-<body>
+<body style="margin-top: 0px;">
+    @include('sweetalert::alert')
     <main>
         @if (
             !Request::routeIs('login') &&
@@ -83,7 +85,7 @@
                 document.getElementById("navbar").style.top = "0"; /* Munculkan navbar saat scroll ke atas */
             } else {
                 document.getElementById("navbar").style.top =
-                "-100px"; /* Sembunyikan navbar ke atas saat scroll ke bawah */
+                    "-100px"; /* Sembunyikan navbar ke atas saat scroll ke bawah */
             }
             prevScrollpos = currentScrollPos;
         };
