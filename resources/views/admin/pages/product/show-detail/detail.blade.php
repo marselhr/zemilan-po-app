@@ -31,7 +31,9 @@
             <p class="lead mb-4">Price: {{ $product->price }}</p>
             <p class="lead mb-4">Stock: {{ $product->stock }}</p>
             <p class="lead mb-4">Description: {{ $product->description }}</p>
-            <a href="#!" class="btn btn-dark btn-lg">Explore Online Courses</a>
+            <div>
+                <a href="{{ route('admin.product.index') }}" class="btn btn-primary">Kembali</a>
+            </div>
           </div>
         </div>
         <div class="col-xxl-5 offset-xxl-1 col-xl-6 col-lg-6 col-12 d-lg-flex justify-content-end">
