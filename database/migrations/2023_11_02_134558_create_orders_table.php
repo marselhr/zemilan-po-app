@@ -13,16 +13,15 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->uuid('order_id')->primary();
-            $table->unsignedBigInteger('product_id');
-            $table->unsignedBigInteger('user_id');
+            $table->foreignId('product_id')->references('id')->on('product');
+            $table->foreignId('user_id')->references('id')->on('users');
+            $table->string('snapToken')->nullable();
             $table->integer('quantity');
             $table->decimal('gross_amount', 10, 2);
             $table->string('payment_status')->default('unpaid');
-            $table->string('payment_type');
+            $table->string('payment_type')->nullable();
             $table->string('bank')->nullable();
-            $table->enum('status', ['pending', 'processing', 'completed', 'cancelled']);
-            $table->foreign('product_id')->references('id')->on('product');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->timestamps();
         });
     }
 

@@ -17,7 +17,7 @@
             <!-- Theme toggle -->
             @auth
                 <!-- Profile dropdown for authenticated users -->
-                <div class="dropdown d-inline-block stopevent position-static">
+                <div class="dropdown d-inline-block stopevent ">
                     <a class="btn btn-light btn-icon rounded-circle text-muted indicator indicator-primary" href="#"
                         role="button" id="dropdownProfile" data-bs-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
@@ -31,7 +31,7 @@
                                     <img alt="avatar" src="{{ asset('assets/images/avatar/avatar-dummy.png') }}"
                                         class="rounded-circle">
                                 </div>
-                                <div>
+                                <div class="ms-3 lh-1">
                                     <h5 class="mb-1">{{ Auth::user()->first_name }}</h5>
                                     <p class="mb-0 text-muted">{{ Auth::user()->email }}</p>
                                 </div>
@@ -39,7 +39,7 @@
                             <div class="dropdown-divider"></div>
                             <ul class="list-unstyled">
                                 <li>
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" href="{{ route('mainprofile') }}">
                                         <i class="fe fe-user me-2"></i> Profile
                                     </a>
                                 </li>

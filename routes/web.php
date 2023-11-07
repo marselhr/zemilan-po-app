@@ -26,6 +26,10 @@ Route::get('/about', [App\Http\Controllers\AboutController::class, 'index'])->na
 Route::get('/catalog', [App\Http\Controllers\CatalogController::class, 'index'])->name('catalog');
 
 
+
+
+
+
 Route::fallback(function () {
     return view('fallback.notice');
 })->name('fallback.route');
