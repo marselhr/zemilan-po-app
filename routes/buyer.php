@@ -1,4 +1,6 @@
 <?php
+
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartItemController;
 
@@ -14,9 +16,17 @@ use App\Http\Controllers\CartItemController;
 |
 */
 
+Route::group(['middleware' => ['auth', 'verified']], function () {
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/about', [App\Http\Controllers\AboutController::class, 'index'])->name('about');
+    Route::get('/catalog', [App\Http\Controllers\CatalogController::class, 'index'])->name('catalog');
+});
+
 Route::group(['middleware' => ['auth']], function () {
+
     Route::get('/cart', [CartItemController::class, 'index'])->name('buyer.cart');
     Route::get('/checkout/{items}', [CartItemController::class, 'checkout'])->name('buyer.checkout');
+    Route::get('/order', [CartItemController::class, 'showOrder'])->name('buyer.orders');
 });
 
 //route profile
@@ -35,4 +45,3 @@ Route::get('/get-regencies/{provinceId}', function ($provinceId) {
     return $response->json();
 });
 Route::post('/profile/alamat/save', [App\Http\Controllers\Profile\ProfileAlamatController::class, 'saveAlamat'])->name('alamatSave');
-

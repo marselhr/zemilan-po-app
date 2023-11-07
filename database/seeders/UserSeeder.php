@@ -25,20 +25,5 @@ class UserSeeder extends Seeder
                 'user_id' => $user->id
             ]);
         }
-        DB::table('cart_items')->insert(
-            [
-
-                [
-                    'cart_id' => 1,
-                    'product_id' => 1,
-                    'quantity' => 10
-                ],
-                [
-                    'cart_id' => 1,
-                    'product_id' => 2,
-                    'quantity' => 10
-                ],
-            ]
-        );
     }
 }
