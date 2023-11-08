@@ -23,11 +23,11 @@
                     </div>
                 </div>
                 <!-- col -->
-                <div class="col-lg-6 d-flex justify-content-center">
+                <div class="col-lg-6 d-flex justify-content-center justify-content-md-end">
                     <!-- images -->
-                    <div class="position-relative text-center">
-                        <img src="{{ asset('assets/images/background/coba1.JPG') }}" alt="" class="rounded-circle"
-                            style="max-width: 450px; height: auto; margin-top: 35px;">
+                    <div class=" col-12 col-md-9">
+                        <img src="{{ asset('assets/images/background/coba1.JPG') }}" alt=""
+                            class="rounded-circle img-fluid">
                     </div>
                 </div>
             </div>
