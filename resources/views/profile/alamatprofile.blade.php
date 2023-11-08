@@ -6,7 +6,7 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 
-    <div class="container-xl px-4 mt-4">
+    <div class="container px-4 mt-4">
         <nav class="nav nav-borders">
             <a class="nav-link" href="{{ route('mainprofile') }}">Profil</a>
             <a class="nav-link active ms-0" href="{{ route('alamatprofile') }}">Alamat</a>
@@ -26,19 +26,21 @@
                                 <div class="col-md-6">
                                     <label class="small mb-1">Provinsi</label>
                                     <select class="form-control form-select pb-3 pt-3" name="provinsi" id="provinsi">
-                                        <option value="{{ Auth::user()->address->province }}">
-                                            {{ Auth::user()->address->province }}</option>
+                                        <option value="{{ Auth::user()->address->province ?? null }}">
+                                            {{ Auth::user()->address->province ?? null }}
+                                        </option>
                                     </select>
-                                    <input type="hidden" id="selectedProvinsiName" name="selectedProvinsiName" value="">
-                                    
+                                    <input type="hidden" id="selectedProvinsiName" name="selectedProvinsiName"
+                                        value="">
+
 
                                 </div>
 
                                 <div class="col-md-6">
                                     <label class="small mb-1">Kota</label>
                                     <select class="form-control form-select pb-3 pt-3" name="kota" id="kota">
-                                        <option value="{{ Auth::user()->address->city }}">
-                                            {{ Auth::user()->address->city }}</option>
+                                        <option value="{{ Auth::user()->address->city ?? null }}">
+                                            {{ Auth::user()->address->city ?? null }}</option>
                                     </select>
                                 </div>
                             </div>
@@ -47,13 +49,13 @@
                                 <div class="col-md-6">
                                     <label class="small mb-1">Kode Pos</label>
                                     <input class="form-control" name="kodePos" id="kodePos" type="text" placeholder=""
-                                        value="{{ Auth::user()->address->post_code }}">
+                                        value="{{ Auth::user()->address->post_code ?? null }}">
                                 </div>
 
                                 <div class="col-md-6">
                                     <label class="small mb-1">Detail Lainnya</label>
                                     <input class="form-control" name="detail" id="detail" type="text" placeholder=""
-                                        value="{{ Auth::user()->address->detail }}">
+                                        value="{{ Auth::user()->address->detail ?? null }}">
                                 </div>
                             </div>
 
@@ -87,8 +89,9 @@
                 // Menambahkan event listener untuk perubahan pada dropdown provinsi
                 provinsiDropdown.addEventListener('change', function() {
                     const selectedProvinsiId = provinsiDropdown.value;
-                    selectedProvinsiNameInput.value = provinsiDropdown.options[provinsiDropdown.selectedIndex].text; // Ambil nama provinsi dari option yang terpilih
-                    
+                    selectedProvinsiNameInput.value = provinsiDropdown.options[provinsiDropdown.selectedIndex]
+                        .text; // Ambil nama provinsi dari option yang terpilih
+
 
                     // Menghapus semua opsi sebelumnya dari dropdown kota
                     kotaDropdown.innerHTML = '<option value="" disabled selected>Loading...</option>';
