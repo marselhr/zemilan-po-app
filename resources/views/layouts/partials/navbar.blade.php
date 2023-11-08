@@ -11,6 +11,9 @@
                     <label class="form-check-label" for="flexSwitchCheckDefault"></label>
                 </a>
             </div>
+            <span class="d-none d-md-block">
+                <a href="#" class="btn btn-icon btn-light rounded-circle"><i class="fe fe-shopping-cart align-middle"></i></a>
+            </span>
             <!-- Theme toggle -->
             @auth
                 <!-- Profile dropdown for authenticated users -->
@@ -100,6 +103,8 @@
                 </span>
                 <input type="search" class="form-control ps-6" placeholder="Cari...">
             </form>
+
+
             @guest
                 <!-- Link to sign up and sign in for guest users -->
                 <div class="me-lg-2 d-lg-flex gap-3 mt-3 mt-lg-0">

@@ -29,9 +29,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'is.admin']], functi
     });
 
     // category
+    Route::get('/category', [CategoryController::class, 'index'])->name('admin.category');
     Route::prefix('category')->group(function () {
 
-        Route::get('/', [CategoryController::class, 'index'])->name('admin.category');
+        // Route::get('/', [CategoryController::class, 'index'])->name('admin.category');
         Route::get('/create', [CategoryController::class, 'create'])->name('admin.category.create');
         Route::post('/store', [CategoryController::class, 'store'])->name('admin.category.store');
         Route::get('/{id}', [CategoryController::class, 'show'])->name('admin.category.show');
