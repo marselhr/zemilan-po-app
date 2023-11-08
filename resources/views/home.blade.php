@@ -32,13 +32,14 @@
                 </div>
             </div>
 
-            <div class="py-4">
-                <h4>Product Terlaris</h4>
-                <div class="row row-cols-1 row-cols-md-4">
+            <div class="row mt-4">
+                <h4>Produk Favorit</h4>
+                <div class="d-flex flex-wrap col-12">
                     @foreach ($products as $product)
-                        <div class="col">
-                            <!-- Medium-sized Card -->
-                            <div class="card" style="width: 18rem; margin-right:1px;">
+                        <!-- Medium-sized Card -->
+                        <div class="col-12 p-2 col-md-6 col-lg-4">
+
+                            <div class="card">
                                 <img src="{{ asset('storage/' . $product->image) }}" alt="" class="card-img-top">
                                 <!-- Card Body -->
                                 <div class="card-body">
