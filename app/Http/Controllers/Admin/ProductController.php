@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\ProductCategory;
@@ -22,13 +23,12 @@ class ProductController extends Controller
         $this->product = $product;
     }
     /**
-
      * Display a listing of the resource.
      */
     public function index()
     {
         $product_categories = ProductCategory::all();
-        $product = Product::all();
+        $product = Product::whereNull('deleted_at')->get();
         $title = 'Delete Product!';
         $text = "Are you sure you want to delete?";
         confirmDelete($title, $text);
@@ -150,15 +150,20 @@ class ProductController extends Controller
         return redirect()->route('admin.product.index')->with('success', 'Produk berhasil diperbarui');
     }
 
+
     public function destroy($product)
 
     {
-        $product = Product::find($product);
-
-        if ($product) {
+        try {
+            DB::beginTransaction();
+            $product = Product::findOrFail($product);
             $product->delete();
+            DB::commit();
+            toast('Data Product Berhasil di hapus', 'success', 'top-right');
+            return to_route('admin.product.index')->with('success', "data Product sudah dihapus");
+        } catch (\Throwable $th) {
+            return response()->json($th->getMessage());
+            // return redirect()->back()->with('error', $th->getMessage());
         }
-        toast('Data Kategori Produk Berhasil Dihapus', 'success', 'top-right');
-        return redirect()->route('admin.product.index');
     }
 }
