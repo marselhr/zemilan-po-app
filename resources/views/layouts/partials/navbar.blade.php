@@ -11,9 +11,12 @@
                     <label class="form-check-label" for="flexSwitchCheckDefault"></label>
                 </a>
             </div>
-            <span class="d-none d-md-block">
-                <a href="#" class="btn btn-icon btn-light rounded-circle"><i class="fe fe-shopping-cart align-middle"></i></a>
-            </span>
+            @auth
+                <span class="d-none d-md-block">
+                    <a href="#" class="btn btn-icon btn-light rounded-circle"><i
+                            class="fe fe-shopping-cart align-middle"></i></a>
+                </span>
+            @endauth
             <!-- Theme toggle -->
             @auth
                 <!-- Profile dropdown for authenticated users -->

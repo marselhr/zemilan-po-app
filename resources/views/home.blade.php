@@ -11,7 +11,7 @@
                     <div class="">
                         <!-- heading -->
                         <h5 class="text-dark mb-4"><i
-                                class="fe fe-check icon-xxs icon-shape bg-light-success text-success rounded-circle me-2"></i>Zemilan
+                                class="fe fe-check icon-xxs icon-shape  text-success rounded-circle me-2"></i>Zemilan
                             Keripik Baso Goreng</h5>
                         <!-- heading -->
                         <h1 class="display-3 fw-bold mb-3">Zemilan Keripik Baso Goreng</h1>
@@ -37,10 +37,11 @@
                 <div class="d-flex flex-wrap col-12">
                     @foreach ($products as $product)
                         <!-- Medium-sized Card -->
-                        <div class="col-12 p-2 col-md-6 col-lg-4">
+                        <div class="col-6 p-2 col-md-3 ">
 
                             <div class="card">
-                                <img src="{{ asset('storage/' . $product->image) }}" alt="" class="card-img-top">
+                                <img src="{{ $product->image != null ? asset('storage/' . $product->image) : 'https://source.unsplash.com/480x480?food' }}"
+                                    alt="" class="card-img-top">
                                 <!-- Card Body -->
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between align-items-center mb-3">
@@ -51,19 +52,24 @@
                                 </div>
                                 <!-- Card Footer -->
                                 <div class="card-footer">
-                                    <div class="d-flex justify-content-between align-items-center">
+                                    <div class="d-flex flex-wrap justify-content-between align-items-center">
                                         <h5 class="mb-0">Rp. {{ $product->price }}</h5>
                                         <div class="d-flex gap-2">
-                                            <a href="#" class="btn btn-primary"
-                                                onclick="addToCart({{ $product->id }})">
-                                                <i class="fe fe-shopping-cart text-white align-middle"></i>
-                                            </a>
+                                            <div>
+                                                <a href="#" class="btn btn-primary"
+                                                    onclick="addToCart({{ $product->id }})">
+                                                    <i class="fe fe-shopping-cart text-white align-middle"></i>
+                                                </a>
+                                            </div>
+
                                             <form action="{{ route('order.store', $product) }}" method="post">
-                                                @csrf
-                                                <button type="submit" class="btn btn-success ml-2"
-                                                    onclick="checkoutNow({{ $product->id }})">
-                                                    <i class="fe fe-check-circle text-white align-middle"></i> Beli
-                                                </button>
+                                                <div>
+                                                    @csrf
+                                                    <button type="submit" class="btn  btn-success ml-2"
+                                                        onclick="checkoutNow({{ $product->id }})">
+                                                        Beli
+                                                    </button>
+                                                </div>
                                             </form>
                                         </div>
                                     </div>
