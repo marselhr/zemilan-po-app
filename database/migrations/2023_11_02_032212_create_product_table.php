@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('price');
             $table->string('image');
             $table->timestamps();
+            $table->softDeletes($column = 'deleted_at', $precision = 0);
         });
     }
 
