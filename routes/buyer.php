@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartItemController;
-
+use App\Http\Controllers\OrderContoller;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +20,7 @@ Route::get('/catalog', [App\Http\Controllers\CatalogController::class, 'index'])
 Route::get('/about', [App\Http\Controllers\AboutController::class, 'index'])->name('about');
 Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::post('/buy/{product}', [OrderContoller::class, 'store'])->name('order.store');
 });
 
 Route::group(['middleware' => ['auth']], function () {
