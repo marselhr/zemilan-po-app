@@ -1,5 +1,13 @@
 @extends('layouts.app')
 
+@push('customCss')
+    <link href="assets/libs/tiny-slider/dist/tiny-slider.css" rel="stylesheet">
+@endpush
+@push('customJs')
+    <script src="{{ asset('assets/libs/tiny-slider/dist/min/tiny-slider.js') }}"></script>
+
+    <script src="{{ asset('assets/js/vendors/tnsSlider.js') }}"></script>
+@endpush
 @section('content')
     <section class="py-lg-16 py-8">
         <!-- container -->
@@ -31,16 +39,31 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div class="row mt-4">
-                <h4>Produk Favorit</h4>
-                <div class="d-flex flex-wrap col-12">
+    <section class="pt-lg-12 pb-lg-3 pb-6 pt-5">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col">
+                    <h4 class="mb-0">Produk Favorit</h4>
+                </div>
+            </div>
+            <div class="position-relative">
+                <ul class="controls" id="sliderFirstControls">
+                    <li class="prev">
+                        <i class="fe fe-chevron-left"></i>
+                    </li>
+                    <li class="next">
+                        <i class="fe fe-chevron-right"></i>
+                    </li>
+                </ul>
+                <div class="sliderFirst">
                     @foreach ($products as $product)
-                        <!-- Medium-sized Card -->
-                        <div class="col-6 p-2 col-md-3 ">
-
-                            <div class="card">
-                                <img src="{{ $product->image != null ? asset('storage/' . $product->image) : 'https://source.unsplash.com/480x480?food' }}"
+                        <div class="item">
+                            <!-- Medium-sized Card -->
+                            <div class="card card-hover mb-4">
+                                <img src="{{ asset('storage/' . $product->image) ?? 'https://source.unsplash.com/480x480?food' }}"
                                     alt="" class="card-img-top">
                                 <!-- Card Body -->
                                 <div class="card-body">
@@ -79,6 +102,5 @@
                     @endforeach
                 </div>
             </div>
-        </div>
     </section>
 @endsection

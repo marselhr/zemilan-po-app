@@ -21,9 +21,10 @@
     <link href="{{ asset('assets/fonts/feather/feather.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/libs/bootstrap-icons/font/bootstrap-icons.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/libs/%40mdi/font/css/materialdesignicons.min.css') }}" rel="stylesheet" />
+
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
-
+    @stack('customCss')
     <style>
         #navbar {
             transition: top 0.3s ease;
@@ -83,6 +84,7 @@
             prevScrollpos = currentScrollPos;
         };
     </script>
+    @stack('customJs')
 
 </body>
 
