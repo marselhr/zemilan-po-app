@@ -97,7 +97,7 @@
                         class="nav-link {{ Request::routeIs('about') ? 'active' : '' }}">About</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">FAQ</a>
+                    <a href="{{route('catalog')}}" class="nav-link">Produk</a>
                 </li>
             </ul>
             <form class="mt-3 me-lg-5 mt-lg-0 ms-lg-3 d-flex align-items-center">
