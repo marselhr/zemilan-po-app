@@ -1,15 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
+<section>
     <div class="container">
-        <div class="py-4">
-            <h4>Product Catalog</h4>
-            <div class="row row-cols-1 row-cols-md-4">
+        <div class="row mt-4 justify-content-center">
+            <h2>Produk Favorit</h2>
+            <div class="d-flex flex-wrap col-10 justify-content-center">
                 @foreach ($products as $product)
-                    <div class="col">
-                        <!-- Medium-sized Card -->
-                        <div class="card" style="width: 18rem; margin-right:1px;">
-                            <img src="{{ asset('storage/' . $product->image) }}" alt="" class="card-img-top">
+                    <!-- Medium-sized Card -->
+                    <div class="col-10 col-md-5 col-lg-3 p-2 ">
+                        <div class="card">
+                            <img src="{{ $product->image != null ? asset('storage/' . $product->image) : 'https://source.unsplash.com/480x480?food' }}"
+                                alt="" class="card-img-top">
                             <!-- Card Body -->
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center mb-3">
@@ -20,18 +22,24 @@
                             </div>
                             <!-- Card Footer -->
                             <div class="card-footer">
-                                <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex flex-wrap justify-content-between align-items-center">
                                     <h5 class="mb-0">Rp. {{ $product->price }}</h5>
                                     <div class="d-flex gap-2">
-                                        <a href="#" class="btn btn-primary" onclick="addToCart({{ $product->id }})">
-                                            <i class="fe fe-shopping-cart text-white align-middle"></i>
-                                        </a>
+                                        <div>
+                                            <a href="#" class="btn btn-primary btn-sm"
+                                                onclick="addToCart({{ $product->id }})">
+                                                <i class="fe fe-shopping-cart text-white align-middle"></i>
+                                            </a>
+                                        </div>
+
                                         <form action="{{ route('order.store', $product) }}" method="post">
-                                            @csrf
-                                            <button type="submit" class="btn btn-success ml-2"
-                                                onclick="checkoutNow({{ $product->id }})">
-                                                <i class="fe fe-check-circle text-white align-middle"></i> Beli
-                                            </button>
+                                            <div>
+                                                @csrf
+                                                <button type="submit" class="btn btn-success btn-sm ml-1"
+                                                    onclick="checkoutNow({{ $product->id }})">
+                                                    Beli
+                                                </button>
+                                            </div>
                                         </form>
                                     </div>
                                 </div>
@@ -42,16 +50,5 @@
             </div>
         </div>
     </div>
-
-    <script>
-        function addToCart(productId) {
-            // Implement your logic to add the product to the cart here
-            console.log('Added product with ID: ' + productId + ' to the cart');
-        }
-
-        function checkoutNow(productId) {
-            // Implement your logic to initiate the checkout process here
-            console.log('Initiating checkout for product with ID: ' + productId);
-        }
-    </script>
+</section>
 @endsection
