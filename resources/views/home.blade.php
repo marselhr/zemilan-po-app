@@ -7,6 +7,37 @@
     <script src="{{ asset('assets/libs/tiny-slider/dist/min/tiny-slider.js') }}"></script>
 
     <script src="{{ asset('assets/js/vendors/tnsSlider.js') }}"></script>
+    <!-- Add to cart -->
+    <script type="text/javascript">
+        $(document).on('click', '.add_to_cart', function(e) {
+            e.preventDefault();
+            let product_id = $(this).data('product-id');
+            let quantity = $(this).data('quantity');
+
+            let token = "{{ csrf_token() }}";
+            let route_path = "{{ route('buyer.cart.store') }}";
+
+            $.ajax({
+                url: route_path,
+                type: "POST",
+                dataType: "JSON",
+                data: {
+                    product_id: product_id,
+                    quantity: quantity,
+                    _token: token
+                },
+                beforeSend: function() {
+                    $('#add_to_cart' + product_id).html('<i class="fe fe-loader"></i>')
+                },
+                complete: function() {
+                    $('#add_to_cart' + product_id).html('<i class="fe fe-shopping-cart"></i>')
+                },
+                success: function(data) {
+                    console.log(data)
+                }
+            });
+        });
+    </script>
 @endpush
 @section('content')
     <section class="py-lg-16 py-8">
@@ -79,10 +110,11 @@
                                         <h5 class="mb-0">Rp. {{ $product->price }}</h5>
                                         <div class="d-flex gap-2">
                                             <div>
-                                                <a href="#" class="btn btn-primary"
-                                                    onclick="addToCart({{ $product->id }})">
+                                                <button type="button" data-product-id="{{ $product->id }}"
+                                                    data-quantity="1" class="btn btn-primary add_to_cart"
+                                                    id="add_to_cart{{ $product->id }}">
                                                     <i class="fe fe-shopping-cart text-white align-middle"></i>
-                                                </a>
+                                                </button>
                                             </div>
 
                                             <form action="{{ route('order.store', $product) }}" method="post">

@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\CartItem;
-use Exception;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CartItemController extends Controller
 {
@@ -17,6 +17,32 @@ class CartItemController extends Controller
         $items = Auth::user()->cartItems;
 
         return view('buyer.pages.cart-items', compact('items'));
+    }
+
+    public function store(Request $request)
+    {
+        try {
+            DB::beginTransaction();
+            $product_id = $request->input('product_id');
+            $product_quantity = $request->input('quantity');
+            $cartItem = CartItem::where('product_id', $product_id)
+                ->where('cart_id', '=', Auth::user()->cart->id)
+                ->first();
+            if (!empty($cartItem)) {
+                $cartItem->quantity += $product_quantity;
+                $cartItem->save();
+            } else {
+                $cartItem = new CartItem();
+                $cartItem->product_id = $product_id;
+                $cartItem->cart_id = Auth::user()->cart->id;
+                $cartItem->quantity = $product_quantity;
+                $cartItem->save();
+            }
+            DB::commit();
+            return response()->json($cartItem);
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
     }
 
     public function checkout($item)

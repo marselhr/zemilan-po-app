@@ -23,9 +23,10 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::post('/buy/{product}', [OrderContoller::class, 'store'])->name('order.store');
 });
 
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth', 'verified']], function () {
 
     Route::get('/cart', [CartItemController::class, 'index'])->name('buyer.cart');
+    Route::post('/cart', [CartItemController::class, 'store'])->name('buyer.cart.store');
     Route::get('/checkout/{items}', [CartItemController::class, 'checkout'])->name('buyer.checkout');
     Route::get('/order', [CartItemController::class, 'showOrder'])->name('buyer.orders');
 });
