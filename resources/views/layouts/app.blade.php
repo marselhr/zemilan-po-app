@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="keywords" content="">
-    <meta name="author" content="Codescandy">
+    <meta name="author" content="Group-3-capstone">
 
     <script>
         // Render blocking JS:
@@ -21,9 +21,10 @@
     <link href="{{ asset('assets/fonts/feather/feather.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/libs/bootstrap-icons/font/bootstrap-icons.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/libs/%40mdi/font/css/materialdesignicons.min.css') }}" rel="stylesheet" />
+
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
-
+    @stack('customCss')
     <style>
         #navbar {
             transition: top 0.3s ease;
@@ -61,6 +62,7 @@
         @yield('content')
     </main>
 
+    @include('layouts.partials.footer')
     <script src="{{ asset('assets/libs/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
 
@@ -83,6 +85,7 @@
             prevScrollpos = currentScrollPos;
         };
     </script>
+    @stack('customJs')
 
 </body>
 
