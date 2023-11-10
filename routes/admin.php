@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\UploadController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ManajemenUserController;
+use App\Http\Controllers\CouponController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,4 +53,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'is.admin']], functi
         Route::get('/edit', [ProductController::class, 'edit'])->name('admin.product.edit');
         Route::delete('/destroy', [ProductController::class, 'destroy'])->name('admin.product.delete');
     });
+
+    // Coupon Management
+    Route::resource('/coupon', CouponController::class);
+
+    Route::post('/coupon/status', [CouponController::class, 'updateStatus'])->name('coupon.status.update');
 });
