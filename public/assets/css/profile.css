@@ -1,9 +1,3 @@
-body {
-    margin-top: 20px;
-    background-color: #f2f6fc;
-    color: #69707a;
-}
-
 .img-account-profile {
     height: 10rem;
 }
@@ -51,8 +45,8 @@ body {
 }
 
 .nav-borders .nav-link.active {
-    color: #754FFE;
-    border-bottom-color: #754FFE;
+    color: #754ffe;
+    border-bottom-color: #754ffe;
 }
 
 .nav-borders .nav-link {
