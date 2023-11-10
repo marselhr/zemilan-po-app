@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\CartItem;
+use App\Models\Product;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,26 +24,68 @@ class CartItemController extends Controller
     public function store(Request $request)
     {
         try {
-            DB::beginTransaction();
             $product_id = $request->input('product_id');
             $product_quantity = $request->input('quantity');
-            $cartItem = CartItem::where('product_id', $product_id)
-                ->where('cart_id', '=', Auth::user()->cart->id)
-                ->first();
-            if (!empty($cartItem)) {
-                $cartItem->quantity += $product_quantity;
-                $cartItem->save();
-            } else {
-                $cartItem = new CartItem();
-                $cartItem->product_id = $product_id;
-                $cartItem->cart_id = Auth::user()->cart->id;
-                $cartItem->quantity = $product_quantity;
-                $cartItem->save();
+
+            $product = Product::getProductByCart($product_id);
+            $price = $product->price;
+
+
+            $cart  = Cart::instance('shopping')->content();
+            $search = $cart->search(function ($cartItem, $rowId) use ($product_id) {
+                return $cartItem->id === $product_id;
+            });
+
+            $cart = [];
+            foreach (Cart::instance('shopping')->content() as $item) {
+                $cart[] = $item->id;
             }
-            DB::commit();
-            return response()->json($cartItem);
+            if (in_array($product_id, $cart)) {
+                $qty = Cart::get($search)->qty;
+                $result = Cart::update($search, $qty + $product_quantity);
+                $result = Cart::get($search);
+            } else {
+                $result = Cart::instance('shopping')->add($product_id,  $product->name, $product_quantity, $price)->associate('App\Models\Product');
+            }
+
+
+
+
+            $response['status'] = true;
+            $response['product_id'] = $product_id;
+            $response['total'] = Cart::subtotal();
+            $response['cart_count'] = Cart::instance('shopping')->count();
+
+            if ($request->ajax()) {
+                $header = view('layouts.partials.navbar')->render();
+                $response['header'] = $header;
+            }
+
+            return response()->json($response);
         } catch (\Exception $e) {
             return $e->getMessage();
+        }
+    }
+
+    public function destroyCart(Request $request)
+    {
+
+        try {
+            Cart::instance('shopping')->remove($request->input('cart_id'));
+            $response['status'] = true;
+            $response['message'] = "Produk Behasil Dihapus!";
+            $response['total'] = Cart::subtotal();
+            $response['cart_count'] = Cart::instance('shopping')->count();
+
+
+            if ($request->ajax()) {
+                $header = view('layouts.partials.navbar')->render();
+                $response['header'] = $header;
+            }
+
+            return response()->json($response);
+        } catch (\Exception $ex) {
+            return json_encode($ex->getMessage());
         }
     }
 

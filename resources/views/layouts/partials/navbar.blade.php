@@ -17,14 +17,14 @@
                             class="badge bg-info">{{ \Gloudemans\Shoppingcart\Facades\Cart::instance('shopping')->count() }}
                         </span></a>
 
-                    <div class="dropdown-menu dropdown-menu-end" style="min-width: 500px;">
+                    <div class="dropdown-menu dropdown-menu-end" style="min-width: 300px;">
                         <div class="col-12 p-4">
                             <ul class="list-unstyled col-12">
                                 @foreach (\Gloudemans\Shoppingcart\Facades\Cart::instance('shopping')->content() as $item)
                                     <li class="d-flex flex-wrap">
                                         <div class=" col-9">
                                             <h5 class="">{{ $item->name }} </h5>
-                                            <p>1 x <span class="price">Rp
+                                            <p>{{ $item->qty }} x <span class="price">Rp
                                                     {{ number_format($item->price, 0, ',', '.') }}</span></p>
                                         </div>
 
@@ -47,7 +47,7 @@
                             <div class="d-flex flex-wrap">
 
                                 <div class="col-6 p-1">
-                                    <a href="{{ route('buyer.cart') }}" class=" btn btn-info col-12">Lihat Keranjang</a>
+                                    <a href="{{ route('buyer.cart') }}" class=" btn btn-info col-12">Keranjang</a>
                                 </div>
 
                                 <div class=" col-6 p-1">

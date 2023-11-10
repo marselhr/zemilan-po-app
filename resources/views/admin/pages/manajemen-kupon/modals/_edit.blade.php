@@ -21,7 +21,6 @@
                             placeholder="cth. KUPON-PEDAS">
                     </div>
                     <!-- Select Option -->
-
                     <div class="mb-3">
                         <label class="form-label" for="selectType">Tipe Kupon</label>
                         <select class="form-select" aria-label="Default select example" name="type">
