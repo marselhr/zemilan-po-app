@@ -34,6 +34,7 @@
                 },
                 success: function(data) {
                     console.log(data)
+                    $('body #navbar').html(data['header'])
                 }
             });
         });

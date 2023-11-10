@@ -34,4 +34,9 @@ class Product extends Model
     {
         return $this->hasMany(Order::class);
     }
+
+    public static function getProductByCart($id)
+    {
+        return self::where('id', $id)->first();
+    }
 }

@@ -27,6 +27,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
     Route::get('/cart', [CartItemController::class, 'index'])->name('buyer.cart');
     Route::post('/cart', [CartItemController::class, 'store'])->name('buyer.cart.store');
+    Route::post('/cart/delete', [CartItemController::class, 'destroyCart'])->name('buyer.cart.delete');
     Route::get('/checkout/{items}', [CartItemController::class, 'checkout'])->name('buyer.checkout');
     Route::get('/order', [CartItemController::class, 'showOrder'])->name('buyer.orders');
 });
