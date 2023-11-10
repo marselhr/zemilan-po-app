@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateCouponRequest;
+use App\Http\Requests\UpdateCouponRequest;
 use App\Models\Coupon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -63,9 +64,21 @@ class CouponController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $coupon)
+    public function update(UpdateCouponRequest $request, $coupon)
     {
-        dd($request);
+        try {
+            DB::beginTransaction();
+            $find_coupon = Coupon::where('id', $coupon)->first();
+            $find_coupon->update(
+                $request->validated()
+            );
+            DB::commit();
+            alert('Berhasil', 'Kupon Berhasil Diperbarui', 'success');
+            return redirect()->back();
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            return $exception->getMessage();
+        }
     }
 
     /**

@@ -11,13 +11,13 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="editCouponForm" action="{{ }}" method="post">
+                <form id="editCouponForm" action="" method="post">
                     @csrf
                     @method('PUT')
                     <!-- Input -->
                     <div class="mb-3">
                         <label class="form-label" for="codeInput">Kode</label>
-                        <input name="code" type="text" id="codeInput" class="form-control"
+                        <input name="code" type="text" id="codeInput" class="form-control" disabled
                             placeholder="cth. KUPON-PEDAS">
                     </div>
                     <!-- Select Option -->

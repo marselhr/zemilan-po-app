@@ -36,12 +36,14 @@
             $('body').on('click', '#editCoupon', function(e) {
                 e.preventDefault()
                 let coupon = $(this).data('id')
-
+                let urlUpdate = $(this).data('route-update')
+                console.log(urlUpdate);
                 $.get('coupon/' + coupon + '/edit', function(data) {
                     $('input[name=code]').val(data.data.code);
                     $('option[value="' + data.data.type + '"]').prop('selected', true);
                     $('input[name=value]').val(data.data.value);
                 })
+                $('#editCouponForm').attr('action', urlUpdate);
             })
         })
     </script>
@@ -129,6 +131,7 @@
                                             <span class="dropdown-menu" aria-labelledby="courseDropdown3">
                                                 <span class="dropdown-header">Action</span>
                                                 <a class="dropdown-item" href="{{ route('coupon.edit', $coupon->id) }}"
+                                                    data-route-update="{{ route('coupon.update', $coupon) }}"
                                                     id="editCoupon" data-bs-toggle="modal" data-bs-target="#editCouponModal"
                                                     data-id="{{ $coupon->id }}"><i
                                                         class="fe fe-edit dropdown-item-icon"></i>Edit</a>
