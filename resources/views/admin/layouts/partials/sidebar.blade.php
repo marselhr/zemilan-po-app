@@ -18,6 +18,10 @@
                     class="nav-link {{ Request::routeIs('admin.user.index') ? 'active' : '' }}">User</a>
             </li>
             <li class="nav-item">
+                <a href="{{ route('coupon.index') }}"
+                    class="nav-link {{ Request::routeIs('coupon.index') ? 'active' : '' }}">Manajemen Kupon</a>
+            </li>
+            <li class="nav-item">
                 <a href="" class="nav-link ">Laporan Keuangan</a>
             </li>
         </ul>
