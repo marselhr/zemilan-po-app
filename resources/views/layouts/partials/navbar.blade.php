@@ -1,4 +1,3 @@
-<nav class="navbar navbar-expand-lg" id="navbar">
     <div class="container px-0">
         <a href="#" class="navbar-brand fw-bold fs-3">Zemilan</a>
 
@@ -12,10 +11,52 @@
                 </a>
             </div>
             @auth
-                <span class="d-none d-md-block">
-                    <a href="#" class="btn btn-icon btn-light rounded-circle"><i
-                            class="fe fe-shopping-cart align-middle"></i></a>
-                </span>
+                <div class="dropdown " aria-labelledby="dropdownCart">
+                    <a href="{{ route('buyer.cart') }}" class="btn btn-icon btn-light rounded-circle"><i
+                            class="fe fe-shopping-cart align-middle"></i><span
+                            class="badge bg-info">{{ \Gloudemans\Shoppingcart\Facades\Cart::instance('shopping')->count() }}
+                        </span></a>
+
+                    <div class="dropdown-menu dropdown-menu-end" style="min-width: 300px;">
+                        <div class="col-12 p-4">
+                            <ul class="list-unstyled col-12">
+                                @foreach (\Gloudemans\Shoppingcart\Facades\Cart::instance('shopping')->content() as $item)
+                                    <li class="d-flex flex-wrap">
+                                        <div class=" col-9">
+                                            <h5 class="">{{ $item->name }} </h5>
+                                            <p>{{ $item->qty }} x <span class="price">Rp
+                                                    {{ number_format($item->price, 0, ',', '.') }}</span></p>
+                                        </div>
+
+                                        <div class="d-flex justify-content-end col-3">
+
+                                            <button class="btn  delete-button" type="button" data-id="{{ $item->rowId }}">
+                                                <i class="fe fe-trash-2"></i>
+                                            </button>
+                                        </div>
+                                    </li>
+                                    <div class="dropdown-divider"></div>
+                                @endforeach
+                            </ul>
+                            <div>
+                                <div class="d-flex justify-content-between">
+                                    <p>Total: </p>
+                                    <p>Rp {{ \Gloudemans\Shoppingcart\Facades\Cart::subtotal() }}</p>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-wrap">
+
+                                <div class="col-6 p-1">
+                                    <a href="{{ route('buyer.cart') }}" class=" btn btn-info col-12">Keranjang</a>
+                                </div>
+
+                                <div class=" col-6 p-1">
+                                    <button class="btn btn-primary col-12">Checkout</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             @endauth
             <!-- Theme toggle -->
             @auth
@@ -106,8 +147,6 @@
                 </span>
                 <input type="search" class="form-control ps-6" placeholder="Cari...">
             </form>
-
-
             @guest
                 <!-- Link to sign up and sign in for guest users -->
                 <div class="me-lg-2 d-lg-flex gap-3 mt-3 mt-lg-0">
@@ -117,4 +156,3 @@
             @endguest
         </div>
     </div>
-</nav>

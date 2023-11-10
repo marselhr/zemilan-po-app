@@ -55,7 +55,9 @@
                 !Request::routeIs('verification.notice') &&
                 !Request::routeIs('password.request') &&
                 !Request::routeIs('password.reset'))
-            @include('layouts.partials.navbar')
+            <nav class="navbar navbar-expand-lg" id="navbar">
+                @include('layouts.partials.navbar')
+            </nav>
         @endif
 
 
@@ -84,6 +86,31 @@
             }
             prevScrollpos = currentScrollPos;
         };
+
+        $(document).on('click', '.delete-button', function(e) {
+            e.preventDefault()
+            let cart_id = $(this).data('id');
+
+            let token = "{{ csrf_token() }}";
+            let route_path = "{{ route('buyer.cart.delete') }}";
+
+            $.ajax({
+                url: route_path,
+                type: "POST",
+                dataType: "JSON",
+                data: {
+                    cart_id: cart_id,
+                    _token: token
+                },
+                success: function(data) {
+                    $('body #navbar').html(data['header'])
+                },
+                error: function(err) {
+                    console.info(err)
+                }
+            });
+
+        })
     </script>
     @stack('customJs')
 

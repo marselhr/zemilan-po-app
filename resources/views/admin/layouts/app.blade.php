@@ -15,10 +15,6 @@
         if (localStorage.theme) document.documentElement.setAttribute("data-theme", localStorage.theme);
     </script>
 
-    <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
-    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
-        rel="stylesheet" />
-    <link href="https://unpkg.com/filepond-plugin-image-edit/dist/filepond-plugin-image-edit.css" rel="stylesheet" />
     <!-- Libs CSS -->
     <link href="{{ asset('assets/fonts/feather/feather.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/libs/bootstrap-icons/font/bootstrap-icons.css') }}" rel="stylesheet" />
@@ -64,11 +60,11 @@
     <script src="{{ asset('assets/js/theme.min.js') }}"></script>
 
     <script>
-        var header = document.querySelector('#navbar');
-        var headerHeight = header.offsetHeight; // Mengambil tinggi header
-        var navbarVertical = document.querySelector('.navbar-vertical');
+        const header = document.querySelector('#navbar');
+        const headerHeight = header.offsetHeight; // Mengambil tinggi header
+        const navbarVertical = document.querySelector('.navbar-vertical');
         window.addEventListener('scroll', function() {
-            var scrollY = window.scrollY;
+            const {scrollY} = window;
 
             if (scrollY > headerHeight) {
                 header.classList.add('fixed-top'); // Menambahkan kelas fixed-top saat di-scroll ke bawah

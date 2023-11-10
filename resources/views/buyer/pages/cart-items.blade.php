@@ -1,35 +1,79 @@
 @extends('layouts.app')
-
+@push('customCss')
+    <link rel="stylesheet" href="{{ asset('assets/libs/bootstrap-select/dist/css/bootstrap-select.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/cart.css') }}">
+@endpush
+@push('customJs')
+    <script src="{{ asset('assets/libs/bootstrap-select/dist/js/bootstrap-select.min.js') }}"></script>
+@endpush
 @section('content')
     <div class="container py-4">
-        @foreach ($items as $item)
-            <div class="row">
-                <div class="d-flex col-12 flex-wrap">
 
-                    <div class=" col-6 col-md-3">
-                        <div class="card overflow-hidden">
-                            <img src="https://source.unsplash.com/280x200?mie" alt="Product" class="bg-cover">
+        <div class="row">
+            <div class="card">
+                <div class="row">
+                    <div class="col-md-8 cart">
+                        <div class="title">
+                            <div class="row">
+                                <div class="col">
+                                    <h4><b>Shopping Cart</b></h4>
+                                </div>
+                                <div class="col align-self-center text-right text-muted">3 items</div>
+                            </div>
                         </div>
-                    </div>
+                        @foreach (\Gloudemans\Shoppingcart\Facades\Cart::instance('shopping')->content() as $item)
+                            <div class="row border-top border-bottom">
+                                <div class="row main align-items-center">
+                                    <div class="col-2"><img class="img-fluid" src="https://i.imgur.com/1GrakTl.jpg"></div>
+                                    <div class="col">
+                                        <div class="row text-muted">{{ $item->model->name }}</div>
+                                        <div class="row  text-truncate">{{ $item->model->description }}</div>
+                                    </div>
+                                    <div class="col">
+                                        <span class="fs-5"><button type="button"
+                                                class="btn btn-xs btn-outline-secondary">-</button> {{ $item->qty }}
+                                        </span><button type="button"
+                                            class="btn btn-xs btn-outline-secondary">+</button></span>
 
-                    <div class="col-6 col-md-6">
-                        <div class="ms-2 ms-md-6 text-break">
-                            <h4 class="">{{ $item->product->name }}</h4>
-                            <p>{{ $item->product->description }}</p>
-                            <p>Jumlah : {{ $item->quantity }}</p>
-                            <h5>Total : Rp.{{ $item->quantity * $item->product->price }}</h5>
-                        </div>
-                    </div>
+                                    </div>
+                                    <div class="col">Rp {{ $item->model->price }} </div>
+                                </div>
+                            </div>
+                        @endforeach
 
-                    <div class="col-12 d-flex justify-content-end align-items-end  col-md-3  px-2 ">
+                        <button class="back-to-shop btn"><a href="#">&leftarrow;</a><span class="text-muted">Kembali
+                                Belanja</span></button>
+                    </div>
+                    <div class="col-md-4 summary">
                         <div>
-                            <a class="btn btn-sm btn-info" href="{{ route('buyer.checkout', $item) }}">Checkout</a>
+                            <h5><b>Summary</b></h5>
                         </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col">3 ITEM</div>
+                            <div class="col text-right">Rp
+                                {{ \Gloudemans\Shoppingcart\Facades\Cart::instance('shopping')->subtotal() }}</div>
+                        </div>
+                        <form>
+                            <div class="mb-3">
+                                <label for="code">KODE VOUCHER</label>
+                                <input id="code" class="form-control" name='code'
+                                    placeholder="Tambahkan Kode Voucher">
+                            </div>
+                            <button type="submit" class="btn btn-info col-12">Klaim</button>
+
+                        </form>
+                        <hr>
+                        <div class="row d-flex justify-between" style="width: 100%">
+                            <div class="col">TOTAL </div>
+                            <div class="col mb-2">Rp
+                                {{ \Gloudemans\Shoppingcart\Facades\Cart::instance('shopping')->subtotal() }}</div>
+                        </div>
+                        <button class="btn btn-primary col-12">BAYAR SEKARANG</button>
                     </div>
                 </div>
-            </div>
-            <hr>
-        @endforeach
 
+            </div>
+        </div>
     </div>
 @endsection
