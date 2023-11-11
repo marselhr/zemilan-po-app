@@ -17,74 +17,192 @@
     </script>
 @endpush
 @section('content')
-    <div class="container py-4">
 
-        <div class="row">
-            <div class="card">
-                <div class="row">
-                    <div class="col-md-8 cart">
-                        <div class="title">
-                            <div class="row">
-                                <div class="col">
-                                    <h4><b>Shopping Cart</b></h4>
-                                </div>
-                                <div class="col align-self-center text-right text-muted">3 items</div>
-                            </div>
-                        </div>
-                        @foreach (Auth::user()->cartItems as $item)
-                            <div class="row border-top border-bottom">
-                                <div class="row main align-items-center">
-                                    <div class="col-2"><img class="img-fluid"
-                                            src="{{ asset('storage/' . $item->product->image) }}"></div>
-                                    <div class="col">
-                                        <div class="row text-muted">{{ $item->product->name }}</div>
-                                        <div class="row  text-truncate">{{ $item->product->category->name }}</div>
-                                    </div>
-                                    <div class="col-2 text-center">
-                                        <span class=""><button type="button"
-                                                class="btn btn-xs btn-outline-secondary">-</button> {{ $item->quantity }}
-                                        </span><button type="button"
-                                            class="btn btn-xs btn-outline-secondary">+</button></span>
+    @if (App\Models\CartItem::getCount() > 0)
+        <section class="container-fluid p-4">
+            <div class="row ">
+                <div class="col-lg-12 col-md-12 col-12">
+                    <!-- Page header -->
+                    <div class="border-bottom pb-3 mb-3 ">
+                        <div class="mb-2 mb-lg-0">
+                            <h1 class="mb-0 h2 fw-bold">Shopping Cart </h1>
 
-                                    </div>
-                                    <div class="col">Rp {{ $item->product->price }} </div>
-                                </div>
-                            </div>
-                        @endforeach
-
-                        <a href="{{ route('home') }}" class=" btn">&leftarrow; <span class="text-muted">Kembali
-                                Belanja</span></a>
-                    </div>
-                    <div class="col-md-4 summary">
-                        <div>
-                            <h5><b>Summary</b></h5>
                         </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col">{{ Auth::user()->cartItems->count() }} ITEM</div>
-                            <div class="col text-right">Rp
-                                {{ number_format(App\Models\CartItem::getSubTotal(Auth::user()), 0, '.', '.') }}</div>
-                        </div>
-                        <form action="{{ route('coupon.apply') }}" id="coupon-form" method="POST">
-                            @csrf
-                            <div class="mb-3">
-                                <input id="code" class="form-control" name='code' value="{{ old('code') ?? '' }}"
-                                    placeholder="Tambahkan Kode Voucher">
-                            </div>
-                            <button type="submit" id="coupon-btn" class="btn btn-info col-12">KLAIM</button>
-
-                        </form>
-                        <hr>
-                        <div class="row">
-                            <div class="col">TOTAL </div>
-                            <div class="col mb-2">Rp
-                                {{ number_format(App\Models\CartItem::getSubTotal(Auth::user()), 0, '.', '.') }}</div>
-                        </div>
-                        <button class="btn btn-primary col-12">BAYAR SEKARANG</button>
                     </div>
                 </div>
+            </div>
+            <!-- row -->
+            <div class="row">
+                <div class="col-12 mb-2">
+                    <!-- alert -->
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        Gunakan Kode Kupon <strong>(ZMPO15%)</strong> dan dapatkan diskon 10% !
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <!-- card -->
+                    <div class="card">
+                        <!-- card header -->
+                        <div class="card-header">
+                            <div class="d-flex ">
+                                <!-- heading -->
+                                <h4 class="mb-0">Shopping Cart <span
+                                        class="text-muted ">({{ App\Models\CartItem::getCount() }} Items)</span> </h4>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive table-card">
+                                <!-- Table -->
+                                <table class="table mb-0 text-nowrap">
+                                    <!-- Table Head -->
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Produk</th>
+                                            <th>Harga</th>
+                                            <th>Jumlah</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Table body -->
 
+                                        @foreach (Auth::user()->cartItems as $item)
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex">
+                                                        <div>
+                                                            <img src="{{ asset('storage/' . $item->product->image) }}"
+                                                                alt="" class="img-4by3-md rounded">
+                                                        </div>
+                                                        <div class="ms-4 mt-2 mt-lg-0">
+                                                            <h4 class="mb-1 text-primary-hover">
+                                                                {{ $item->product->name }}
+                                                            </h4>
+                                                            <div> <span>Berat: <span class="text-dark fw-medium">100
+                                                                        gr</span>
+                                                            </div>
+                                                            <div class="mt-4">
+                                                                <a href="#" class="text-body ms-3"><i
+                                                                        class="fe fe-trash"></i> Hapus</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <h4 class="mb-0">Rp
+                                                        {{ number_format($item->product->price, 0, '.', '.') }}
+                                                    </h4>
+                                                </td>
+                                                <td>
+                                                    <div class="input-group  flex-nowrap justify-content-center ">
+                                                        <input type="button" value="-"
+                                                            class="button-minus form-control  text-center flex-xl-none w-xl-30 w-xxl-10 px-0 py-1 "
+                                                            data-field="quantity">
+                                                        <input type="number" step="1" max="10"
+                                                            value="{{ $item->quantity }}" name="quantity"
+                                                            class="quantity-field form-control text-center flex-xl-none w-xl-30 w-xxl-10 px-0 py-1">
+                                                        <input type="button" value="+"
+                                                            class="button-plus form-control  text-center flex-xl-none w-xl-30  w-xxl-10 px-0 py-1 "
+                                                            data-field="quantity">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <h4 class="mb-0">Rp
+                                                        {{ number_format($item->product->price * $item->quantity, 0, '.', '.') }}
+                                                    </h4>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+
+
+                                        <tr>
+                                            <td class="align-middle border-top-0 border-bottom-0 ">
+                                            </td>
+                                            <td class="align-middle border-top-0 border-bottom-0 ">
+                                                <h4 class="mb-0">Total</h4>
+                                            </td>
+                                            <td class="align-middle border-top-0 border-bottom-0 text-center ">
+                                                <span class="fs-4">{{ App\Models\CartItem::getCount() }}
+                                                    (items)</span>
+
+                                            </td>
+                                            <td>
+                                                <h4 class="mb-0">Rp
+                                                    {{ number_format(App\Models\CartItem::getSubTotal(Auth::user()), 0, '.', '.') }}
+                                                </h4>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4 d-flex justify-content-between">
+                        <a href="{{ route('catalog') }}" class="btn btn-outline-primary">Kembali Berbelanja</a>
+                        <a href="#" class="btn btn-primary">Checkout</a>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <!-- card -->
+                    <div class="card mb-4 mt-4 mt-lg-0">
+                        <!-- card body -->
+                        <div class="card-body">
+                            <h4 class="mb-3">Tambahkan Kupon</h4>
+                            <!-- row -->
+                            <div class="row g-3">
+                                <!-- col -->
+                                <div class="col">
+                                    <input type="text" class="form-control" placeholder="GKDIS15%">
+                                </div>
+                                <!-- col -->
+                                <div class="col-auto">
+                                    <a href="#" class="btn btn-dark">Klaim</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- card -->
+                    <div class="card mb-4">
+                        <!-- card body -->
+                        <div class="card-body">
+                            <!-- text -->
+                            <h4 class="mb-3">Order Summary</h4>
+                            <!-- list group -->
+                            <ul class="list-group list-group-flush">
+                                <!-- list group item -->
+                                <li class="list-group-item px-0 d-flex justify-content-between fs-5 text-dark fw-medium">
+                                    <span>Sub Total :</span>
+                                    <span>Rp
+                                        {{ number_format(App\Models\CartItem::getSubTotal(Auth::user()), 0, '.', '.') }}</span>
+                                </li>
+                                <!-- list group item -->
+                                <li class="list-group-item px-0 d-flex justify-content-between fs-5 text-dark fw-medium">
+                                    <span>Discount <span class="text-muted">(GKDIS15%)</span>: </span>
+                                    <span>-Rp 10.000</span>
+                                </li>
+
+
+                            </ul>
+                        </div>
+                        <!-- card footer -->
+                        <div class="card-footer">
+                            <div class=" px-0 d-flex justify-content-between fs-5 text-dark fw-semibold">
+                                <span>Total (RUPIAH)</span>
+                                <span>Rp
+                                    {{ number_format(App\Models\CartItem::getSubTotal(Auth::user()), 0, '.', '.') }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    @else
+        <div class="container-fluid py-4">
+            <div style="min-height: 70vh">
+                <h5 class="text-center mt-10">-- Keranjangmu Kosong --</h5>
             </div>
         </div>
-    </div>
+    @endif
+
+
 @endsection
