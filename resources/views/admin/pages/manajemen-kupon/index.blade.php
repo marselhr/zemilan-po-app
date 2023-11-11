@@ -168,11 +168,11 @@
                                 </tr>
                             @endforeach
 
-                            @include('admin.pages.manajemen-kupon.modals._edit')
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
+    @include('admin.pages.manajemen-kupon.modals._edit')
 @endsection
