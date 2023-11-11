@@ -7,13 +7,33 @@
     <script src="{{ asset('assets/libs/bootstrap-select/dist/js/bootstrap-select.min.js') }}"></script>
 
     <script>
-        $(document).on('click', '#coupon-btn', function(e) {
+        $(document).on('click', '#apply-coupon', function(e) {
             e.preventDefault();
 
             const code = $('input[name=code]').val();
-            $('#coupon-btn').html('<i class="fe fe-loader"></i> PROSES....');
-            $('#coupon-form').submit();
-        })
+
+            $.ajax({
+                url: "{{ route('coupon.apply') }}",
+                type: 'POST',
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    code: code,
+                },
+                dataType: 'json',
+                beforeSend: function() {
+                    $('#apply-coupon').html('<i class="fe fe-loader"></i> PROSES....');
+                },
+                success: function(response) {
+                    $('#apply-coupon').html('Klaim');
+
+                    if (response.status == false) {
+                        $('#codeInput').addClass('is-invalid')
+                        $('.invalid-feedback').html(response.message)
+                    }
+                }
+            });
+
+        });
     </script>
 @endpush
 @section('content')
@@ -152,11 +172,15 @@
                             <div class="row g-3">
                                 <!-- col -->
                                 <div class="col">
-                                    <input type="text" class="form-control" placeholder="GKDIS15%">
+                                    <input type="text" class="form-control" id="codeInput" name="code"
+                                        placeholder="GKDIS15%">
+                                    <div class="invalid-feedback">
+
+                                    </div>
                                 </div>
                                 <!-- col -->
                                 <div class="col-auto">
-                                    <a href="#" class="btn btn-dark">Klaim</a>
+                                    <button id="apply-coupon" class="btn btn-dark">Klaim</button>
                                 </div>
                             </div>
                         </div>

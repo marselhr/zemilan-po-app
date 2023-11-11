@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Services\ApplyCouponService;
 use App\Http\Services\CartItemService;
 use App\Models\Order;
 use App\Models\CartItem;
@@ -16,7 +17,7 @@ use Illuminate\Support\Facades\DB;
 class CartItemController extends Controller
 {
 
-    public function __construct(protected CartItemService $cartItemService)
+    public function __construct(protected CartItemService $cartItemService, protected ApplyCouponService $applyCouponService)
     {
     }
 
@@ -82,20 +83,9 @@ class CartItemController extends Controller
     public function applyCoupon(Request $request)
     {
         try {
-            $coupon = Coupon::where('code', $request->code)->firstOrFail();
-
-            if ($coupon) {
-                $total = Cart::instance('shopping')->subtotal();
-                session()->put('coupon', [
-                    'id' => $coupon->id,
-                    'code' => $coupon->code,
-                    'value' => $coupon->discount($total),
-                ]);
-
-                return back()->with('success', 'Kupon Berhasil Digunakan');
-            }
+            return $this->applyCouponService->apply($request);
         } catch (\Throwable $th) {
-            return redirect()->back()->with('errors', $th->getMessage());
+            return response($th->getMessage());
         }
     }
 
