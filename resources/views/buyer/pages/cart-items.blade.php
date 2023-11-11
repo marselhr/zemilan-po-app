@@ -27,10 +27,10 @@
                                     <div class="col-2"><img class="img-fluid" src="https://i.imgur.com/1GrakTl.jpg"></div>
                                     <div class="col">
                                         <div class="row text-muted">{{ $item->model->name }}</div>
-                                        <div class="row  text-truncate">{{ $item->model->description }}</div>
+                                        <div class="row  text-truncate">{{ $item->model->category->name }}</div>
                                     </div>
-                                    <div class="col">
-                                        <span class="fs-5"><button type="button"
+                                    <div class="col-2 text-center">
+                                        <span class=""><button type="button"
                                                 class="btn btn-xs btn-outline-secondary">-</button> {{ $item->qty }}
                                         </span><button type="button"
                                             class="btn btn-xs btn-outline-secondary">+</button></span>
@@ -41,8 +41,8 @@
                             </div>
                         @endforeach
 
-                        <button class="back-to-shop btn"><a href="#">&leftarrow;</a><span class="text-muted">Kembali
-                                Belanja</span></button>
+                        <a href="{{ route('home') }}" class=" btn">&leftarrow; <span class="text-muted">Kembali
+                                Belanja</span></a>
                     </div>
                     <div class="col-md-4 summary">
                         <div>
@@ -60,11 +60,11 @@
                                 <input id="code" class="form-control" name='code'
                                     placeholder="Tambahkan Kode Voucher">
                             </div>
-                            <button type="submit" class="btn btn-info col-12">Klaim</button>
+                            <button type="submit" class="btn btn-info col-12">KLAIM</button>
 
                         </form>
                         <hr>
-                        <div class="row d-flex justify-between" style="width: 100%">
+                        <div class="row">
                             <div class="col">TOTAL </div>
                             <div class="col mb-2">Rp
                                 {{ \Gloudemans\Shoppingcart\Facades\Cart::instance('shopping')->subtotal() }}</div>

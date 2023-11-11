@@ -23,23 +23,45 @@
                     <!-- Select Option -->
                     <div class="mb-3">
                         <label class="form-label" for="selectType">Tipe Kupon</label>
-                        <select class="form-select" aria-label="Default select example" name="type">
+                        <select class="form-select" aria-label="Default select example" name="type" id="couponType">
                             <option selected>--> Pilih Tipe <-- </option>
                             <option value="fixed" {{ old('type') == 'fixed' ? 'selected' : '' }}>Fixed</option>
                             <option value="percent" {{ old('type') == 'percent' ? 'selected' : '' }}>Percent</option>
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label" for="valueInput">Nilai</label>
-                        <input name="value" type="text" id="valueInput" class="form-control"
+                        <label class="form-label" for="valueCouponInput">Nilai</label>
+                        <input name="value" type="text" id="valueCouponInput" class="form-control"
                             placeholder="cth. 10.000">
                     </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                <button type="reset" class="btn btn-secondary">Reset</button>
                 <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
             </div>
             </form>
         </div>
     </div>
 </div>
+
+<script>
+    const valueInput = document.getElementById('valueCouponInput');
+    const typeCoupon = document.getElementById('couponType');
+    valueInput.addEventListener('input', function() {
+        const couponValue = Number(valueInput.value.replace(/\./g, '').replace(',', '.'));
+        if (!isNaN(couponValue) && typeCoupon.value === 'percent' && couponValue > 100) {
+            valueInput.value = '100';
+        } else {
+            valueInput.value = couponValue.toLocaleString('id-ID', {
+                minimumFractionDigits: 0
+            });
+        }
+    });
+
+    typeCoupon.addEventListener('change', function() {
+        const couponValue = Number(valueInput.value.replace(/\./g, '').replace(',', '.'));
+        if (!isNaN(couponValue) && typeCoupon.value === 'percent' && couponValue > 100) {
+            valueInput.value = '0';
+        }
+    });
+</script>
