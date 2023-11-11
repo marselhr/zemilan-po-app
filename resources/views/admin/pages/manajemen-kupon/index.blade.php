@@ -76,7 +76,6 @@
                                 <th>TOTAL</th>
                                 <th>NILAI</th>
                                 <th>STATUS</th>
-                                <th>TANGGAL BERLAKU</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -106,12 +105,6 @@
                                             {{ $coupon->status == 'active' ? 'checked' : '' }} data-onlabel="Active"
                                             data-offlabel="Inactive" data-onstyle="success" data-offstyle="danger"
                                             data-size="xs" name="toggle">
-                                    </td>
-
-                                    <td class="text-center">
-                                        {{ App\Helpers\FormatDateToIndonesia::getIndonesiaDateTimeCutMonth($coupon->start_date) }}
-                                        s/d
-                                        {{ App\Helpers\FormatDateToIndonesia::getIndonesiaDateTimeCutMonth($coupon->expiration_date) }}
                                     </td>
                                     <td>
                                         <span class="dropdown dropstart">
