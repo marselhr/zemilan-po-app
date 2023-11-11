@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
 
@@ -64,7 +64,9 @@
         const headerHeight = header.offsetHeight; // Mengambil tinggi header
         const navbarVertical = document.querySelector('.navbar-vertical');
         window.addEventListener('scroll', function() {
-            const {scrollY} = window;
+            const {
+                scrollY
+            } = window;
 
             if (scrollY > headerHeight) {
                 header.classList.add('fixed-top'); // Menambahkan kelas fixed-top saat di-scroll ke bawah
