@@ -31,18 +31,10 @@ class CartItemController extends Controller
     public function store(Request $request)
     {
         try {
-            $product_id = $request->input('product_id');
-
-            $cartItem = CartItem::getProductByCartUser($product_id);
-
-            if ($cartItem) {
-                $this->cartItemService->updateQuantity($cartItem);
-            } else {
-                $this->cartItemService->insertToCart($request);
-            }
+            $this->cartItemService->addToCart($request);
 
             $response['status'] = true;
-            $response['product_id'] = $product_id;
+            $response['product_id'] = $request->product_id;
             $response['total'] = Cart::subtotal();
             $response['cart_count'] = Auth::user()->cartItems->count();
 
@@ -62,10 +54,11 @@ class CartItemController extends Controller
 
         try {
             $this->cartItemService->execDeleteItem($request);
+
             $response['status'] = true;
             $response['message'] = "Produk Behasil Dihapus!";
             $response['total'] = Cart::subtotal();
-            $response['cart_count'] = Cart::instance('shopping')->count();
+            $response['cart_count'] = $this->cartItemService->getCount();
 
 
             if ($request->ajax()) {
@@ -78,6 +71,36 @@ class CartItemController extends Controller
             return json_encode($ex->getMessage());
         }
     }
+
+
+
+    /**
+     * 
+     * apply coupon on cart
+     * 
+     */
+    public function applyCoupon(Request $request)
+    {
+        try {
+            $coupon = Coupon::where('code', $request->code)->firstOrFail();
+
+            if ($coupon) {
+                $total = Cart::instance('shopping')->subtotal();
+                session()->put('coupon', [
+                    'id' => $coupon->id,
+                    'code' => $coupon->code,
+                    'value' => $coupon->discount($total),
+                ]);
+
+                return back()->with('success', 'Kupon Berhasil Digunakan');
+            }
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('errors', $th->getMessage());
+        }
+    }
+
+
+
 
     public function checkout($item)
     {
