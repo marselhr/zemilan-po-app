@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Services\CartItemService;
 use App\Models\Order;
 use App\Models\CartItem;
+use App\Models\Coupon;
 use App\Models\Product;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Str;
@@ -13,6 +15,11 @@ use Illuminate\Support\Facades\DB;
 
 class CartItemController extends Controller
 {
+
+    public function __construct(protected CartItemService $cartItemService)
+    {
+    }
+
     public function index()
     {
 
@@ -25,36 +32,19 @@ class CartItemController extends Controller
     {
         try {
             $product_id = $request->input('product_id');
-            $product_quantity = $request->input('quantity');
 
-            $product = Product::getProductByCart($product_id);
-            $price = $product->price;
+            $cartItem = CartItem::getProductByCartUser($product_id);
 
-
-            $cart  = Cart::instance('shopping')->content();
-            $search = $cart->search(function ($cartItem, $rowId) use ($product_id) {
-                return $cartItem->id === $product_id;
-            });
-
-            $cart = [];
-            foreach (Cart::instance('shopping')->content() as $item) {
-                $cart[] = $item->id;
-            }
-            if (in_array($product_id, $cart)) {
-                $qty = Cart::get($search)->qty;
-                $result = Cart::update($search, $qty + $product_quantity);
-                $result = Cart::get($search);
+            if ($cartItem) {
+                $this->cartItemService->updateQuantity($cartItem);
             } else {
-                $result = Cart::instance('shopping')->add($product_id,  $product->name, $product_quantity, $price)->associate('App\Models\Product');
+                $this->cartItemService->insertToCart($request);
             }
-
-
-
 
             $response['status'] = true;
             $response['product_id'] = $product_id;
             $response['total'] = Cart::subtotal();
-            $response['cart_count'] = Cart::instance('shopping')->count();
+            $response['cart_count'] = Auth::user()->cartItems->count();
 
             if ($request->ajax()) {
                 $header = view('layouts.partials.navbar')->render();
@@ -71,7 +61,7 @@ class CartItemController extends Controller
     {
 
         try {
-            Cart::instance('shopping')->remove($request->input('cart_id'));
+            $this->cartItemService->execDeleteItem($request);
             $response['status'] = true;
             $response['message'] = "Produk Behasil Dihapus!";
             $response['total'] = Cart::subtotal();

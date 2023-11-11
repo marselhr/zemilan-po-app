@@ -41,7 +41,6 @@
 
     <!-- Theme CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/theme.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/profile.css') }}">
     <link href="{{ asset('assets/libs/tiny-slider/dist/tiny-slider.css') }}" rel="stylesheet">
     <title>Home</title>
 </head>
@@ -81,7 +80,7 @@
         $(document).on('click', '.delete-button', function(e) {
             e.preventDefault()
             let cart_id = $(this).data('id');
-
+            let product_id = $(this).data('product-id');
             let token = "{{ csrf_token() }}";
             let route_path = "{{ route('buyer.cart.delete') }}";
 
@@ -91,10 +90,12 @@
                 dataType: "JSON",
                 data: {
                     cart_id: cart_id,
+                    product_id: product_id,
                     _token: token
                 },
                 success: function(data) {
                     $('body #navbar').html(data['header'])
+                    console.log(data)
                 },
                 error: function(err) {
                     console.info(err)

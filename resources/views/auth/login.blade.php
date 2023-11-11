@@ -50,7 +50,7 @@
                                 <label class="form-check-label " for="remember">{{ __('Remember Me') }}</label>
                             </div>
                             <div>
-                                <a href="{{ route('password.request') }}">Forgot your password?</a>
+                                <a href="{{ route('password.request') }}">Lupa password?</a>
                             </div>
                         </div>
                         <div>
