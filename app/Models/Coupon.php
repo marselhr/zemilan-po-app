@@ -15,6 +15,10 @@ class Coupon extends Model
         'value',
         'type',
         'status',
+        'max_uses_user',
+        'max_uses',
+        'start_date',
+        'expiration_date'
     ];
 
     // Calculate discount value
