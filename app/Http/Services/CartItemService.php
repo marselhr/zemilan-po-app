@@ -11,18 +11,34 @@ class CartItemService
 
     public function getItems()
     {
+
         return Auth::user()->cartItems;
     }
 
-    public function insertToCart(Request $request)
+    public function getCount()
     {
-        $item = new CartItem();
-        $item->cart_id = Auth::user()->cart->id;
-        $item->product_id = $request->product_id;
-        $item->quantity = $request->quantity;
-        $item->save();
+        $count = 0;
+        foreach (Auth::user()->cartItems as $item) {
+            $count += $item->quantity;
+        }
+        return $count;
+    }
 
-        return $item;
+
+    public function addToCart(Request $request)
+    {
+
+        $cartItem = CartItem::getProductByCartUser($request->product_id);
+        if ($cartItem) {
+            return $this->updateQuantity($cartItem);
+        } else {
+            $item = new CartItem();
+            $item->cart_id = Auth::user()->cart->id;
+            $item->product_id = $request->product_id;
+            $item->quantity = $request->quantity;
+            $item->save();
+            return $item;
+        }
     }
 
     public function updateQuantity(CartItem $item)
