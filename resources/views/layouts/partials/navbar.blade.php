@@ -14,7 +14,7 @@
                 <div class="dropdown " aria-labelledby="dropdownCart">
                     <a href="{{ route('buyer.cart') }}" class="btn btn-icon btn-light rounded-circle"><i
                             class="fe fe-shopping-cart align-middle"></i><span
-                            class="badge bg-info">{{ Auth::user()->cartItems->count() }}
+                            class="badge bg-info">{{ App\Models\CartItem::getCount() }}
                         </span></a>
 
                     <div class="dropdown-menu dropdown-menu-end" style="min-width: 300px;">
