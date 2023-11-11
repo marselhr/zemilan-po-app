@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('auth.layouts.app', ['title' => 'Login'])
 
 @section('content')
     <div class="row align-items-center justify-content-center g-0 min-vh-100">

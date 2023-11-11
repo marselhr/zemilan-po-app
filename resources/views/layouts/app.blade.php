@@ -49,18 +49,9 @@
 <body style="margin-top: 0px;">
     @include('sweetalert::alert')
     <main>
-        @if (
-            !Request::routeIs('login') &&
-                !Request::routeIs('register') &&
-                !Request::routeIs('verification.notice') &&
-                !Request::routeIs('password.request') &&
-                !Request::routeIs('password.reset'))
-            <nav class="navbar navbar-expand-lg" id="navbar">
-                @include('layouts.partials.navbar')
-            </nav>
-        @endif
-
-
+        <nav class="navbar navbar-expand-lg" id="navbar">
+            @include('layouts.partials.navbar')
+        </nav>
         @yield('content')
     </main>
 

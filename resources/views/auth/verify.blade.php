@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('auth.layouts.app', ['title' => 'Auth | Verifikasi'])
 
 @section('content')
     <div class="container">
