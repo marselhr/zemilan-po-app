@@ -5,10 +5,17 @@ namespace App\Http\Services;
 use App\Models\CartItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class CartItemService
 {
 
+    public function __construct()
+    {
+        Session::forget('discount');
+        Session::forget('couponCode');
+        Session::forget('grandTotal');
+    }
     public function getItems()
     {
 

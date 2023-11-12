@@ -58,7 +58,7 @@ class CartItemController extends Controller
 
             $response['status'] = true;
             $response['message'] = "Produk Behasil Dihapus!";
-            $response['total'] = Cart::subtotal();
+            $response['total'] = CartItem::getSubtotal(Auth::user());
             $response['cart_count'] = $this->cartItemService->getCount();
 
 
