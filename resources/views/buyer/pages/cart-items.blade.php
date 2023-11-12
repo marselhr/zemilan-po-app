@@ -30,6 +30,26 @@
                         $('#codeInput').addClass('is-invalid')
                         $('.invalid-feedback').html(response.message)
                     }
+                    if (response.status == true) {
+                        $('#couponCode').html(`( ${response.code}) `)
+                        if (response.discount > 0) {
+                            $('#discountAmount').html(response.discount)
+                        } else {
+                            $('#discountAmount').html('0')
+                        }
+
+                        if (response.grand_total > 0) {
+                            $('#grandTotal').html(response.grand_total.toLocaleString('id-ID', {
+                                minimumFractionDigits: 0
+                            }));
+                        } else {
+                            $('#grandTotal').html('0')
+                        }
+
+                    }
+                },
+                error: function(err) {
+                    alert(err);
                 }
             });
 
@@ -37,7 +57,6 @@
     </script>
 @endpush
 @section('content')
-
     @if (App\Models\CartItem::getCount() > 0)
         <section class="container-fluid p-4">
             <div class="row ">
@@ -201,8 +220,19 @@
                                 </li>
                                 <!-- list group item -->
                                 <li class="list-group-item px-0 d-flex justify-content-between fs-5 text-dark fw-medium">
-                                    <span>Discount <span class="text-muted">(GKDIS15%)</span>: </span>
-                                    <span>-Rp 10.000</span>
+                                    <span>Discount <span class="text-muted" id="couponCode">
+                                            @if (Session::has('couponCode'))
+                                                {{ Session::get('couponCode') }}
+                                            @endif
+                                        </span>: </span>
+                                    <span>-Rp <span id='discountAmount'>
+                                            @if (Session::has('discount'))
+                                                {{ Session::get('discount') }}
+                                            @else
+                                                0
+                                            @endif
+
+                                        </span></span>
                                 </li>
 
 
@@ -212,8 +242,15 @@
                         <div class="card-footer">
                             <div class=" px-0 d-flex justify-content-between fs-5 text-dark fw-semibold">
                                 <span>Total (RUPIAH)</span>
-                                <span>Rp
-                                    {{ number_format(App\Models\CartItem::getSubTotal(Auth::user()), 0, '.', '.') }}</span>
+                                <span>Rp <span id="grandTotal">
+                                        @if (Session::has('grandTotal'))
+                                            {{ number_format(Session::get('grandTotal'), 0, '.', '.') }}
+                                        @else
+                                            {{ number_format(App\Models\CartItem::getSubTotal(Auth::user()), 0, '.', '.') }}
+                                        @endif
+
+                                    </span>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -227,6 +264,4 @@
             </div>
         </div>
     @endif
-
-
 @endsection
