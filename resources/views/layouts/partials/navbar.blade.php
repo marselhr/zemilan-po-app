@@ -12,10 +12,12 @@
             </div>
             @auth
                 <div class="dropdown " aria-labelledby="dropdownCart">
-                    <a href="{{ route('buyer.cart') }}" class="btn btn-icon btn-light rounded-circle"><i
-                            class="fe fe-shopping-cart align-middle"></i><span
-                            class="badge bg-info">{{ \Gloudemans\Shoppingcart\Facades\Cart::instance('shopping')->count() }}
-                        </span></a>
+                    <a href="{{ route('buyer.cart') }}" class="btn btn-icon btn-light rounded-circle position-relative">
+                        <i class="fe fe-shopping-cart align-middle"></i>
+                        <span class="badge bg-info position-absolute top-0 start-100 translate-middle">
+                            {{ \Gloudemans\Shoppingcart\Facades\Cart::instance('shopping')->count() }}
+                        </span>
+                    </a>
 
                     <div class="dropdown-menu dropdown-menu-end" style="min-width: 300px;">
                         <div class="col-12 p-4">
