@@ -2,21 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Services\CartItemService;
 use App\Models\Order;
-use App\Models\CartItem;
 use App\Models\Coupon;
 use App\Models\Product;
-use Gloudemans\Shoppingcart\Facades\Cart;
+use App\Models\CartItem;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Services\CartItemService;
+use Illuminate\Support\Facades\Session;
+use App\Http\Services\ApplyCouponService;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class CartItemController extends Controller
 {
 
-    public function __construct(protected CartItemService $cartItemService)
+    public function __construct(protected CartItemService $cartItemService, protected ApplyCouponService $applyCouponService)
     {
     }
 
@@ -31,18 +33,13 @@ class CartItemController extends Controller
     public function store(Request $request)
     {
         try {
-            $product_id = $request->input('product_id');
-
-            $cartItem = CartItem::getProductByCartUser($product_id);
-
-            if ($cartItem) {
-                $this->cartItemService->updateQuantity($cartItem);
-            } else {
-                $this->cartItemService->insertToCart($request);
-            }
+            Session::forget('discount');
+            Session::forget('couponCode');
+            Session::forget('grandTotal');
+            $this->cartItemService->addToCart($request);
 
             $response['status'] = true;
-            $response['product_id'] = $product_id;
+            $response['product_id'] = $request->product_id;
             $response['total'] = Cart::subtotal();
             $response['cart_count'] = Auth::user()->cartItems->count();
 
@@ -61,11 +58,16 @@ class CartItemController extends Controller
     {
 
         try {
+
+            Session::forget('discount');
+            Session::forget('couponCode');
+            Session::forget('grandTotal');
             $this->cartItemService->execDeleteItem($request);
+
             $response['status'] = true;
             $response['message'] = "Produk Behasil Dihapus!";
-            $response['total'] = Cart::subtotal();
-            $response['cart_count'] = Cart::instance('shopping')->count();
+            $response['total'] = CartItem::getSubtotal(Auth::user());
+            $response['cart_count'] = $this->cartItemService->getCount();
 
 
             if ($request->ajax()) {
@@ -78,6 +80,51 @@ class CartItemController extends Controller
             return json_encode($ex->getMessage());
         }
     }
+
+
+    public function updateQuantity(Request $request, $item)
+    {
+        try {
+            DB::beginTransaction();
+            $item = CartItem::where('id', $item)->firstOrFail();
+
+            if ($request->operation == 'decrement') {
+                $this->cartItemService->decrementQuantity($item);
+            } elseif ($request->operation == 'increment') {
+                $this->cartItemService->incrementQuantity($item);
+            }
+
+            return response()->json([
+                'success' => true,
+                'quantity' => $item->quantity,
+                'total' => $item->quantity * $item->product->price,
+                'subtotal' => CartItem::getSubtotal(Auth::user())
+            ]);
+            DB::commit();
+
+            return response();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return $th->getMessage();
+        }
+    }
+
+    /**
+     * 
+     * apply coupon on cart
+     * 
+     */
+    public function applyCoupon(Request $request)
+    {
+        try {
+            return $this->applyCouponService->apply($request);
+        } catch (\Throwable $th) {
+            return response($th->getMessage());
+        }
+    }
+
+
+
 
     public function checkout($item)
     {

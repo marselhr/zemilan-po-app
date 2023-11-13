@@ -35,4 +35,13 @@ class CartItem extends Model
         }
         return $total;
     }
+
+    public static function getCount()
+    {
+        $count = 0;
+        foreach (Auth::user()->cartItems as $item) {
+            $count += $item->quantity;
+        }
+        return $count;
+    }
 }

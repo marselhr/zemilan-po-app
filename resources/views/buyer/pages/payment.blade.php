@@ -13,9 +13,8 @@
                 <h4>Pembayaran</h4>
                 <h5>Item</h5>
                 <p>Id: {{ $order->order_id }}</p>
-                <p>Item: {{ $order->quantity }} {{ $order->product->name }}</p>
                 <p>Amount: Rp {{ number_format($order->gross_amount, 2, ',', '.') }}</p>
-                <button class="btn btn-info" data-token={{ $order->snapToken }} id="pay-button">Bayar</button>
+                <button class="btn btn-info" id="pay-button">Bayar</button>
             </div>
         </div>
     </div>

@@ -18,6 +18,7 @@
                         {{ Auth::user()->cartItems->count() }}
                     </span>
                 </a>
+
                 <div class="dropdown-menu dropdown-menu-end" style="min-width: 300px;">
                     <div class="col-12 p-4">
                         <ul class="list-unstyled col-12">
@@ -59,7 +60,7 @@
                                 <button class="btn btn-primary col-12">Checkout</button>
                             </div>
                         </div>
-                    </div>
+                    @endif
                 </div>
             </div>
         @endauth
