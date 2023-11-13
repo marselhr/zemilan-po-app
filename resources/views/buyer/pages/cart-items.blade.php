@@ -178,7 +178,7 @@
                     </div>
                     <div class="mt-4 d-flex justify-content-between">
                         <a href="{{ route('catalog') }}" class="btn btn-outline-primary">Kembali Berbelanja</a>
-                        <a href="#" class="btn btn-primary">Checkout</a>
+                        <a href="{{ route('checkout') }}" class="btn btn-primary">Checkout</a>
                     </div>
                 </div>
                 <div class="col-lg-4">
