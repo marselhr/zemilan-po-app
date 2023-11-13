@@ -71,6 +71,7 @@ class ProductController extends Controller
         $product->description = $request->description;
         $product->stock = $request->stock;
         $product->price = $request->price;
+        $product->weight = $request->weight;
         $product->image = $imagePath; // Simpan path gambar yang diunggah
         $product->save();
         toast('Data Product Berhasil di tambahkan', 'success', 'top-right');
@@ -117,6 +118,7 @@ class ProductController extends Controller
             'description' => 'required',
             'stock' => 'required',
             'price' => 'required',
+            'weight' => 'required|numeric',
             'image' => 'image|mimes:jpeg,png,jpg,gif', // Anda dapat memungkinkan pembaruan gambar opsional
         ]);
 
@@ -134,6 +136,7 @@ class ProductController extends Controller
         $product->description = $request->description;
         $product->stock = $request->stock;
         $product->price = $request->price;
+        $product->weight = $request->weight;
 
         if ($request->hasFile('image')) {
             // Jika ada gambar baru yang diunggah, hapus gambar lama (opsional) dan simpan yang baru

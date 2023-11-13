@@ -50,6 +50,7 @@
                                 <th>Kategori</th>
                                 <th>Stock</th>
                                 <th>Harga</th>
+                                <th>Berat</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -73,6 +74,10 @@
                                     <td>
                                         {{ $products->price }}
                                     </td>
+                                    <td>
+                                        {{ $products->weight }} Gr
+                                    </td>
+
                                     <td>
                                         <span class="dropdown dropstart">
                                             <a class="btn-icon btn btn-ghost btn-sm rounded-circle" href="#"

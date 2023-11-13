@@ -38,6 +38,10 @@
                             <input type="text" class="form-control" id="productPrice" name="price">
                         </div>
                         <div class="mb-3">
+                            <label for="productWeight" class="form-label">Berat</label>
+                            <input type="number" class="form-control" id="productPrice" name="weight">
+                        </div>
+                        <div class="mb-3">
                             <label for="productImage" class="form-label">Gambar Produk</label>
                             <input type="file" class="form-control" id="productImage" name="image">
                         </div>
