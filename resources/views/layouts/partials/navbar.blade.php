@@ -13,47 +13,51 @@
             <div class="dropdown" aria-labelledby="dropdownCart">
                 <a href="{{ route('buyer.cart') }}" class="btn btn-icon btn-light rounded-circle position-relative">
                     <i class="fe fe-shopping-cart align-middle"></i>
-                    <span class="badge bg-info position-absolute top-0 start-100 translate-middle">
-                        {{ Auth::user()->cartItems->count() }}
-                    </span>
+                    @if (Auth::user()->cartItems->count() > 0)
+                        <span class="badge bg-info position-absolute top-0 start-100 translate-middle">
+                            {{ Auth::user()->cartItems->count() }}
+                        </span>
+                    @endif
                 </a>
 
-                <div class="dropdown-menu dropdown-menu-end" style="min-width: 300px;">
-                    <div class="col-12 p-4">
-                        <ul class="list-unstyled col-12">
-                            @foreach (Auth::user()->cartItems as $item)
-                                <li class="d-flex flex-wrap">
-                                    <div class="col-9">
-                                        <h5>{{ $item->product->name }}</h5>
-                                        <p>{{ $item->quantity }} x <span class="price">Rp
-                                                {{ number_format($item->product->price, 0, ',', '.') }}</span></p>
-                                    </div>
+                @if (Auth::user()->cartItems->count() > 0)
+                    <div class="dropdown-menu dropdown-menu-end" style="min-width: 300px;">
+                        <div class="col-12 p-4">
+                            <ul class="list-unstyled col-12">
+                                @foreach (Auth::user()->cartItems as $item)
+                                    <li class="d-flex flex-wrap">
+                                        <div class="col-9">
+                                            <h5>{{ $item->product->name }}</h5>
+                                            <p>{{ $item->quantity }} x <span class="price">Rp
+                                                    {{ number_format($item->product->price, 0, ',', '.') }}</span></p>
+                                        </div>
 
-                                    <div class="d-flex justify-content-end col-3">
-                                        <button class="btn delete-button" type="button"
-                                            data-id="{{ Auth::user()->cart->id }}"
-                                            data-product-id="{{ $item->product_id }}">
-                                            <i class="fe fe-trash-2"></i>
-                                        </button>
-                                    </div>
-                                </li>
-                                <div class="dropdown-divider"></div>
-                            @endforeach
-                        </ul>
-                        <div class="d-flex justify-content-between">
-                            <p>Total: </p>
-                            <p>Rp {{ number_format(App\Models\CartItem::getSubTotal(Auth::user()), 0, '.', '.') }}</p>
-                        </div>
-                        <div class="d-flex flex-wrap">
-                            <div class="col-6 p-1">
-                                <a href="{{ route('buyer.cart') }}" class="btn btn-info col-12">Keranjang</a>
+                                        <div class="d-flex justify-content-end col-3">
+                                            <button class="btn delete-button" type="button"
+                                                data-id="{{ Auth::user()->cart->id }}"
+                                                data-product-id="{{ $item->product_id }}">
+                                                <i class="fe fe-trash-2"></i>
+                                            </button>
+                                        </div>
+                                    </li>
+                                    <div class="dropdown-divider"></div>
+                                @endforeach
+                            </ul>
+                            <div class="d-flex justify-content-between">
+                                <p>Total: </p>
+                                <p>Rp {{ number_format(App\Models\CartItem::getSubTotal(Auth::user()), 0, '.', '.') }}</p>
                             </div>
-                            <div class="col-6 p-1">
-                                <button class="btn btn-primary col-12">Checkout</button>
+                            <div class="d-flex flex-wrap">
+                                <div class="col-6 p-1">
+                                    <a href="{{ route('buyer.cart') }}" class="btn btn-info col-12">Keranjang</a>
+                                </div>
+                                <div class="col-6 p-1">
+                                    <button class="btn btn-primary col-12">Checkout</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                @endif
             </div>
         @endauth
 
