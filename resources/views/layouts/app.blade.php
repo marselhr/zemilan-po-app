@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
 
@@ -41,7 +41,6 @@
 
     <!-- Theme CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/theme.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/profile.css') }}">
     <link href="{{ asset('assets/libs/tiny-slider/dist/tiny-slider.css') }}" rel="stylesheet">
     <title>Home</title>
 </head>
@@ -49,18 +48,9 @@
 <body style="margin-top: 0px;">
     @include('sweetalert::alert')
     <main>
-        @if (
-            !Request::routeIs('login') &&
-                !Request::routeIs('register') &&
-                !Request::routeIs('verification.notice') &&
-                !Request::routeIs('password.request') &&
-                !Request::routeIs('password.reset'))
-            <nav class="navbar navbar-expand-lg" id="navbar">
-                @include('layouts.partials.navbar')
-            </nav>
-        @endif
-
-
+        <nav class="navbar navbar-expand-lg" id="navbar">
+            @include('layouts.partials.navbar')
+        </nav>
         @yield('content')
     </main>
 
@@ -90,7 +80,7 @@
         $(document).on('click', '.delete-button', function(e) {
             e.preventDefault()
             let cart_id = $(this).data('id');
-
+            let product_id = $(this).data('product-id');
             let token = "{{ csrf_token() }}";
             let route_path = "{{ route('buyer.cart.delete') }}";
 
@@ -100,10 +90,12 @@
                 dataType: "JSON",
                 data: {
                     cart_id: cart_id,
+                    product_id: product_id,
                     _token: token
                 },
                 success: function(data) {
                     $('body #navbar').html(data['header'])
+                    console.log(data)
                 },
                 error: function(err) {
                     console.info(err)
