@@ -37,11 +37,6 @@
 .title b {
     font-size: 1.5rem;
 }
-.main {
-    margin: 0;
-    padding: 2vh 0;
-    width: 100%;
-}
 .col-2,
 .col {
     padding: 0 1vh;
@@ -79,16 +74,4 @@ input {
     margin-bottom: 4vh;
     outline: none;
     width: 100%;
-}
-
-#code {
-    background-image: linear-gradient(
-            to left,
-            rgba(255, 255, 255, 0.253),
-            rgba(255, 255, 255, 0.185)
-        ),
-        url("https://img.icons8.com/small/16/000000/long-arrow-right.png");
-    background-repeat: no-repeat;
-    background-position-x: 95%;
-    background-position-y: center;
 }
