@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('auth.layouts.app', ['title' => 'Login'])
 
 @section('content')
     <div class="row align-items-center justify-content-center g-0 min-vh-100">
@@ -50,7 +50,7 @@
                                 <label class="form-check-label " for="remember">{{ __('Remember Me') }}</label>
                             </div>
                             <div>
-                                <a href="{{ route('password.request') }}">Forgot your password?</a>
+                                <a href="{{ route('password.request') }}">Lupa password?</a>
                             </div>
                         </div>
                         <div>
