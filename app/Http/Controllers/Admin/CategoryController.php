@@ -16,11 +16,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $product_categories = ProductCategory::get();
-        $title = 'Delete Kategori Produk!';
-        $text = "Yakin akan menhapus data?";
+        $categories = ProductCategory::get();
+        $title = 'Hapus Kategori!';
+        $text = "Yakin akan menghapus data?";
         confirmDelete($title, $text);
-        return view('admin.pages.category.index', compact('product_categories'));
+        return view('admin.pages.category.index', compact('categories'));
     }
 
     /**
