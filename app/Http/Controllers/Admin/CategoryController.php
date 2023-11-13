@@ -18,7 +18,7 @@ class CategoryController extends Controller
     {
         $product_categories = ProductCategory::get();
         $title = 'Delete Kategori Produk!';
-        $text = "Yakin akan menhapus data?";
+        $text = "Apakah Anda yakin ingin menghapus?";
         confirmDelete($title, $text);
         return view('admin.pages.category.index', compact('product_categories'));
     }
@@ -88,7 +88,7 @@ class CategoryController extends Controller
 
         ProductCategory::whereId($id)->update($product_categories);
 
-        toast('Data Kategori Produk Berhasil Disimpan', 'success', 'top-right');
+        toast('Data Kategori Produk Berhasil Diperbaharui', 'success', 'top-right');
         return redirect()->route('admin.category');
     }
 

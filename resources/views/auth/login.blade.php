@@ -10,8 +10,8 @@
                 <div class="card-body p-6">
                     <div class="mb-4">
                         <h1 class="mb-1  fw-bold">{{ __('Login') }}</h1>
-                        <span>Don’t have an account? <a href="{{ route('register') }}"
-                                class="ms-1">{{ __('Register') }}</a></span>
+                        <span>Belum punya akun? <a href="{{ route('register') }}"
+                                class="ms-1">{{ __('Registrasi') }}</a></span>
                     </div>
                     <!-- Form -->
                     <form method="POST" action="{{ route('login') }}">
@@ -31,7 +31,7 @@
                         </div>
                         <!-- Password -->
                         <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
+                            <label for="password" class="form-label">Kata Sandi</label>
                             <input id="password" type="password"
                                 class="form-control @error('password') is-invalid @enderror" name="password"
                                 placeholder="**************" required autocomplete="current-password">
@@ -47,7 +47,7 @@
                             <div class="form-check">
                                 <input type="checkbox" class="form-check-input" name="remember" id="remember"
                                     {{ old('remember') ? 'checked' : '' }}>
-                                <label class="form-check-label " for="remember">{{ __('Remember Me') }}</label>
+                                <label class="form-check-label " for="remember">{{ __('Ingat Saya ') }}</label>
                             </div>
                             <div>
                                 <a href="{{ route('password.request') }}">Lupa password?</a>
