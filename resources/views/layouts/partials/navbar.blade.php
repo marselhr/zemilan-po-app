@@ -12,6 +12,7 @@
             </div>
             @auth
                 <div class="dropdown " aria-labelledby="dropdownCart">
+
                     <a href="{{ route('buyer.cart') }}" class="btn btn-icon btn-light rounded-circle position-relative">
                         <i class="fe fe-shopping-cart align-middle"></i>
                         <span class="badge bg-info position-absolute top-0 start-100 translate-middle">
@@ -19,20 +20,23 @@
                         </span>
                     </a>
 
+
                     <div class="dropdown-menu dropdown-menu-end" style="min-width: 300px;">
                         <div class="col-12 p-4">
                             <ul class="list-unstyled col-12">
-                                @foreach (\Gloudemans\Shoppingcart\Facades\Cart::instance('shopping')->content() as $item)
+                                @foreach (Auth::user()->cartItems as $item)
                                     <li class="d-flex flex-wrap">
                                         <div class=" col-9">
-                                            <h5 class="">{{ $item->name }} </h5>
-                                            <p>{{ $item->qty }} x <span class="price">Rp
-                                                    {{ number_format($item->price, 0, ',', '.') }}</span></p>
+                                            <h5 class="">{{ $item->product->name }} </h5>
+                                            <p>{{ $item->quantity }} x <span class="price">Rp
+                                                    {{ number_format($item->product->price, 0, ',', '.') }}</span></p>
                                         </div>
 
                                         <div class="d-flex justify-content-end col-3">
 
-                                            <button class="btn  delete-button" type="button" data-id="{{ $item->rowId }}">
+                                            <button class="btn  delete-button" type="button"
+                                                data-id="{{ Auth::user()->cart->id }}"
+                                                data-product-id="{{ $item->product_id }}">
                                                 <i class="fe fe-trash-2"></i>
                                             </button>
                                         </div>
@@ -42,8 +46,10 @@
                             </ul>
                             <div>
                                 <div class="d-flex justify-content-between">
+
                                     <p>Total: </p>
-                                    <p>Rp {{ \Gloudemans\Shoppingcart\Facades\Cart::subtotal() }}</p>
+                                    <p>Rp {{ number_format(App\Models\CartItem::getSubTotal(Auth::user()), 0, '.', '.') }}
+                                    </p>
                                 </div>
                             </div>
                             <div class="d-flex flex-wrap">
