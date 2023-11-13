@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Services\ApplyCouponService;
-use App\Http\Services\CartItemService;
 use App\Models\Order;
-use App\Models\CartItem;
 use App\Models\Coupon;
 use App\Models\Product;
-use Gloudemans\Shoppingcart\Facades\Cart;
+use App\Models\CartItem;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Services\CartItemService;
+use Illuminate\Support\Facades\Session;
+use App\Http\Services\ApplyCouponService;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class CartItemController extends Controller
 {
@@ -32,6 +33,9 @@ class CartItemController extends Controller
     public function store(Request $request)
     {
         try {
+            Session::forget('discount');
+            Session::forget('couponCode');
+            Session::forget('grandTotal');
             $this->cartItemService->addToCart($request);
 
             $response['status'] = true;
@@ -54,6 +58,10 @@ class CartItemController extends Controller
     {
 
         try {
+
+            Session::forget('discount');
+            Session::forget('couponCode');
+            Session::forget('grandTotal');
             $this->cartItemService->execDeleteItem($request);
 
             $response['status'] = true;
@@ -74,6 +82,32 @@ class CartItemController extends Controller
     }
 
 
+    public function updateQuantity(Request $request, $item)
+    {
+        try {
+            DB::beginTransaction();
+            $item = CartItem::where('id', $item)->firstOrFail();
+
+            if ($request->operation == 'decrement') {
+                $this->cartItemService->decrementQuantity($item);
+            } elseif ($request->operation == 'increment') {
+                $this->cartItemService->incrementQuantity($item);
+            }
+
+            return response()->json([
+                'success' => true,
+                'quantity' => $item->quantity,
+                'total' => $item->quantity * $item->product->price,
+                'subtotal' => CartItem::getSubtotal(Auth::user())
+            ]);
+            DB::commit();
+
+            return response();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return $th->getMessage();
+        }
+    }
 
     /**
      * 
