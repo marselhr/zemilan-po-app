@@ -16,7 +16,8 @@
                             class="fe fe-shopping-cart align-middle"></i>
 
                         @if (App\Models\CartItem::getCount() > 0)
-                            <span class="badge bg-info">{{ App\Models\CartItem::getCount() }}
+                            <span class="badge bg-info position-absolute top-0 start-100 translate-middle">
+                                {{ App\Models\CartItem::getCount() }}
                             </span>
                         @endif
                     </a>
