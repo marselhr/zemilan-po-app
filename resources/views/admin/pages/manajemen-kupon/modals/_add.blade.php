@@ -23,7 +23,7 @@
 
                     <div class="mb-3">
                         <label class="form-label" for="selectType">Tipe Kupon</label>
-                        <select class="form-select" aria-label="Default select example" name="type">
+                        <select class="form-select" aria-label="Default select example" name="type" id="typeCoupon">
                             <option selected>--> Pilih Tipe <-- </option>
                             <option value="fixed" {{ old('type') == 'fixed' ? 'selected' : '' }}>Fixed</option>
                             <option value="percent" {{ old('type') == 'percent' ? 'selected' : '' }}>Percent</option>
@@ -32,12 +32,12 @@
                     <div class="mb-3">
                         <label class="form-label" for="valueInput">Nilai</label>
                         <input name="value" type="text" id="valueInput" class="form-control"
-                            placeholder="cth. 10.000">
+                            placeholder="cth. 100">
                     </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                <button type="submit" class="btn btn-primary">Simpan</button>
+                <button type="reset" class="btn btn-secondary"><i class="fe fe-refresh-ccw"></i> Reset</button>
+                <button type="submit" class="btn btn-primary"><i class="fe fe-save"></i> Simpan</button>
             </div>
             </form>
         </div>
