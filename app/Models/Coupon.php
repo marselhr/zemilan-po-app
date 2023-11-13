@@ -15,5 +15,21 @@ class Coupon extends Model
         'value',
         'type',
         'status',
+        'max_uses_user',
+        'max_uses',
+        'start_date',
+        'expiration_date'
     ];
+
+    // Calculate discount value
+    public function discount($total)
+    {
+        if ($this->type  == 'fixed') {
+            return $this->value;
+        } elseif ($this->type == 'percent') {
+            return $total * ($this->value / 100);
+        } else {
+            return 0;
+        }
+    }
 }

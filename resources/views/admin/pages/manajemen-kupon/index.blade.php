@@ -31,46 +31,9 @@
                 }
             });
         });
-
-        $(document).ready(function() {
-            $('body').on('click', '#editCoupon', function(e) {
-                e.preventDefault()
-                let coupon = $(this).data('id')
-                let urlUpdate = $(this).data('route-update')
-                console.log(urlUpdate);
-                $.get('coupon/' + coupon + '/edit', function(data) {
-                    $('input[name=code]').val(data.data.code);
-                    $('option[value="' + data.data.type + '"]').prop('selected', true);
-                    $('input[name=value]').val(data.data.value);
-                })
-                $('#editCouponForm').attr('action', urlUpdate);
-            })
-
-            const valueInput = document.getElementById('valueInput');
-            const typeCoupon = document.getElementById('typeCoupon');
-
-            valueInput.addEventListener('input', function() {
-                const couponValue = Number(valueInput.value.replace(/\./g, '').replace(',', '.'));
-                if (!isNaN(couponValue) && typeCoupon.value === 'percent' && couponValue > 100) {
-                    valueInput.value = '100';
-                } else {
-                    valueInput.value = couponValue.toLocaleString('id-ID', {
-                        minimumFractionDigits: 0
-                    });
-                }
-            });
-
-            typeCoupon.addEventListener('change', function() {
-                const couponValue = Number(valueInput.value.replace(/\./g, '').replace(',', '.'));
-                if (!isNaN(couponValue) && typeCoupon.value === 'percent' && couponValue > 100) {
-                    valueInput.value = '0';
-                }
-            });
-        })
     </script>
 @endpush
 @section('content')
-    @include('admin.pages.manajemen-kupon.modals._add')
     <div class="row">
         <!-- Page Header -->
         <div class="col-lg-12 col-md-12 col-12">
@@ -88,7 +51,7 @@
                     </nav>
                 </div>
                 <div>
-                    <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCouponModal">Tambah
+                    <a href="{{ route('coupon.create') }}" class="btn btn-primary">Tambah
                         Kupon</a>
                 </div>
             </div>
@@ -101,18 +64,16 @@
         <div class="col-lg-12 col-md-12 col-12">
             <div class="card mb-4">
                 <div class="table-responsive border-0 overflow-y-hidden">
-                    <table class="table mb-0 text-nowrap table-centered table-hover table-with-checkbox" id="datatable"
-                        style="width: 100%">
+                    <table class="table mb-0 text-nowrap table-centered table-hover" id="datatable" style="width: 100%">
                         <thead class="table-light">
                             <tr>
                                 <th>
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" id="checkAll" />
-                                        <label class="form-check-label" for="checkAll"></label>
-                                    </div>
+                                    #
                                 </th>
                                 <th>KODE</th>
                                 <th>TIPE</th>
+                                <th>JUMLAH KLAIM PER USER</th>
+                                <th>TOTAL</th>
                                 <th>NILAI</th>
                                 <th>STATUS</th>
                                 <th></th>
@@ -122,16 +83,19 @@
                             @foreach ($coupons as $coupon)
                                 <tr>
                                     <td>
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="categoryCheck3" />
-                                            <label class="form-check-label" for="categoryCheck3"></label>
-                                        </div>
+                                        {{ $loop->iteration }}
                                     </td>
                                     <td>
                                         {{ $coupon->code }}
                                     </td>
                                     <td>
                                         {{ $coupon->type }}
+                                    </td>
+                                    <td class="text-center">
+                                        {{ $coupon->max_uses_user }}
+                                    </td>
+                                    <td class="text-center">
+                                        {{ $coupon->max_uses }}
                                     </td>
                                     <td>
                                         {{ $coupon->value }}
@@ -153,9 +117,7 @@
                                                 <span class="dropdown-header">Action</span>
                                                 <a class="dropdown-item" href="{{ route('coupon.edit', $coupon->id) }}"
                                                     data-route-update="{{ route('coupon.update', $coupon) }}"
-                                                    id="editCoupon" data-bs-toggle="modal" data-bs-target="#editCouponModal"
-                                                    data-id="{{ $coupon->id }}"><i
-                                                        class="fe fe-edit dropdown-item-icon"></i>Edit</a>
+                                                    id="editCoupon"><i class="fe fe-edit dropdown-item-icon"></i>Edit</a>
                                                 <a class="dropdown-item" href="{{ route('coupon.show', $coupon) }}"><i
                                                         class="fe fe-info dropdown-item-icon"></i>Detail</a>
 
@@ -174,5 +136,4 @@
             </div>
         </div>
     </div>
-    @include('admin.pages.manajemen-kupon.modals._edit')
 @endsection

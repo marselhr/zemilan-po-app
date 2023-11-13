@@ -95,7 +95,6 @@
                 },
                 success: function(data) {
                     $('body #navbar').html(data['header'])
-                    console.log(data)
                 },
                 error: function(err) {
                     console.info(err)

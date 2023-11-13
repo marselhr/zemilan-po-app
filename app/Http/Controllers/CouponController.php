@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateCouponRequest;
-use App\Http\Requests\UpdateCouponRequest;
+use Carbon\Carbon;
 use App\Models\Coupon;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\CreateCouponRequest;
 
 class CouponController extends Controller
 {
@@ -15,7 +16,7 @@ class CouponController extends Controller
      */
     public function index()
     {
-        $coupons = Coupon::OrderBy('updated_at')->get();
+        $coupons = Coupon::OrderBy('updated_at', 'DESC')->get();
         return view('admin.pages.manajemen-kupon.index', compact('coupons'));
     }
 
@@ -24,7 +25,7 @@ class CouponController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.pages.manajemen-kupon.add');
     }
 
     /**
@@ -35,7 +36,7 @@ class CouponController extends Controller
         try {
             $new_coupon = Coupon::create($request->validated());
             alert('Berhasil', 'Kupon Telah Ditambahkan', 'success');
-            return redirect()->back();
+            return to_route('coupon.index');
         } catch (\Throwable $th) {
             return redirect()->back()->with('errors', $th->getMessage());
         }
@@ -56,25 +57,48 @@ class CouponController extends Controller
     {
         $coupon = Coupon::where('id', $id)->first();
 
-        return response()->json([
-            'data' => $coupon
-        ]);
+        return view('admin.pages.manajemen-kupon.edit', compact('coupon'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCouponRequest $request, $coupon)
+    public function update(Request $request, $coupon)
     {
         try {
             DB::beginTransaction();
-            $find_coupon = Coupon::where('id', $coupon)->first();
-            $find_coupon->update(
-                $request->validated()
-            );
+
+            $find_coupon = Coupon::find($coupon);
+
+            // melakukan validasi request
+            $validatedData = $request->validate([
+                'code' => [
+                    'required',
+                    Rule::unique('coupons', 'code')->ignore($find_coupon, 'code')
+                ],
+                'type' => 'required|in:fixed,percent',
+                'value' => 'required|numeric',
+                'max_uses_user' => 'required|numeric',
+                'max_uses' => 'required|numeric',
+                'start_date' => [
+                    'required',
+                    'date',
+                    'date_format:Y-m-d H:i',
+                    'after_or_equal:' . Carbon::today()->format('Y-m-d H:i'),
+                ],
+                'expiration_date' => [
+                    'required',
+                    'date',
+                    'date_format:Y-m-d H:i',
+                    'after_or_equal:start_date',
+                ],
+            ]);
+
+            $find_coupon->update($validatedData);
+
             DB::commit();
             alert('Berhasil', 'Kupon Berhasil Diperbarui', 'success');
-            return redirect()->back();
+            return to_route('coupon.index');
         } catch (\Exception $exception) {
             DB::rollBack();
             return $exception->getMessage();
