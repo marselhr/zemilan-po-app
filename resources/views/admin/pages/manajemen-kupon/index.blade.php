@@ -102,8 +102,8 @@
                                     </td>
                                     <td>
                                         <input value="{{ $coupon->id }}" type="checkbox" data-toggle="switchbutton"
-                                            {{ $coupon->status == 'active' ? 'checked' : '' }} data-onlabel="Active"
-                                            data-offlabel="Inactive" data-onstyle="success" data-offstyle="danger"
+                                            {{ $coupon->status == 'active' ? 'checked' : '' }} data-onlabel="Aktif"
+                                            data-offlabel="Tidak-aktif" data-onstyle="success" data-offstyle="danger"
                                             data-size="xs" name="toggle">
                                     </td>
                                     <td>

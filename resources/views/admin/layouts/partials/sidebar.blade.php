@@ -5,17 +5,17 @@
         <!-- Navbar nav -->
         <ul class="navbar-nav flex-column" id="sideNavbar">
             <li class="nav-item">
-                <a href="" class="nav-link {{ Request::routeIs('admin.dashboard') ? 'active' : '' }}">Dashboard</a>
+                <a href="{{route('admin.dashboard')}}" class="nav-link {{ Request::routeIs('admin.dashboard') ? 'active' : '' }}">Dasbor</a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('admin.category') }}" class="nav-link ">Kategory</a>
+                <a href="{{ route('admin.category') }}" class="nav-link {{ Request::routeIs('admin.category') ? 'active' : '' }} ">Kategori</a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('admin.product.index') }}" class="nav-link ">Produk</a>
+                <a href="{{ route('admin.product.index') }}" class="nav-link {{ Request::routeIs('admin.product.index') ? 'active' : '' }}">Produk</a>
             </li>
             <li class="nav-item">
                 <a href="{{ route('admin.user.index') }}"
-                    class="nav-link {{ Request::routeIs('admin.user.index') ? 'active' : '' }}">User</a>
+                    class="nav-link {{ Request::routeIs('admin.user.index') ? 'active' : '' }}">Pengguna</a>
             </li>
             <li class="nav-item">
                 <a href="{{ route('coupon.index') }}"

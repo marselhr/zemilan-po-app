@@ -20,7 +20,7 @@
         <div class="col-lg-12 col-md-12 col-12">
             <div class="border-bottom pb-3 mb-3 d-md-flex align-items-center justify-content-between">
                 <div class="mb-3 mb-md-0">
-                    <h1 class="mb-1 h2 fw-bold">Data Kategory</h1>
+                    <h1 class="mb-1 h2 fw-bold">Data Kategori</h1>
                     <!-- Breadcrumb -->
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
@@ -33,7 +33,7 @@
                 </div>
                 <div>
                     <a href="#" class="btn btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#addCategoryModal">Tambah Kategory</a>
+                        data-bs-target="#addCategoryModal">Tambah Kategori</a>
                 </div>
             </div>
         </div>
@@ -70,7 +70,7 @@
                                                 <i class="fe fe-more-vertical"></i>
                                             </a>
                                             <span class="dropdown-menu" aria-labelledby="courseDropdown3">
-                                                <span class="dropdown-header">Action</span>
+                                                <span class="dropdown-header">Aksi</span>
                                                 <a class="dropdown-item"
                                                     href="{{ route('admin.category.edit', ['id' => $categories->id]) }}"><i
                                                         class="fe fe-send dropdown-item-icon"></i>Edit</a>
@@ -80,7 +80,7 @@
                                                 <a class="dropdown-item"
                                                     href="{{ route('admin.category.destroy', ['id' => $categories->id]) }}"
                                                     data-confirm-delete="true"><i
-                                                        class="fe fe-trash dropdown-item-icon"></i>Delete</a>
+                                                        class="fe fe-trash dropdown-item-icon"></i>Hapus</a>
                                             </span>
                                         </span>
                                     </td>
