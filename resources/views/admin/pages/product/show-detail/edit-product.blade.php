@@ -74,6 +74,14 @@
             </div>
         </div>
 
+        <!-- Berat -->
+        <div class="col-md-6 mt-3">
+            <div class="form-group">
+                <label for="editProductWeight" class="form-label">Berat</label>
+                <input type="text" class="form-control" id="editProductWeight" name="weight" value="{{ $product->weight }}">
+            </div>
+        </div>
+
         <!-- Gambar Produk -->
         <div class="col-md-12 mt-3">
             <div class="form-group">

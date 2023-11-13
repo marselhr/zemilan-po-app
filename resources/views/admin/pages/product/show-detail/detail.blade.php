@@ -30,6 +30,7 @@
             <p class="lead mb-4">Kategori: {{ $product->category->name }}</p>
             <p class="lead mb-4">Price: {{ $product->price }}</p>
             <p class="lead mb-4">Stock: {{ $product->stock }}</p>
+            <p class="lead mb-4">Berat: {{ $product->weight }} Gr</p>
             <p class="lead mb-4">Description: {{ $product->description }}</p>
             <div>
                 <a href="{{ route('admin.product.index') }}" class="btn btn-primary">Kembali</a>
