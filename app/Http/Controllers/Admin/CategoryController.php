@@ -18,7 +18,7 @@ class CategoryController extends Controller
     {
         $categories = ProductCategory::get();
         $title = 'Hapus Kategori!';
-        $text = "Apakah Anda yakin ingin mengghapus?";
+        $text = "Apakah Anda yakin ingin menghapus?";
         confirmDelete($title, $text);
         return view('admin.pages.category.index', compact('categories'));
     }
