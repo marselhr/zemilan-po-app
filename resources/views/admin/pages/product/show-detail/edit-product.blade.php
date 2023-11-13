@@ -10,12 +10,12 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="{{ route('admin.dashboard') }}">Dashboard</a>
+                            <a href="{{ route('admin.dashboard') }}">Dasbor</a>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">
-                            <a href="{{ route('admin.product.index') }}">Product</a>
+                            <a href="{{ route('admin.product.index') }}">Produk</a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">Detail Product</li>
+                        <li class="breadcrumb-item active" aria-current="page">Detail Produk</li>
                     </ol>
                 </nav>
             </div>
