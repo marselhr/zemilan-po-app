@@ -13,10 +13,8 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->uuid('order_id')->primary();
-            $table->foreignId('product_id')->references('id')->on('product');
             $table->foreignId('user_id')->references('id')->on('users');
             $table->string('snapToken')->nullable();
-            $table->integer('quantity');
             $table->decimal('gross_amount', 10, 2);
             $table->string('payment_status')->default('unpaid');
             $table->string('payment_type')->nullable();
