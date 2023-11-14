@@ -21,7 +21,7 @@
                         <div class="mb-3 d-lg-flex gap-1 justify-content-between">
                             <div class="col-lg-6">
 
-                                <label for="first-name" class="col-md-4 col-form-label">{{ __('Nama Depan') }}</label>
+                                <label for="first-name" class="col-form-label">{{ __('Nama Depan') }}</label>
 
                                 <input id="first-name" type="text"
                                     class="form-control @error('first_name') is-invalid @enderror" name="first_name"
@@ -35,7 +35,7 @@
                             </div>
                             <div class="col-lg-6">
 
-                                <label for="last-name" class="col-md-4 col-form-label">{{ __('Nama Belakang') }}</label>
+                                <label for="last-name" class="col-form-label">{{ __('Nama Belakang') }}</label>
 
                                 <input id="last-name" type="text"
                                     class="form-control @error('last-name') is-invalid @enderror" name="last_name"
