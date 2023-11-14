@@ -92,7 +92,7 @@
                                                 <a class="dropdown-item" href="{{ route('admin.product.show', $products) }}"><i
                                                         class="fe fe-inbox dropdown-item-icon"></i>Detail</a>
                                                 <a class="dropdown-item" href="{{ route('admin.product.delete', $products) }}" data-confirm-delete="true"><i
-                                                        class="fe fe-trash dropdown-item-icon"></i>Delete</a>
+                                                        class="fe fe-trash dropdown-item-icon"></i>Hapus</a>
                                             </span>
                                         </span>
                                     </td>

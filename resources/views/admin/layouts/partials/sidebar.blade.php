@@ -5,24 +5,45 @@
         <!-- Navbar nav -->
         <ul class="navbar-nav flex-column" id="sideNavbar">
             <li class="nav-item">
-                <a href="" class="nav-link {{ Request::routeIs('admin.dashboard') ? 'active' : '' }}">Dashboard</a>
+                <a href="{{ route('admin.dashboard') }}"
+                    class="nav-link {{ Request::routeIs('admin.dashboard') ? 'active' : '' }}"> <i
+                        class="nav-icon fe fe-home me-2"></i>Dasbor</a>
             </li>
-            <li class="nav-item">
-                <a href="{{ route('admin.category') }}" class="nav-link ">Kategory</a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ route('admin.product.index') }}" class="nav-link ">Produk</a>
-            </li>
+
             <li class="nav-item">
                 <a href="{{ route('admin.user.index') }}"
-                    class="nav-link {{ Request::routeIs('admin.user.index') ? 'active' : '' }}">User</a>
+                    class="nav-link {{ Request::routeIs('admin.user.index') ? 'active' : '' }}"> <i
+                        class="nav-icon fe fe-users me-2"></i> Pengguna</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('admin.product.index') }}" data-bs-target="#navProduct" data-bs-toggle="collapse"
+                    class="nav-link {{ strpos(Route::currentRouteName(), 'category') || strpos(Route::currentRouteName(), 'product') ? 'active' : '' }}"><i
+                        aria-expanded="false" aria-controls="navProduct" class="nav-icon fe fe-box me-2"></i> Manajemen
+                    Produk</a>
+                <div class="collapse" id="navProduct" data-bs-parent="#sideNavbar">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.product.index') }}"
+                                class="nav-link {{ Request::routeIs('admin.product.index') ? 'active' : 'collapsed' }}">
+                                Produk</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.category') }}"
+                                class="nav-link {{ Request::routeIs('admin.category') ? 'active' : '' }} ">Kategori</a>
+                        </li>
+                    </ul>
+                </div>
             </li>
             <li class="nav-item">
                 <a href="{{ route('coupon.index') }}"
-                    class="nav-link {{ Request::routeIs('coupon.index') ? 'active' : '' }}">Manajemen Kupon</a>
+                    class="nav-link {{ Request::routeIs('coupon.index') ? 'active' : '' }}"> <i
+                        class="nav-icon fe fe-gift me-2"></i>Manajemen Kupon</a>
             </li>
             <li class="nav-item">
-                <a href="" class="nav-link ">Laporan Keuangan</a>
+                <a href="#" class="nav-link "> <i class="nav-icon fe fe-database me-2"></i>Manajemen Pesanan</a>
+            </li>
+            <li class="nav-item">
+                <a href="" class="nav-link "> <i class="nav-icon fe fe-pocket me-2"></i> Laporan Keuangan</a>
             </li>
         </ul>
     </div>

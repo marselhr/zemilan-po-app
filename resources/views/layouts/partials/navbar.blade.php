@@ -13,14 +13,13 @@
             <div class="dropdown" aria-labelledby="dropdownCart">
                 <a href="{{ route('buyer.cart') }}" class="btn btn-icon btn-light rounded-circle position-relative">
                     <i class="fe fe-shopping-cart align-middle"></i>
-                    @if (Auth::user()->cartItems->count() > 0)
+                    @if (App\Models\CartItem::getCount() > 0)
                         <span class="badge bg-info position-absolute top-0 start-100 translate-middle">
                             {{ Auth::user()->cartItems->count() }}
                         </span>
                     @endif
                 </a>
-
-                @if (Auth::user()->cartItems->count() > 0)
+                @if (App\Models\CartItem::getCount() > 0)
                     <div class="dropdown-menu dropdown-menu-end" style="min-width: 300px;">
                         <div class="col-12 p-4">
                             <ul class="list-unstyled col-12">
