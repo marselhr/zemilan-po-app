@@ -16,8 +16,8 @@
                         class="nav-icon fe fe-users me-2"></i> Pengguna</a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('admin.product.index') }}" data-bs-target="#navProduct" data-bs-toggle="collapse"
-                    class="nav-link {{ strpos(Route::currentRouteName(), 'category') || strpos(Route::currentRouteName(), 'product') ? 'active' : '' }}"><i
+                <a class="nav-link {{ strpos(Route::currentRouteName(), 'category') || strpos(Route::currentRouteName(), 'product') ? 'active' : '' }}"
+                    href="{{ route('admin.product.index') }}" data-bs-toggle="collapse" data-bs-target="#navProduct"><i
                         aria-expanded="false" aria-controls="navProduct" class="nav-icon fe fe-box me-2"></i> Manajemen
                     Produk</a>
                 <div class="collapse" id="navProduct" data-bs-parent="#sideNavbar">
