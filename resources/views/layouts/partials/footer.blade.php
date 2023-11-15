@@ -8,15 +8,15 @@
                         <script>
                             document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
                         </script>
-                    </span>Zemilan. All Rights Reserved.</span>
+                    </span>Hak Cipta Zemilan. </span>
             </div>
             <!-- Links -->
             <div class="col-12 col-md-6">
                 <nav class="nav nav-footer justify-content-center justify-content-md-end">
-                    <a class="nav-link active ps-0" href="#">Privacy</a>
-                    <a class="nav-link" href="#">Terms </a>
-                    <a class="nav-link" href="#">Feedback</a>
-                    <a class="nav-link" href="#">Support</a>
+                    <a class="nav-link active ps-0" href="#">Privasi</a>
+                    <a class="nav-link" href="#">Syarat & Ketentuan </a>
+                    <a class="nav-link" href="#">Masukan</a>
+                    <a class="nav-link" href="#">Dukungan</a>
                 </nav>
             </div>
         </div>

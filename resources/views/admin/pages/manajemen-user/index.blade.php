@@ -48,10 +48,7 @@
                         <thead class="table-light">
                             <tr>
                                 <th>
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" id="checkAll" />
-                                        <label class="form-check-label" for="checkAll"></label>
-                                    </div>
+                                    NO
                                 </th>
                                 <th>NAMA DEPAN</th>
                                 <th>NAMA BELAKANG</th>
@@ -63,10 +60,7 @@
                             @foreach ($users as $user)
                                 <tr>
                                     <td>
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="categoryCheck3" />
-                                            <label class="form-check-label" for="categoryCheck3"></label>
-                                        </div>
+                                        {{ $loop->iteration }}
                                     </td>
                                     <td>
                                         {{ $user->first_name }}

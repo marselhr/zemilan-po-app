@@ -27,7 +27,7 @@
     @stack('customCss')
     <style>
         #navbar {
-            transition: top 0.3s ease;
+            transition: top 0.75s ease-in-out;
             /* Animasi perubahan posisi */
             position: sticky;
             top: 0;
@@ -35,6 +35,19 @@
             width: 100%;
             z-index: 1000;
             /* Z-index untuk memastikan navbar muncul di atas konten lain */
+        }
+
+        .spinner-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s;
         }
     </style>
 
@@ -47,6 +60,15 @@
 
 <body style="margin-top: 0px;">
     @include('sweetalert::alert')
+
+    <!-- spinner wrapper -->
+    <div class="spinner-wrapper bg-body">
+        <!-- primary spinner -->
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
     <main>
         <nav class="navbar navbar-expand-lg" id="navbar">
             @include('layouts.partials.navbar')
@@ -64,6 +86,16 @@
 
 
     <script>
+        const spinnerWrapperEl = document.querySelector('.spinner-wrapper');
+
+        window.addEventListener('load', () => {
+            spinnerWrapperEl.style.opacity = '0';
+
+            setTimeout(() => {
+                spinnerWrapperEl.style.display = 'none';
+            }, 200);
+        });
+
         var prevScrollpos = window.pageYOffset; /* Mengambil posisi scroll sebelumnya */
 
         window.onscroll = function() {

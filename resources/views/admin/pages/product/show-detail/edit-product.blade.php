@@ -10,12 +10,12 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="{{ route('admin.dashboard') }}">Dashboard</a>
+                            <a href="{{ route('admin.dashboard') }}">Dasbor</a>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">
-                            <a href="{{ route('admin.product.index') }}">Product</a>
+                            <a href="{{ route('admin.product.index') }}">Produk</a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">Detail Product</li>
+                        <li class="breadcrumb-item active" aria-current="page">Detail Produk</li>
                     </ol>
                 </nav>
             </div>
@@ -71,6 +71,14 @@
             <div class="form-group">
                 <label for="editProductPrice" class="form-label">Harga</label>
                 <input type="text" class="form-control" id="editProductPrice" name="price" value="{{ $product->price }}">
+            </div>
+        </div>
+
+        <!-- Berat -->
+        <div class="col-md-6 mt-3">
+            <div class="form-group">
+                <label for="editProductWeight" class="form-label">Berat</label>
+                <input type="text" class="form-control" id="editProductWeight" name="weight" value="{{ $product->weight }}">
             </div>
         </div>
 

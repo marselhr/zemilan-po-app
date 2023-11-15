@@ -32,7 +32,7 @@
                             aria-labelledby="dropdownNotification">
                             <div>
                                 <div class="border-bottom px-3 pb-3 d-flex justify-content-between align-items-center">
-                                    <span class="h4 mb-0">Notifications</span>
+                                    <span class="h4 mb-0">Notifikasi</span>
                                     <a href="# " class="text-muted">
                                         <span class="align-middle">
                                             <i class="fe fe-settings me-1"></i>
@@ -138,12 +138,12 @@
                             <ul class="list-unstyled">
                                 <li>
                                     <a class="dropdown-item" href="#">
-                                        <i class="fe fe-user me-2"></i> Profile
+                                        <i class="fe fe-user me-2"></i> Profil
                                     </a>
                                 </li>
                                 <li>
                                     <a class="dropdown-item" href="#">
-                                        <i class="fe fe-settings me-2"></i> Settings
+                                        <i class="fe fe-settings me-2"></i> Pengaturan
                                     </a>
                                 </li>
                             </ul>
@@ -154,7 +154,7 @@
                                         @csrf
                                         <button type="submit" class="dropdown-item">
 
-                                            <i class="fe fe-power me-2"></i>Sign Out
+                                            <i class="fe fe-power me-2"></i> Keluar
                                         </button>
                                     </form>
                                 </li>

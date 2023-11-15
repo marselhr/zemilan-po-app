@@ -29,8 +29,8 @@ class ProductController extends Controller
     {
         $product_categories = ProductCategory::all();
         $product = Product::whereNull('deleted_at')->get();
-        $title = 'Delete Product!';
-        $text = "Are you sure you want to delete?";
+        $title = 'Hapus Produk!';
+        $text = "Apakah Anda yakin ingin menghapus?";
         confirmDelete($title, $text);
         return view('admin.pages.product.index', compact('product_categories', 'product'));
     }
@@ -71,9 +71,10 @@ class ProductController extends Controller
         $product->description = $request->description;
         $product->stock = $request->stock;
         $product->price = $request->price;
+        $product->weight = $request->weight;
         $product->image = $imagePath; // Simpan path gambar yang diunggah
         $product->save();
-        toast('Data Product Berhasil di tambahkan', 'success', 'top-right');
+        toast('Data Produk Berhasil di tambahkan', 'success', 'top-right');
 
         // Redirect kembali ke halaman produk atau sesuai kebijakan Anda
         return redirect()->route('admin.product.index')->with('success', 'Produk berhasil ditambahkan ');
@@ -117,6 +118,7 @@ class ProductController extends Controller
             'description' => 'required',
             'stock' => 'required',
             'price' => 'required',
+            'weight' => 'required|numeric',
             'image' => 'image|mimes:jpeg,png,jpg,gif', // Anda dapat memungkinkan pembaruan gambar opsional
         ]);
 
@@ -134,6 +136,7 @@ class ProductController extends Controller
         $product->description = $request->description;
         $product->stock = $request->stock;
         $product->price = $request->price;
+        $product->weight = $request->weight;
 
         if ($request->hasFile('image')) {
             // Jika ada gambar baru yang diunggah, hapus gambar lama (opsional) dan simpan yang baru
@@ -145,7 +148,7 @@ class ProductController extends Controller
         $product->save();
 
 
-        toast('Data Product Berhasil di update', 'success', 'top-right');
+        toast('Data Product Berhasil di perbaharui', 'success', 'top-right');
         // Redirect kembali ke halaman produk atau sesuai kebijakan Anda
         return redirect()->route('admin.product.index')->with('success', 'Produk berhasil diperbarui');
     }

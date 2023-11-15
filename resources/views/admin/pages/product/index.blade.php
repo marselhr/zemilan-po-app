@@ -32,7 +32,8 @@
                     </nav>
                 </div>
                 <div>
-                    <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProductModal">Tambah Produk</a>
+                    <a href="#" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#addProductModal">Tambah Produk</a>
                 </div>
             </div>
         </div>
@@ -45,22 +46,20 @@
                     <table class="table mb-0 text-nowrap table-centered table-hover table-with-checkbox" id="datatable"
                         style="width: 100%">
                         <thead class="table-light">
-                                <th>No</th>
-                                <th>Nama Produk</th>
-                                <th>Kategori</th>
-                                <th>Stock</th>
-                                <th>Harga</th>
-                                <th>Action</th>
+                            <th>No</th>
+                            <th>Nama Produk</th>
+                            <th>Kategori</th>
+                            <th>Stok</th>
+                            <th>Harga</th>
+                            <th>Berat</th>
+                            <th></th>
                             </tr>
                         </thead>
 
-                        @php
-                            $no = 1;
-                        @endphp
                         <tbody>
                             @foreach ($product as $products)
                                 <tr>
-                                    <td>{{ $no++ }}</td>
+                                    <td>{{ $loop->iteration }}</td>
                                     <td>
                                         {{ $products->name }}
                                     </td>
@@ -71,8 +70,12 @@
                                         {{ $products->stock }}
                                     </td>
                                     <td>
-                                        {{ $products->price }}
+                                        Rp {{ number_format($products->price, 0, '.', '.') }}
                                     </td>
+                                    <td>
+                                        {{ $products->weight }} Gr
+                                    </td>
+
                                     <td>
                                         <span class="dropdown dropstart">
                                             <a class="btn-icon btn btn-ghost btn-sm rounded-circle" href="#"
@@ -82,12 +85,16 @@
                                             </a>
                                             <span class="dropdown-menu" aria-labelledby="courseDropdown3">
                                                 <span class="dropdown-header">Action</span>
-                                                <a class="dropdown-item" href="{{route('admin.product.edit',$products->id)}}" ><i
+                                                <a class="dropdown-item"
+                                                    href="{{ route('admin.product.edit', $products->id) }}"><i
                                                         class="fe fe-send dropdown-item-icon"></i>Edit</a>
-                                                <a class="dropdown-item" href="{{ route('admin.product.show', $products) }}"><i
+                                                <a class="dropdown-item"
+                                                    href="{{ route('admin.product.show', $products) }}"><i
                                                         class="fe fe-inbox dropdown-item-icon"></i>Detail</a>
-                                                <a class="dropdown-item" href="{{ route('admin.product.delete', $products) }}" data-confirm-delete="true"><i
-                                                        class="fe fe-trash dropdown-item-icon"></i>Delete</a>
+                                                <a class="dropdown-item"
+                                                    href="{{ route('admin.product.delete', $products) }}"
+                                                    data-confirm-delete="true"><i
+                                                        class="fe fe-trash dropdown-item-icon"></i>Hapus</a>
                                             </span>
                                         </span>
                                     </td>

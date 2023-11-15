@@ -91,13 +91,6 @@ class OrderContoller extends Controller
                     'product_id' => $item->product->id,
                     'quantity' => $item->quantity
                 ]);
-
-                $item_details[] =  [
-                    'id' => $item->product->id,
-                    'name' => $item->product->name,
-                    'price' => $item->product->price,
-                    'quantity' => $item->quantity,
-                ];
             }
 
 
@@ -118,7 +111,7 @@ class OrderContoller extends Controller
                     'first_name' => Auth::user()->first_name,
                     'last_name' => Auth::user()->last_name,
                     'email' => Auth::user()->email,
-                    'phone' => '08111222333',
+                    'phone' => Auth::user()->phone_number ?? '-',
                 ),
             );
             DB::commit();

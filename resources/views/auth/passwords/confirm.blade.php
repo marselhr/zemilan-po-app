@@ -5,17 +5,17 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Confirm Password') }}</div>
+                    <div class="card-header">{{ __('Konfirmasi Kata sandi') }}</div>
 
                     <div class="card-body">
-                        {{ __('Please confirm your password before continuing.') }}
+                        {{ __('Harap konfirmasi kata sandi Anda sebelum melanjutkan.') }}
 
                         <form method="POST" action="{{ route('password.confirm') }}">
                             @csrf
 
                             <div class="row mb-3">
                                 <label for="password"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+                                    class="col-md-4 col-form-label text-md-end">{{ __('Kata Sandi') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="password" type="password"
@@ -33,12 +33,12 @@
                             <div class="row mb-0">
                                 <div class="col-md-8 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
-                                        {{ __('Confirm Password') }}
+                                        {{ __('Konfirmasi Kata sandi') }}
                                     </button>
 
                                     @if (Route::has('password.request'))
                                         <a class="btn btn-link" href="{{ route('password.request') }}">
-                                            {{ __('Forgot Your Password?') }}
+                                            {{ __('Lupa kata sandi Anda?') }}
                                         </a>
                                     @endif
                                 </div>
