@@ -18,10 +18,14 @@
                 <div class="card mb-4 mb-xl-0">
                     <div class="card-header">Gambar Profil</div>
                     <div class="card-body text-center">
-                        <img class="img-account-profile rounded-circle mb-2"
-                            src="{{ asset('assets/images/avatar/avatar-dummy.png') }}" alt>
+                        <div class="profile-image-container">
+                            <img class="img-account-profile rounded-circle mb-2" id="previewImage"
+                                src="{{ asset('assets/images/avatar/avatar-dummy.png') }}" alt>
+                        </div>
+                        <br>
                         <div class="small font-italic text-muted mb-4">JPG atau PNG tidak boleh melebihi 5 MB</div>
-                        <button class="btn btn-primary" type="button">Unggah Gambar</button>
+                        <button class="btn btn-primary" id="profileImage" type="button">Unggah Gambar</button>
+                        <input type="file" class="form-control" id="uploadImage" name="image" hidden>
                     </div>
                 </div>
             </div>
@@ -63,6 +67,27 @@
             </div>
         </div>
     </div>
+    <script>
+        document.getElementById('profileImage').addEventListener('click', function() {
+            document.getElementById('uploadImage').click();
+        });
+
+        document.getElementById('uploadImage').addEventListener('change', function() {
+            var input = this;
+            var image = document.getElementById('previewImage');
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    image.src = e.target.result;
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        });
+    </script>
 @endsection
+
 
 </html>
