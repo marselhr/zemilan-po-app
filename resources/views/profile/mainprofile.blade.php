@@ -19,24 +19,29 @@
                     <div class="card-header">Gambar Profil</div>
                     <div class="card-body text-center">
                         <div class="profile-image-container">
+                            @if (Auth::user()->avatar == null)
                             <img class="img-account-profile rounded-circle mb-2" id="previewImage"
                                 src="{{ asset('assets/images/avatar/avatar-dummy.png') }}" alt>
+                            @endif
+                            <img class="img-account-profile rounded-circle mb-2" id="previewImage"
+                                src="{{ asset('profile-pictures/'. Auth::user()->avatar) }}" alt>
                         </div>
-                        <br>
                         <div class="small font-italic text-muted mb-4">JPG atau PNG tidak boleh melebihi 5 MB</div>
                         <button class="btn btn-primary" id="profileImage" type="button">Unggah Gambar</button>
-                        <input type="file" class="form-control" id="uploadImage" name="image" hidden>
                     </div>
                 </div>
+
             </div>
             <div class="col-xl-8">
                 <div class="card mb-4">
                     <div class="card-header">Detail Akun</div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('profileSave') }}">
+                        <form method="POST" action="{{ route('profileSave') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-3">
                                 <label class="small mb-1">Email</label>
+                                <input type="file" class="form-control" id="uploadImage" name="image" accept="image/*"
+                                    hidden>
                                 <input class="form-control" id="email" type="text" placeholder="Enter your username"
                                     value="{{ Auth::user()->email }}" disabled>
                             </div>
