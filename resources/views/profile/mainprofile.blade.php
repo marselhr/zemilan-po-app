@@ -14,8 +14,18 @@
         </nav>
         <hr class="mt-0 mb-4">
         <div class="row">
-
-            <div class="col-xl-12">
+            <div class="col-xl-4">
+                <div class="card mb-4 mb-xl-0">
+                    <div class="card-header">Gambar Profil</div>
+                    <div class="card-body text-center">
+                        <img class="img-account-profile rounded-circle mb-2"
+                            src="{{ asset('assets/images/avatar/avatar-dummy.png') }}" alt>
+                        <div class="small font-italic text-muted mb-4">JPG atau PNG tidak boleh melebihi 5 MB</div>
+                        <button class="btn btn-primary" type="button">Unggah Gambar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-8">
                 <div class="card mb-4">
                     <div class="card-header">Detail Akun</div>
                     <div class="card-body">
@@ -46,7 +56,7 @@
                                 </div>
                             </div>
 
-                            <button type="submit" class="btn btn-primary">Save changes</button>
+                            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                         </form>
                     </div>
                 </div>
