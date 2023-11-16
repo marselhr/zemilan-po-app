@@ -66,16 +66,26 @@
                     <a class="rounded-circle" href="#" role="button" id="dropdownUser" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         <div class="avatar avatar-md avatar-indicators avatar-online">
-                            <img alt="avatar" src="{{ asset('assets/images/avatar/avatar-dummy.png') }}"
-                                class="rounded-circle">
+                            @if (Auth::user()->avatar == null)
+                                <img alt="avatar" src="{{ asset('assets/images/avatar/avatar-dummy.png') }}"
+                                    class="rounded-circle">
+                            @else
+                                <img alt="avatar" src="{{ asset('profile-pictures/' . Auth::user()->avatar) }}"
+                                    class="rounded-circle">
+                            @endif
                         </div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUser">
                         <div class="dropdown-item">
                             <div class="d-flex">
                                 <div class="avatar avatar-md avatar-indicators avatar-online">
-                                    <img alt="avatar" src="{{ asset('assets/images/avatar/avatar-dummy.png') }}"
-                                        class="rounded-circle">
+                                    @if (Auth::user()->avatar == null)
+                                        <img alt="avatar" src="{{ asset('assets/images/avatar/avatar-dummy.png') }}"
+                                            class="rounded-circle">
+                                    @else
+                                        <img alt="avatar" src="{{ asset('profile-pictures/' . Auth::user()->avatar) }}"
+                                            class="rounded-circle">
+                                    @endif
                                 </div>
                                 <div class="ms-3 lh-1">
                                     <h5 class="mb-1">{{ Auth::user()->first_name }}</h5>
