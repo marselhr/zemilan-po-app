@@ -23,7 +23,7 @@ class ProfileController extends Controller
         'namaAwal' => 'required|string|max:255',
         'namaAkhir' => 'required|string|max:255',
         'no_telp' => 'required|string|max:255',
-        'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Validasi untuk foto profil
+        'image' => 'image|mimes:jpeg,png,jpg,gif|max:5000', // Validasi untuk foto profil
     ]);
     // Update data pengguna
     $user->update([
