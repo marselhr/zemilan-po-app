@@ -1,11 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CouponController;
 use App\Http\Controllers\Admin\UploadController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ManajemenUserController;
-use App\Http\Controllers\CouponController;
+use App\Http\Controllers\admin\ManagemenPesananController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +43,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'is.admin']], functi
         Route::delete('/destroy/{id}', [CategoryController::class, 'destroy'])->name('admin.category.destroy');
     });
 
+    // Product
     Route::get('/product', [ProductController::class, 'index'])->name('admin.product.index');
     // Route::delete('/admin/products/{id}', [ProductController::class, 'destroy'])->name('admin.product.destroy');
     // Route::get('/addproduct', [ProductController::class, 'create'])->name('admin.product.add');
@@ -54,6 +56,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'is.admin']], functi
         Route::delete('/destroy', [ProductController::class, 'destroy'])->name('admin.product.delete');
     });
 
+    // Management Pesanan
+    Route::get('/management', [ManagemenPesananController::class, 'index'])->name('admin.management.pesanan.index');
+    Route::prefix('management/{management}')->group(function () {
+        Route::get('/', [ManagemenPesananController::class, 'show'])->name('admin.management-pesanan.show');
+    });
     // Coupon Management
     Route::resource('/coupon', CouponController::class);
 
