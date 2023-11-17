@@ -37,7 +37,7 @@ class CartItemService
 
         $cartItem = CartItem::getProductByCartUser($request->product_id);
         if ($cartItem) {
-            return $this->incrementQuantity($cartItem);
+            return $this->incrementQuantity($cartItem, $request->quantity);
         } else {
             $item = new CartItem();
             $item->cart_id = Auth::user()->cart->id;
@@ -48,10 +48,11 @@ class CartItemService
         }
     }
 
-    public function incrementQuantity(CartItem $item)
+
+    public function incrementQuantity(CartItem $item, $qty)
     {
         return $item->update([
-            'quantity' => $item->quantity + 1
+            'quantity' => $item->quantity + $qty
         ]);
     }
     public function decrementQuantity(CartItem $item)

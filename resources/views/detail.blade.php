@@ -3,8 +3,13 @@
 @push('customJs')
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-    <script>
+    <script src="{{ asset('assets/libs/tiny-slider/dist/min/tiny-slider.js') }}"></script>
+
+    <script src="{{ asset('assets/js/vendors/tnsSlider.js') }}"></script>
+    <!-- Add to cart -->
+    <script type="text/javascript">
         $(document).ready(function() {
+            let quantity = 1;
             // Kurang quantity
             $(".button-minus").click(function() {
                 var inputField = $(this).siblings(".quantity-field");
@@ -12,6 +17,7 @@
 
                 if (!isNaN(currentValue) && currentValue > 1) {
                     inputField.val(currentValue - 1);
+                    $('.add_to_cart').data('quantity', inputField.val());
                 }
             });
 
@@ -22,43 +28,38 @@
 
                 if (!isNaN(currentValue) && currentValue < parseInt(inputField.attr("max"))) {
                     inputField.val(currentValue + 1);
+                    $('.add_to_cart').data('quantity', inputField.val());
                 }
             });
-        });
-    </script>
 
-    <script src="{{ asset('assets/libs/tiny-slider/dist/min/tiny-slider.js') }}"></script>
+            $('.add_to_cart').click(function(e) {
+                e.preventDefault();
+                let product_id = $(this).data('product-id');
+                let quantity = $(this).data('quantity');
+                let token = "{{ csrf_token() }}";
+                let route_path = "{{ route('buyer.cart.store') }}";
 
-    <script src="{{ asset('assets/js/vendors/tnsSlider.js') }}"></script>
-    <!-- Add to cart -->
-    <script type="text/javascript">
-        $(document).on('click', '.add_to_cart', function(e) {
-            e.preventDefault();
-            let product_id = $(this).data('product-id');
-            let quantity = $(this).data('quantity');
-
-            let token = "{{ csrf_token() }}";
-            let route_path = "{{ route('buyer.cart.store') }}";
-
-            $.ajax({
-                url: route_path,
-                type: "POST",
-                dataType: "JSON",
-                data: {
-                    product_id: product_id,
-                    quantity: quantity,
-                    _token: token
-                },
-                beforeSend: function() {
-                    $('#add_to_cart' + product_id).html('<i class="fe fe-loader"></i>')
-                },
-                complete: function() {
-                    $('#add_to_cart' + product_id).html('<i class="fe fe-shopping-cart"></i>')
-                },
-                success: function(data) {
-                    console.log(data)
-                    $('body #navbar').html(data['header'])
-                }
+                $.ajax({
+                    url: route_path,
+                    type: "POST",
+                    dataType: "JSON",
+                    data: {
+                        product_id: product_id,
+                        quantity: quantity,
+                        _token: token
+                    },
+                    beforeSend: function() {
+                        $('#add_to_cart' + product_id).html('<i class="fe fe-loader"></i>')
+                    },
+                    complete: function() {
+                        $('#add_to_cart' + product_id).html(
+                            '<i class="fe fe-shopping-cart"></i>')
+                    },
+                    success: function(data) {
+                        console.log(data)
+                        $('body #navbar').html(data['header'])
+                    }
+                });
             });
         });
     </script>
@@ -111,9 +112,8 @@
 
                                 <div class="d-flex flex-wrap justify-content-between align-items-center">
                                     <div class="col-md-5">
-                                        <button type="button" data-product-id="{{ $products->id }}"
-                                            data-quantity="1" class="btn btn-primary add_to_cart w-100"
-                                            id="add_to_cart{{ $products->id }}">
+                                        <button type="button" data-product-id="{{ $products->id }}" data-quantity="1"
+                                            class="btn btn-primary add_to_cart w-100" id="add_to_cart{{ $products->id }}">
                                             <i class="fe fe-shopping-cart text-white align-middle"></i>
                                         </button>
                                     </div>
