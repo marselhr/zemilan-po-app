@@ -44,10 +44,12 @@
             <div class="d-flex flex-wrap col-10 justify-content-center">
                 @foreach ($products as $product)
                     <!-- Medium-sized Card -->
-                    <div class="col-10 col-md-5 col-lg-3 p-3 ">
+                    <div href="{{ route('detail', ['id' => $product->id]) }}" class="col-10 col-md-5 col-lg-3 p-3 ">
                         <div class="card">
-                            <img src="{{ $product->image != null ? asset('storage/' . $product->image) : 'https://source.unsplash.com/480x480?food' }}"
-                                alt="" class="card-img-top">
+                            <a href="{{ route('detail', ['id' => $product->id]) }}">
+                                <img src="{{ $product->image != null ? asset('storage/' . $product->image) : 'https://source.unsplash.com/480x480?food' }}" alt="" class="card-img-top">
+                                <!-- Card content goes here -->
+                            </a>
                             <!-- Card Body -->
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center mb-1">
