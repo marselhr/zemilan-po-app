@@ -64,7 +64,7 @@
                                         {{ $products->name }}
                                     </td>
                                     <td>
-                                        {{ $products->category->name }}
+                                        {{ $products->category->name ?? 'Tidak Ada' }}
                                     </td>
                                     <td>
                                         {{ $products->stock }}

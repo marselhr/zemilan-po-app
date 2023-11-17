@@ -27,7 +27,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $product_categories = ProductCategory::all();
+        $product_categories = ProductCategory::withoutTrashed();
         $product = Product::whereNull('deleted_at')->get();
         $title = 'Hapus Produk!';
         $text = "Apakah Anda yakin ingin menghapus?";
