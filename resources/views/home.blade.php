@@ -109,8 +109,8 @@
                                 <div class="card-footer">
                                     <div class="d-flex flex-wrap justify-content-between align-items-center">
                                         <h5 class="mb-0">Rp. {{ $product->price }}</h5>
-                                        <div class="d-flex flex-wrap gap-2 col-12 mt-4">
-                                            <div class="col-md-6 col-12">
+                                        <div class="d-flex flex-wrap  col-12 mt-4">
+                                            <div class="col-md-6 col-12 p-1">
                                                 <button type="button" data-product-id="{{ $product->id }}"
                                                     data-quantity="1" class="btn btn-primary w-100 add_to_cart"
                                                     id="add_to_cart{{ $product->id }}">
@@ -118,7 +118,7 @@
                                                 </button>
                                             </div>
 
-                                            <div class="col-md-6 col-12">
+                                            <div class="col-md-6 col-12 p-1">
                                                 <form action="{{ route('order.store', $product) }}" method="post">
                                                     @csrf
                                                     <button type="submit" class="btn  btn-success w-100"
