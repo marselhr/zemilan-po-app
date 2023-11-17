@@ -109,24 +109,23 @@
                                 <div class="card-footer">
                                     <div class="d-flex flex-wrap justify-content-between align-items-center">
                                         <h5 class="mb-0">Rp. {{ $product->price }}</h5>
-                                        <div class="d-flex gap-2">
-                                            <div>
+                                        <div class="d-flex flex-wrap gap-2 col-12 mt-4">
+                                            <div class="col-md-6 col-12">
                                                 <button type="button" data-product-id="{{ $product->id }}"
-                                                    data-quantity="1" class="btn btn-primary add_to_cart"
+                                                    data-quantity="1" class="btn btn-primary w-100 add_to_cart"
                                                     id="add_to_cart{{ $product->id }}">
                                                     <i class="fe fe-shopping-cart text-white align-middle"></i>
                                                 </button>
                                             </div>
 
-                                            <form action="{{ route('order.store', $product) }}" method="post">
-                                                <div>
+                                            <div class="col-md-6 col-12">
+                                                <form action="{{ route('order.store', $product) }}" method="post">
                                                     @csrf
-                                                    <button type="submit" class="btn  btn-success ml-2"
-                                                        onclick="checkoutNow({{ $product->id }})">
-                                                        Beli
+                                                    <button type="submit" class="btn  btn-success w-100"
+                                                        onclick="checkoutNow({{ $product->id }})">Beli
                                                     </button>
-                                                </div>
-                                            </form>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
