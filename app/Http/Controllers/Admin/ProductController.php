@@ -27,7 +27,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $product_categories = ProductCategory::withoutTrashed();
+        $product_categories = ProductCategory::whereNull('deleted_at')->get();
         $product = Product::whereNull('deleted_at')->get();
         $title = 'Hapus Produk!';
         $text = "Apakah Anda yakin ingin menghapus?";
@@ -40,9 +40,12 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $product_categories = ProductCategory::all();
-        $product = Product::all();
-        return view('admin.pages.product.modal.addproduct', compact('product_categories', 'product'));
+        try {
+            $product_categories = ProductCategory::whereNull('deleted_at')->get();
+            return view('admin.pages.product.modal.addproduct', compact('product_categories'));
+        } catch (\Throwable $th) {
+            alert('error', $th->getMessage(), 'warning');
+        }
     }
 
     /**
