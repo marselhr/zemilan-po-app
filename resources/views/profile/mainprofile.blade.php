@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="container-xl px-4 mt-4">
-
+        @include("generals._validation")
         <nav class="nav nav-borders">
             <a class="nav-link active ms-0" href="{{ route('mainprofile') }}">Profil</a>
             <a class="nav-link" href="{{ route('alamatprofile') }}">Alamat</a>
