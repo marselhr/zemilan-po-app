@@ -45,7 +45,7 @@
                         <div class="row">
                             <div class="col-md-8">
                                 <select name="category_filter" id="category_filter" class="form-select mb-3 mt-3">
-                                    <option value="" selected>Pilih Kategori</option>
+                                    <option value="" disabled selected>Pilih Kategori</option>
                                     @foreach ($categories as $category)
                                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                                     @endforeach
