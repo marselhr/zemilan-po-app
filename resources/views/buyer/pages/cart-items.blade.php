@@ -64,7 +64,7 @@
                     <!-- Page header -->
                     <div class="border-bottom pb-3 mb-3 ">
                         <div class="mb-2 mb-lg-0">
-                            <h1 class="mb-0 h2 fw-bold">Shopping Cart </h1>
+                            <h1 class="mb-0 h2 fw-bold">Keranjang Belanja</h1>
 
                         </div>
                     </div>
@@ -85,8 +85,8 @@
                         <div class="card-header">
                             <div class="d-flex ">
                                 <!-- heading -->
-                                <h4 class="mb-0">Shopping Cart <span
-                                        class="text-muted ">({{ App\Models\CartItem::getCount() }} Items)</span> </h4>
+                                <h4 class="mb-0">Keranjang Belanja <span
+                                        class="text-muted ">({{ App\Models\CartItem::getCount() }} Barang)</span> </h4>
                             </div>
                         </div>
                         <div class="card-body">
@@ -178,7 +178,7 @@
                     </div>
                     <div class="mt-4 d-flex justify-content-between">
                         <a href="{{ route('catalog') }}" class="btn btn-outline-primary">Kembali Berbelanja</a>
-                        <a href="{{ route('checkout') }}" class="btn btn-primary">Checkout</a>
+                        <a href="{{ route('checkout') }}" class="btn btn-primary">Proses Pesanan</a>
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -209,7 +209,7 @@
                         <!-- card body -->
                         <div class="card-body">
                             <!-- text -->
-                            <h4 class="mb-3">Order Summary</h4>
+                            <h4 class="mb-3">Ringkasan belanja</h4>
                             <!-- list group -->
                             <ul class="list-group list-group-flush">
                                 <!-- list group item -->
@@ -220,7 +220,7 @@
                                 </li>
                                 <!-- list group item -->
                                 <li class="list-group-item px-0 d-flex justify-content-between fs-5 text-dark fw-medium">
-                                    <span>Discount <span class="text-muted" id="couponCode">
+                                    <span>Diskon <span class="text-muted" id="couponCode">
                                             @if (Session::has('couponCode'))
                                                 {{ Session::get('couponCode') }}
                                             @endif
