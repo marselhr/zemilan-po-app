@@ -36,7 +36,9 @@ class CartItemController extends Controller
             Session::forget('discount');
             Session::forget('couponCode');
             Session::forget('grandTotal');
-            $this->cartItemService->addToCart($request);
+
+
+            $result = $this->cartItemService->addToCart($request);
 
             $response['status'] = true;
             $response['product_id'] = $request->product_id;

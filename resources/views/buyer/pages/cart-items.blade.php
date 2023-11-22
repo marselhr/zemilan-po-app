@@ -74,6 +74,7 @@
             <div class="row">
                 <div class="col-12 mb-2">
                     <!-- alert -->
+
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
                         Gunakan Kode Kupon <strong>(ZMPO15%)</strong> dan dapatkan diskon 10% !
                     </div>

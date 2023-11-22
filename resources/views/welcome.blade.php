@@ -9,6 +9,9 @@
     <script src="{{ asset('assets/js/vendors/tnsSlider.js') }}"></script>
 @endpush
 @section('content')
+    <!-- carousel template -->
+    @include('layouts.partials.carousel')
+
     <section class="py-lg-16 py-8">
         <!-- container -->
         <div class="container">

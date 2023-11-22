@@ -58,7 +58,6 @@ class ProductController extends Controller
             'category_id' => 'required',
             'name' => 'required',
             'description' => 'required',
-            'stock' => 'required',
             'price' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif',
             // Sesuaikan dengan jenis file gambar yang diizinkan
@@ -72,7 +71,6 @@ class ProductController extends Controller
         $product->category_id = $request->category_id;
         $product->name = $request->name;
         $product->description = $request->description;
-        $product->stock = $request->stock;
         $product->price = $request->price;
         $product->weight = $request->weight;
         $product->image = $imagePath; // Simpan path gambar yang diunggah
@@ -119,7 +117,6 @@ class ProductController extends Controller
             'category_id' => 'required',
             'name' => 'required',
             'description' => 'required',
-            'stock' => 'required',
             'price' => 'required',
             'weight' => 'required|numeric',
             'image' => 'image|mimes:jpeg,png,jpg,gif', // Anda dapat memungkinkan pembaruan gambar opsional
@@ -137,7 +134,6 @@ class ProductController extends Controller
         $product->category_id = $request->category_id;
         $product->name = $request->name;
         $product->description = $request->description;
-        $product->stock = $request->stock;
         $product->price = $request->price;
         $product->weight = $request->weight;
 

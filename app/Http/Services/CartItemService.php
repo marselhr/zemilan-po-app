@@ -36,6 +36,7 @@ class CartItemService
     {
 
         $cartItem = CartItem::getProductByCartUser($request->product_id);
+
         if ($cartItem) {
             return $this->incrementQuantity($cartItem, $request->quantity);
         } else {
