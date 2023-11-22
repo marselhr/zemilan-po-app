@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartItemController;
 use App\Http\Controllers\OrderContoller;
+use App\Http\Controllers\CatalogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,8 +17,10 @@ use App\Http\Controllers\OrderContoller;
 |
 */
 
-Route::get('/catalog', [App\Http\Controllers\CatalogController::class, 'index'])->name('catalog');
 Route::get('/about', [App\Http\Controllers\AboutController::class, 'index'])->name('about');
+Route::get('/catalog', [App\Http\Controllers\CatalogController::class, 'index'])->name('catalog');
+Route::get('/filter-products', [CatalogController::class, 'filterProducts'])->name('filter.products');
+Route::get('/detail/{id}', [CatalogController::class, 'show'])->name('detail');
 Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::post('/buy/{product}', [OrderContoller::class, 'store'])->name('order.store');
@@ -40,6 +43,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::post('/profile/save', [App\Http\Controllers\Profile\ProfileController::class, 'saveProfile'])->name('profileSave');
     Route::get('/profile/alamat', [App\Http\Controllers\Profile\ProfileAlamatController::class, 'index'])->name('alamatprofile');
     Route::post('/profile/alamat/save', [App\Http\Controllers\Profile\ProfileAlamatController::class, 'saveAlamat'])->name('alamatSave');
+
+    //detail
 });
 
 //route alamat

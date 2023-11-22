@@ -11,6 +11,8 @@ class Order extends Model
     use HasFactory, HasUuids;
     protected $table = 'orders';
 
+
+
     /**
      * the primary key associated with the table
      * @var string
@@ -21,7 +23,7 @@ class Order extends Model
 
     public function user()
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function product()

@@ -40,7 +40,7 @@
                         class="nav-icon fe fe-gift me-2"></i>Manajemen Kupon</a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link "> <i class="nav-icon fe fe-database me-2"></i>Manajemen Pesanan</a>
+                <a href="{{route('admin.management.pesanan.index')}}" class="nav-link "> <i class="nav-icon fe fe-database me-2"></i>Manajemen Pesanan</a>
             </li>
             <li class="nav-item">
                 <a href="" class="nav-link "> <i class="nav-icon fe fe-pocket me-2"></i> Laporan Keuangan</a>
