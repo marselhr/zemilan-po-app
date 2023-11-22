@@ -9,7 +9,7 @@
     <section>
         <div class="container">
             <div class="row mt-4 justify-content-center">
-                <h2 class="text-center">Produk Favorit</h2>
+                <h2 class="text-center">Produk Kami</h2>
                 <div class="col-10 col-md-6 filter mb-4 text-center">
                     <form action="{{ route('filter.products') }}" method="get">
                         <div class="row">
