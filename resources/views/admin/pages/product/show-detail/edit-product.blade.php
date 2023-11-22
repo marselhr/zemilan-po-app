@@ -62,15 +62,6 @@
                 </div>
             </div>
 
-            <!-- Stock -->
-            <div class="col-md-6 mt-3">
-                <div class="form-group">
-                    <label for="editProductStock" class="form-label">Stock</label>
-                    <input type="text" class="form-control" id="editProductStock" name="stock"
-                        value="{{ $product->stock }}">
-                </div>
-            </div>
-
             <!-- Harga -->
             <div class="col-md-6 mt-3">
                 <div class="form-group">

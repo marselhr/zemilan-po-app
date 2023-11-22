@@ -1,5 +1,6 @@
     {{-- Modal START --}}
-    <div class="modal fade" id="addProductModal" tabindex="-1" role="dialog" aria-labelledby="addProductModalLabel" aria-hidden="true">
+    <div class="modal fade" id="addProductModal" tabindex="-1" role="dialog" aria-labelledby="addProductModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -14,7 +15,8 @@
                         <!-- Pilihan kategori -->
                         <div class="form-group ">
                             <label for="productKategori" class="form-label">Kategori Product</label>
-                            <select class="form-control select2" style="width: 100%;" name="category_id" id="category_id">
+                            <select class="form-control select2" style="width: 100%;" name="category_id"
+                                id="category_id">
                                 <option value="">Pilih Kategori</option>
                                 @foreach ($product_categories as $category_id)
                                     <option value="{{ $category_id->id }}">{{ $category_id->name }}</option>
@@ -28,10 +30,6 @@
                         <div class="mb-3">
                             <label for="productDescription" class="form-label">Deskripsi</label>
                             <input type="text" class="form-control" id="productDescription" name="description">
-                        </div>
-                        <div class="mb-3">
-                            <label for="productStock" class="form-label">Stock</label>
-                            <input type="text" class="form-control" id="productStock" name="stock">
                         </div>
                         <div class="mb-3">
                             <label for="productPrice" class="form-label">Harga</label>
