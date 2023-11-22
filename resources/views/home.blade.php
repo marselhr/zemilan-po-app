@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+    <!-- carousel template -->
+    @include('layouts.partials.carousel')
+
     <section class="py-lg-16 py-8">
         <!-- container -->
         <div class="container">
@@ -61,7 +64,7 @@
                                                     data-quantity="1" class="btn btn-primary w-100 add_to_cart"
                                                     id="add_to_cart{{ $product->id }}">
                                                     <i class="fe fe-shopping-cart text-white align-middle"></i>
-                                                </a>
+
                                             </div>
 
                                             <div class="col-md-6 col-12 p-1">
