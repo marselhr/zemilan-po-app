@@ -38,9 +38,6 @@ class CartItemService
         $cartItem = CartItem::getProductByCartUser($request->product_id);
 
         if ($cartItem) {
-            if ($cartItem->quantity >= $cartItem->product->stock) {
-                return false;
-            }
             return $this->incrementQuantity($cartItem, $request->quantity);
         } else {
             $item = new CartItem();

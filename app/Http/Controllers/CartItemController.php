@@ -40,18 +40,11 @@ class CartItemController extends Controller
 
             $result = $this->cartItemService->addToCart($request);
 
-            if ($result) {
-                $response['status'] = true;
-                $response['product_id'] = $request->product_id;
-                $response['total'] = Cart::subtotal();
-                $response['cart_count'] = Auth::user()->cartItems->count();
-            } else {
-                $response['status'] = false;
-                $response['message'] = 'kuantitas sudah melebihi stok';
-                $response['product_id'] = $request->product_id;
-                $response['total'] = Cart::subtotal();
-                $response['cart_count'] = Auth::user()->cartItems->count();
-            }
+            $response['status'] = true;
+            $response['product_id'] = $request->product_id;
+            $response['total'] = Cart::subtotal();
+            $response['cart_count'] = Auth::user()->cartItems->count();
+
             if ($request->ajax()) {
                 $header = view('layouts.partials.navbar')->render();
                 $response['header'] = $header;
