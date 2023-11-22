@@ -6,11 +6,11 @@
 
 @section('content')
     <div class="container-xl px-4 mt-4">
-        @include("generals._validation")
+        @include('generals._validation')
         <nav class="nav nav-borders">
             <a class="nav-link active ms-0" href="{{ route('mainprofile') }}">Profil</a>
             <a class="nav-link" href="{{ route('alamatprofile') }}">Alamat</a>
-            <a class="nav-link" href="#">Pembayaran</a>
+            <a class="nav-link" href="#">Riwayat Pesanan</a>
         </nav>
         <hr class="mt-0 mb-4">
         <div class="row">
@@ -20,11 +20,11 @@
                     <div class="card-body text-center">
                         <div class="profile-image-container">
                             @if (Auth::user()->avatar == null)
-                            <img class="img-account-profile rounded-circle mb-2" id="previewImage"
-                                src="{{ asset('assets/images/avatar/avatar-dummy.png') }}" alt>
+                                <img class="img-account-profile rounded-circle mb-2" id="previewImage"
+                                    src="{{ asset('assets/images/avatar/avatar-dummy.png') }}" alt>
                             @endif
                             <img class="img-account-profile rounded-circle mb-2" id="previewImage"
-                                src="{{ asset('profile-pictures/'. Auth::user()->avatar) }}" alt>
+                                src="{{ asset('profile-pictures/' . Auth::user()->avatar) }}" alt>
                         </div>
                         <div class="small font-italic text-muted mb-4">JPG atau PNG tidak boleh melebihi 5 MB</div>
                         <button class="btn btn-primary" id="profileImage" type="button">Unggah Gambar</button>
