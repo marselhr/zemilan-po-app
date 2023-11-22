@@ -2,7 +2,7 @@
 
 @push('customJs')
     <!-- Add to cart -->
-    @include('generals.scripts.produc-card-script')
+    @include('generals.scripts.product-card-script')
 @endpush
 
 @section('content')

@@ -17,7 +17,9 @@
                 _token: token
             },
             beforeSend: function() {
-                $('#add_to_cart' + product_id).html('<i class="fe fe-loader"></i>')
+                $('#add_to_cart' + product_id).html(
+                    '<div class="spinner-border spinner-border-sm text-light" role="status"><span class="visually-hidden">Loading...</span></div>'
+                )
             },
             complete: function() {
                 $('#add_to_cart' + product_id).html('<i class="fe fe-shopping-cart"></i>')

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @push('customJs')
-    @include('generals.scripts.produc-card-script')
+    @include('generals.scripts.product-card-script')
 @endpush
 @section('content')
     <!-- carousel template -->
