@@ -19,15 +19,15 @@
         <!-- Card Footer -->
         <div class="card-footer">
             <div class="d-flex flex-wrap justify-content-between align-items-center">
-                <div class="d-flex flex-wrap gap-md-0 gap-1  col-12">
-                    <div class="col-12 col-md-6 p-md-1">
+                <div class="d-flex flex-wrap gap-1  col-12">
+                    <div class="flex-shrink-1">
                         <button type="button" data-product-id="{{ $product->id }}" data-quantity="1"
                             class="btn btn-outline-primary w-100  add_to_cart" id="add_to_cart{{ $product->id }}">
                             <i class="fe fe-shopping-cart align-middle"></i>
                             </a>
                     </div>
 
-                    <div class="col-12 col-md-6 p-md-1">
+                    <div class="flex-fill col-md-6">
                         <form action="{{ route('order.store', $product) }}" method="post">
                             @csrf
                             <button type="submit" class="btn btn-primary w-100">Beli
