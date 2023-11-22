@@ -58,7 +58,11 @@
                             '<i class="fe fe-shopping-cart"></i>')
                     },
                     success: function(data) {
-                        console.log(data)
+
+                        if (data.status == false) {
+                            $('input[name=quantity]').addClass('is-invalid');
+                        }
+                        console.log(data.status)
                         $('body #navbar').html(data['header'])
                     }
                 });
@@ -109,6 +113,7 @@
                                         <input type="button" value="+"
                                             class="button-plus form-control  text-center flex-xl-none w-xl-30  w-xxl-10 px-0 py-1 "
                                             data-field="quantity">
+                                        <div class="invalid-feedback"> Hello</div>
                                     </div>
                                 </dl>
 
