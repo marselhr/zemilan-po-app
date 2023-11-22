@@ -30,10 +30,18 @@
                     </form>
                 </div>
                 <div id="productFilter" class="d-flex flex-wrap col-10 justify-content-center">
-                    @foreach ($products as $product)
-                        <!-- Medium-sized Card -->
-                        @include('layouts.partials.product-card')
-                    @endforeach
+                    @if(count($products) > 0)
+                        @foreach ($products as $product)
+                            <!-- Kartu Produk Ukuran Menengah -->
+                            @include('layouts.partials.product-card')
+                        @endforeach
+                    @else
+                        <div class="container-fluid py-4">
+                            <div style="min-height: 70vh">
+                                <h5 class="text-center mt-10"> -- Produk Kami Kosong --</h5>
+                            </div>
+                        </div>
+                    @endif`
                 </div>
             </div>
         </div>
