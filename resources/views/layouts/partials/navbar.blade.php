@@ -46,13 +46,8 @@
                                 <p>Total: </p>
                                 <p>Rp {{ number_format(App\Models\CartItem::getSubTotal(Auth::user()), 0, '.', '.') }}</p>
                             </div>
-                            <div class="d-flex flex-wrap">
-                                <div class="col-6 p-1">
-                                    <a href="{{ route('buyer.cart') }}" class="btn btn-info col-12">Keranjang</a>
-                                </div>
-                                <div class="col-6 p-1">
-                                    <button class="btn btn-primary col-12">Checkout</button>
-                                </div>
+                            <div class="col-12">
+                                <a href="{{ route('buyer.cart') }}" class="btn btn-info col-12">Lihat Keranjang</a>
                             </div>
                         </div>
                     </div>
