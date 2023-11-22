@@ -8,18 +8,30 @@
 
 
     <div class="container">
-        <div class="row justify-content-center align-items-center mt-5 mb-5">
-            <div class="col-8 ">
+        <div class="row justify-content-center  mt-5 mb-5">
+            <div class="col-lg-6 ">
                 <div class="card mb-4">
                     <!-- card body -->
                     <div class="card-body">
                         <!-- text -->
-                        <h4 class="mb-3">Pembayaran</h4>
+                        <h4 class="">Pembayaran</h4>
+                        <p class="mb-4">Id: {{ $order->order_id }}</p>
+                        <hr>
 
+                        <h4 class="">Rincian Pembelian</h4>
+                        @foreach (Auth::user()->cartItems as $item)
+                            <div class=" mt-2 mt-lg-0">
+                                <p class="mb-1 text-primary-hover">
+                                    {{ $item->quantity }} x {{ $item->product->name }}
+                                </p>
+                            </div>
+                        @endforeach
+                        <hr>
                         <!-- list group -->
                         <ul class="list-group list-group-flush">
                             <!-- list group item -->
-                            <li class="list-group-item px-0 d-flex justify-content-between fs-5 text-dark fw-medium">
+
+                            <li class="list-group-item px-0 d-flex justify-content-between fs-5 text-dark fw-medium border-0">
                                 <span>Sub Total :</span>
                                 <span>Rp
                                     {{ number_format(App\Models\CartItem::getSubTotal(Auth::user()), 2, ',', '.') }}</span>
@@ -57,9 +69,8 @@
                                 </span>
                             </span>
                         </div>
-                        
+
                         <button class="btn btn-primary col-12 mx-auto py-2 mt-5" id="pay-button">Bayar</button>
-                        <p class="mb-1">Id: {{ $order->order_id }}</p>
 
                     </div>
                 </div>
