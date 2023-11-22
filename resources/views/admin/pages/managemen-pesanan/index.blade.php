@@ -60,11 +60,14 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $management_pesan->order_id }}</td>
-                                    <td>{{ $management_pesan->user->first_name }} {{ $management_pesan->user->last_name }}</td>
-                                    <td>{{ $management_pesan->coupon_code ?? "Tidak Ada" }}</td>
-                                    <td>{{ $management_pesan->gross_amount }}</td>
+                                    <td>{{ $management_pesan->user->first_name }} {{ $management_pesan->user->last_name }}
+                                    </td>
+                                    <td>{{ $management_pesan->coupon_code ?? 'Tidak Ada' }}</td>
+                                    <td>Rp.{{ number_format($management_pesan->gross_amount, 0, '.', '.') }}</td>
                                     <td>{{ $management_pesan->payment_status }}</td>
-                                    <td><a href="{{ route('admin.management-pesanan.show', $management_pesan) }}">Detail</a></td>
+                                    <td><a
+                                            href="{{ route('admin.management-pesanan.show', $management_pesan) }}">Detail</a>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
