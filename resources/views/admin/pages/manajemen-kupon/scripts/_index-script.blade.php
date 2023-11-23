@@ -16,10 +16,6 @@
             const couponValue = Number(valueInput.value.replace(/\./g, '').replace(',', '.'));
             if (!isNaN(couponValue) && typeCoupon.value === 'percent' && couponValue > 100) {
                 valueInput.value = '99';
-            } else {
-                valueInput.value = couponValue.toLocaleString('id-ID', {
-                    minimumFractionDigits: 0
-                });
             }
         });
 

@@ -14,6 +14,7 @@
                     url: "{{ route('buyer.order.history') }}",
                     success: (data) => {
                         $('#tab-content').html(data.content)
+                        $('#order-history').addClass('active')
                     }
                 })
             })
