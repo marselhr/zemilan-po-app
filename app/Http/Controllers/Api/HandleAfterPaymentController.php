@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Order;
-use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\CartItem;
-use Illuminate\Support\Facades\Auth;
 
 class HandleAfterPaymentController extends Controller
 {
@@ -36,20 +34,10 @@ class HandleAfterPaymentController extends Controller
                         'bank' => $notif->bank,
                         'payment_status' => 'Paid',
                     ]);
-
-                    $order = Order::find($notif->order_id);
-                    foreach ($order->orderItems as $item) {
-                        $product = Product::find($item->product_id);
-                        $product->update([
-                            'stock' => $product->stock - $item->quantity
-                        ]);
-                    }
-                    echo "Transaction order_id: " . $order_id . " successfully captured using " . $type;
                 }
             }
         } else if ($transaction == 'settlement') {
             // TODO set payment status in merchant's database to 'Settlement'
-            echo "Transaction order_id: " . $order_id . " successfully transfered using " . $type;
             Order::where('order_id', $request->order_id)->update(['payment_type' => $type, 'payment_status' => 'Paid',]);
         } else if ($transaction == 'pending') {
             // TODO set payment status in merchant's database to 'Pending'
