@@ -5,6 +5,7 @@ use App\Http\Controllers\CouponController;
 use App\Http\Controllers\Admin\UploadController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\admin\IncomeDataController;
 use App\Http\Controllers\Admin\ManajemenUserController;
 use App\Http\Controllers\admin\ManagemenPesananController;
 
@@ -65,4 +66,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'is.admin']], functi
     Route::resource('/coupon', CouponController::class);
 
     Route::post('/coupon/status', [CouponController::class, 'updateStatus'])->name('coupon.status.update');
+
+    //Data Pemasukan
+    Route::get('/Data', [IncomeDataController::class, 'index'])->name('admin.income.index');
+    Route::get('/admin/income/export', [IncomeDataController::class, 'export'])->name('admin.income.export');
 });
