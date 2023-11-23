@@ -135,6 +135,7 @@ class OrderContoller extends Controller
     public function showInvoice($id)
     {
         $order = Order::find($id);
+        CartItem::where('cart_id', Auth::user()->cart->id)->delete();
         return view('buyer.pages.invoice', compact('order'));
     }
 }
