@@ -131,4 +131,10 @@ class OrderContoller extends Controller
             return $th->getMessage();
         }
     }
+
+    public function showInvoice($id)
+    {
+        $order = Order::find($id);
+        return view('buyer.pages.invoice', compact('order'));
+    }
 }

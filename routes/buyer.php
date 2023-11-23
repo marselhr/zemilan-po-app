@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartItemController;
 use App\Http\Controllers\OrderContoller;
 use App\Http\Controllers\CatalogController;
+use App\Http\Controllers\Profile\OrderDataController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +33,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::post('/cart/delete', [CartItemController::class, 'destroyCart'])->name('buyer.cart.delete');
     Route::get('/checkout/{items}', [CartItemController::class, 'checkout'])->name('buyer.checkout');
     Route::get('/checkout', [OrderContoller::class, 'checkout'])->name('checkout');
-    Route::get('/order', [CartItemController::class, 'showOrder'])->name('buyer.orders');
+    Route::get('/invoice/{id}', [OrderContoller::class, 'showInvoice'])->name('buyer.invoice');
 
 
     // apply coupon
