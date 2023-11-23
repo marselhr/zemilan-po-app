@@ -64,7 +64,7 @@
                     <!-- Page header -->
                     <div class="border-bottom pb-3 mb-3 ">
                         <div class="mb-2 mb-lg-0">
-                            <h1 class="mb-0 h2 fw-bold">Shopping Cart </h1>
+                            <h1 class="mb-0 h2 fw-bold">Keranjang Belanja </h1>
 
                         </div>
                     </div>
@@ -72,24 +72,18 @@
             </div>
             <!-- row -->
             <div class="row">
-                <div class="col-12 mb-2">
-                    <!-- alert -->
-
-                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                        Gunakan Kode Kupon <strong>(ZMPO15%)</strong> dan dapatkan diskon 10% !
+                <!-- alert -->
+                @foreach ($coupons as $coupon)
+                    <div class="col-12 mb-2">
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            Gunakan Kode Kupon <strong>({{ $coupon->code }})</strong> dan dapatkan diskon
+                            {{ $coupon->type == 'percent' ? $coupon->value . '%' : number_format($coupon->value, 0, '.', '.') }}!
+                        </div>
                     </div>
-                </div>
+                @endforeach
                 <div class="col-lg-8">
                     <!-- card -->
                     <div class="card">
-                        <!-- card header -->
-                        <div class="card-header">
-                            <div class="d-flex ">
-                                <!-- heading -->
-                                <h4 class="mb-0">Shopping Cart <span
-                                        class="text-muted ">({{ App\Models\CartItem::getCount() }} Items)</span> </h4>
-                            </div>
-                        </div>
                         <div class="card-body">
                             <div class="table-responsive table-card">
                                 <!-- Table -->
@@ -101,6 +95,7 @@
                                             <th>Harga</th>
                                             <th>Jumlah</th>
                                             <th>Total</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -121,10 +116,6 @@
                                                             <div> <span>Berat: <span class="text-dark fw-medium">100
                                                                         gr</span>
                                                             </div>
-                                                            <div class="mt-4">
-                                                                <a href="#" class="text-body ms-3"><i
-                                                                        class="fe fe-trash"></i> Hapus</a>
-                                                            </div>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -134,22 +125,18 @@
                                                     </h4>
                                                 </td>
                                                 <td>
-                                                    <div class="input-group  flex-nowrap justify-content-center ">
-                                                        <input type="button" value="-"
-                                                            class="button-minus form-control  text-center flex-xl-none w-xl-30 w-xxl-10 px-0 py-1 "
-                                                            data-field="quantity">
-                                                        <input type="number" step="1" max="10"
-                                                            value="{{ $item->quantity }}" name="quantity"
-                                                            class="quantity-field form-control text-center flex-xl-none w-xl-30 w-xxl-10 px-0 py-1">
-                                                        <input type="button" value="+"
-                                                            class="button-plus form-control  text-center flex-xl-none w-xl-30  w-xxl-10 px-0 py-1 "
-                                                            data-field="quantity">
-                                                    </div>
+                                                    <h6> {{ $item->quantity }}</h6>
                                                 </td>
                                                 <td>
                                                     <h4 class="mb-0">Rp
                                                         {{ number_format($item->product->price * $item->quantity, 0, '.', '.') }}
                                                     </h4>
+                                                </td>
+                                                <td>
+                                                    <div class="">
+                                                        <a href="#" class="text-body ms-3"><i
+                                                                class="fe fe-trash"></i></a>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -163,7 +150,7 @@
                                             </td>
                                             <td class="align-middle border-top-0 border-bottom-0 text-center ">
                                                 <span class="fs-4">{{ App\Models\CartItem::getCount() }}
-                                                    (items)</span>
+                                                    (item)</span>
 
                                             </td>
                                             <td>
