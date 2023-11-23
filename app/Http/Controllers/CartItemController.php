@@ -178,11 +178,4 @@ class CartItemController extends Controller
             return $e->getMessage();
         }
     }
-
-    public function showOrder()
-    {
-        $orders = Order::where('user_id', '=', Auth::user()->id)->get();
-
-        return view('buyer.pages.order', compact('orders'));
-    }
 }
