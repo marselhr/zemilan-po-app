@@ -4,16 +4,33 @@
     <link rel="stylesheet" href="{{ asset('assets/css/profile.css') }}">
 @endpush
 
+@push('customJs')
+    <script>
+        $(document).ready(
+            $('body').on('click', '#order-history', (e) => {
+                e.preventDefault()
+                $.ajax({
+                    type: "GET",
+                    url: "{{ route('buyer.order.history') }}",
+                    success: (data) => {
+                        $('#tab-content').html(data.content)
+                    }
+                })
+            })
+        )
+    </script>
+@endpush
+
 @section('content')
     <div class="container-xl px-4 mt-4">
         @include('generals._validation')
         <nav class="nav nav-borders">
             <a class="nav-link active ms-0" href="{{ route('mainprofile') }}">Profil</a>
             <a class="nav-link" href="{{ route('alamatprofile') }}">Alamat</a>
-            <a class="nav-link" href="#">Riwayat Pesanan</a>
+            <a class="nav-link" href="#" id="order-history">Riwayat Pesanan</a>
         </nav>
         <hr class="mt-0 mb-4">
-        <div class="row">
+        <div class="row" id="tab-content">
             <div class="col-xl-4">
                 <div class="card mb-4 mb-xl-0">
                     <div class="card-header">Gambar Profil</div>

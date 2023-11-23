@@ -45,7 +45,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/profile/alamat', [App\Http\Controllers\Profile\ProfileAlamatController::class, 'index'])->name('alamatprofile');
     Route::post('/profile/alamat/save', [App\Http\Controllers\Profile\ProfileAlamatController::class, 'saveAlamat'])->name('alamatSave');
 
-    //detail
+    // get user order data
+    Route::get('order-history', OrderDataController::class)->name('buyer.order.history');
 });
 
 //route alamat
