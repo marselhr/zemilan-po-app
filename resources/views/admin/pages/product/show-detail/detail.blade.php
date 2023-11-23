@@ -19,29 +19,38 @@
                         </ol>
                     </nav>
                 </div>
+                <div>
+                    <a href="{{ route('admin.product.index') }}" class="btn btn-secondary"><i
+                            class="fe fe-arrow-left-circle"></i>
+                        Kembali</a>
+                </div>
             </div>
         </div>
     </div>
-    <section class="py-lg-16 py-6">
-        <div class="container">
-            <div class="row d-flex align-items-center">
-                <div class=" col-xxl-5  col-xl-6 col-lg-6 col-12">
-                    <div>
-                        <h1 class="display-2 fw-bold mb-3">{{ $product->name }}</span></u></h1>
-                        <p class="lead mb-4">Kategori: {{ $product->category->name ?? '-' }}</p>
-                        <p class="lead mb-4">Price: {{ $product->price }}</p>
-                        <p class="lead mb-4">Stock: {{ $product->stock }}</p>
-                        <p class="lead mb-4">Berat: {{ $product->weight }} Gr</p>
-                        <p class="lead mb-4">Description: {{ $product->description }}</p>
-                        <div>
-                            <a href="{{ route('admin.product.index') }}" class="btn btn-primary">Kembali</a>
+    <section class="py-lg-2">
+        <div class="col-md-12">
+            <div class="card ">
+                <div class="card-body mb-4 mt-4">
+                    <div class="row justify-content-center">
+                        <div class="col-md-5">
+                            <img src="{{ $product->image != null ? asset('storage/' . $product->image) : 'https://source.unsplash.com/480x480?food' }}"
+                                alt="" class="card-img-top">
                         </div>
-                    </div>
-                </div>
-                <div class="col-xxl-5 offset-xxl-1 col-xl-6 col-lg-6 col-12 d-lg-flex justify-content-end">
-                    <div class="mt-12 mt-lg-0 position-relative">
-                        <img src="{{ asset('storage/' . $product->image) }}" alt="online course"
-                            class="img-fluid rounded-4 w-100 z-1 position-relative">
+                        <div class="col-md-6">
+
+                            <h1 class="title mb-3">{{ $product->name }}</h1>
+
+                            <dl class="row">
+                                <p>{{ $product->description }}</p>
+                                <dt class="col-sm-4">Stok</dt>
+                                <dd class="col-sm-9">{{ $product->stock }}</dd>
+                                <dt class="col-sm-4">Berat</dt>
+                                <dd class="col-sm-9">{{ $product->weight }} Gram</dd>
+                                <dd class="col-sm-9 price h3 text-success ">Rp
+                                    {{ number_format($product->price, 0, '.', '.') }},00</dd>
+                            </dl>
+
+                        </div>
                     </div>
                 </div>
             </div>
