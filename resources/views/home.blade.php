@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @push('customJs')
-    @include('generals.scripts.produc-card-script')
+    @include('generals.scripts.product-card-script')
 @endpush
 @section('content')
     <!-- carousel template -->
@@ -26,7 +26,7 @@
                         <p class="pe-lg-10 mb-5">Selamat Datang di Zemilan Keripik Baso Goreng! Rasakan Sensasi Nikmat
                             Keripik Baso Goreng Kami Kualitas Terbaik, Harga Terjangkau.</p>
                         <!-- btn -->
-                        <a href="{{ route('catalog') }}" class="btn btn-primary">See Product</a>
+                        <a href="{{ route('catalog') }}" class="btn btn-primary">Lihat Produk</a>
                     </div>
                 </div>
                 <!-- col -->

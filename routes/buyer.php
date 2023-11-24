@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartItemController;
 use App\Http\Controllers\OrderContoller;
 use App\Http\Controllers\CatalogController;
+use App\Http\Controllers\Profile\OrderDataController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,10 +20,11 @@ use App\Http\Controllers\CatalogController;
 
 Route::get('/about', [App\Http\Controllers\AboutController::class, 'index'])->name('about');
 Route::get('/catalog', [App\Http\Controllers\CatalogController::class, 'index'])->name('catalog');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/filter-products', [CatalogController::class, 'filterProducts'])->name('filter.products');
 Route::get('/detail/{id}', [CatalogController::class, 'show'])->name('detail');
 Route::group(['middleware' => ['auth', 'verified']], function () {
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
     Route::post('/buy/{product}', [OrderContoller::class, 'store'])->name('order.store');
     Route::get('/cart', [CartItemController::class, 'index'])->name('buyer.cart');
     Route::post('/cart', [CartItemController::class, 'store'])->name('buyer.cart.store');
@@ -32,7 +34,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::post('/cart/delete', [CartItemController::class, 'destroyCart'])->name('buyer.cart.delete');
     Route::get('/checkout/{items}', [CartItemController::class, 'checkout'])->name('buyer.checkout');
     Route::get('/checkout', [OrderContoller::class, 'checkout'])->name('checkout');
-    Route::get('/order', [CartItemController::class, 'showOrder'])->name('buyer.orders');
+    Route::get('/invoice/{id}', [OrderContoller::class, 'showInvoice'])->name('buyer.invoice');
 
 
     // apply coupon
@@ -44,7 +46,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/profile/alamat', [App\Http\Controllers\Profile\ProfileAlamatController::class, 'index'])->name('alamatprofile');
     Route::post('/profile/alamat/save', [App\Http\Controllers\Profile\ProfileAlamatController::class, 'saveAlamat'])->name('alamatSave');
 
-    //detail
+    // get user order data
+    Route::get('order-history', OrderDataController::class)->name('buyer.order.history');
 });
 
 //route alamat

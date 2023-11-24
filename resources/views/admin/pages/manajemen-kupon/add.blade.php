@@ -78,14 +78,14 @@
                     <!-- Input -->
                     <div class="mb-3">
                         <label class="form-label" for="maxUserUsesInput">Maksimal Klaim Satu User</label>
-                        <input name="max_uses_user" type="number" id="codeInput" class="form-control" placeholder="1">
+                        <input name="max_uses_user" type="number" id="codeInput" class="form-control" placeholder="">
                     </div>
                 </div>
 
                 <div class="px-2 col-12 col-md-6 col-xl-4">
                     <div class="mb-3">
                         <label class="form-label" for="maxUsesInput">Total Kupon</label>
-                        <input name="max_uses" type="number" id="codeInput" class="form-control" placeholder="1">
+                        <input name="max_uses" type="number" id="codeInput" class="form-control" placeholder="">
                     </div>
                 </div>
                 <div class="px-2 col-12 col-md-6 col-xl-4">

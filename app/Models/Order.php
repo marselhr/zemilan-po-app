@@ -28,7 +28,7 @@ class Order extends Model
 
     public function product()
     {
-        return $this->hasOne(Product::class, 'id', 'product_id');
+        return $this->hasManyThrough(Product::class, OrderItem::class, 'product_id', 'id');
     }
 
     public function orderItems()

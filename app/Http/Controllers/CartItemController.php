@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
-use App\Models\Coupon;
-use App\Models\Product;
 use App\Models\CartItem;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -13,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Services\CartItemService;
 use Illuminate\Support\Facades\Session;
 use App\Http\Services\ApplyCouponService;
+use App\Models\Coupon;
+use Carbon\Carbon;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
 class CartItemController extends Controller
@@ -26,8 +26,9 @@ class CartItemController extends Controller
     {
 
         $items = Auth::user()->cartItems;
+        $coupons = Coupon::where('status', '=', 'active')->where('expiration_date', '>=', Carbon::now())->where('start_date', '<=', Carbon::now())->get();
 
-        return view('buyer.pages.cart-items', compact('items'));
+        return view('buyer.pages.cart-items', compact('items', 'coupons'));
     }
 
     public function store(Request $request)
@@ -82,35 +83,6 @@ class CartItemController extends Controller
             return json_encode($ex->getMessage());
         }
     }
-
-
-    public function updateQuantity(Request $request, $item)
-    {
-        try {
-            DB::beginTransaction();
-            $item = CartItem::where('id', $item)->firstOrFail();
-
-            if ($request->operation == 'decrement') {
-                $this->cartItemService->decrementQuantity($item);
-            } elseif ($request->operation == 'increment') {
-                $this->cartItemService->incrementQuantity($item);
-            }
-
-            return response()->json([
-                'success' => true,
-                'quantity' => $item->quantity,
-                'total' => $item->quantity * $item->product->price,
-                'subtotal' => CartItem::getSubtotal(Auth::user())
-            ]);
-            DB::commit();
-
-            return response();
-        } catch (\Throwable $th) {
-            DB::rollBack();
-            return $th->getMessage();
-        }
-    }
-
     /**
      * 
      * apply coupon on cart
@@ -130,7 +102,10 @@ class CartItemController extends Controller
 
     public function checkout($item)
     {
+        dd(CartItem::where('cart_id', Auth::user()->cart->id)->delete());
         try {
+
+
             $item = CartItem::find($item);
             $order = new Order();
             $order->order_id = (string) Str::uuid();
@@ -177,12 +152,5 @@ class CartItemController extends Controller
         } catch (\Exception $e) {
             return $e->getMessage();
         }
-    }
-
-    public function showOrder()
-    {
-        $orders = Order::where('user_id', '=', Auth::user()->id)->get();
-
-        return view('buyer.pages.order', compact('orders'));
     }
 }

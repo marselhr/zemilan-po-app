@@ -14,7 +14,7 @@ class ManagemenPesananController extends Controller
     public function index()
     {
         $user = User::all();
-        $management_pesanan = Order::all();
+        $management_pesanan = Order::orderBy('updated_at')->get();
         return view('admin.pages.managemen-pesanan.index', compact('management_pesanan', 'user'));
     }
     public function show($management_pesanan)
