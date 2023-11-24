@@ -10,9 +10,13 @@ use Illuminate\Support\Facades\Http;
 
 class ProfileAlamatController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return view('Profile.alamatprofile');
+        $content = view('profile.tab_content.address')->render();
+        return response()->json([
+            'status' => true,
+            'content' => $content
+        ]);
     }
     public function getCitiesByProvince(Request $request, $provinceId)
     {

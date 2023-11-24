@@ -15,7 +15,7 @@ class OrderDataController extends Controller
     {
         $data['orders'] = Auth::user()->orders;
 
-        $content = view('profile.order-data', compact('data'))->render();
+        $content = view('profile.tab_content.order-data', compact('data'))->render();
 
         return response()->json([
             'status' => true,
