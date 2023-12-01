@@ -118,12 +118,21 @@
                                                 <a class="dropdown-item" href="{{ route('coupon.edit', $coupon->id) }}"
                                                     data-route-update="{{ route('coupon.update', $coupon) }}"
                                                     id="editCoupon"><i class="fe fe-edit dropdown-item-icon"></i>Edit</a>
+
                                                 <a class="dropdown-item" href="{{ route('coupon.show', $coupon) }}"><i
                                                         class="fe fe-info dropdown-item-icon"></i>Detail</a>
-
                                                 <a href="{{ route('coupon.destroy', $coupon) }}" class="dropdown-item"
-                                                    data-confirm-delete="true"><i
-                                                        class="fe fe-trash dropdown-item-icon"></i>Hapus</a>
+                                                    onclick="event.preventDefault(); document.getElementById('delete-form-{{ $coupon->id }}').submit();">
+                                                    <i class="fe fe-trash dropdown-item-icon"></i>Hapus
+                                                </a>
+
+                                                <form id="delete-form-{{ $coupon->id }}"
+                                                    action="{{ route('coupon.destroy', $coupon) }}" method="POST"
+                                                    style="display: none;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                </form>
+
                                             </span>
                                         </span>
                                     </td>
