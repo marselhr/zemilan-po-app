@@ -10,6 +10,7 @@ class ChangePassword extends Controller
 {
     public function index()
     {
+        session(['previous_url' => url()->previous()]);
         return view('changePW.changePW');
     }
 
@@ -29,7 +30,7 @@ class ChangePassword extends Controller
     ]);
 
     if ($validator->fails()) {
-        toast('Terjadi Error, Silakhan Cek Kembali ', 'success', 'top-right');
+        toast('Terjadi Error, Silahkan Cek Kembali ', 'success', 'top-right');
         return redirect()->back()->withErrors($validator)->withInput();
     }
 
@@ -39,6 +40,14 @@ class ChangePassword extends Controller
     $user->save();
 
     toast('Password Berhasil Diubah', 'success', 'top-right');
-    return redirect()->route('changePW')->with('success', 'Password updated successfully.');
+
+    // Ambil URL sebelumnya dari sesi
+    $previousUrl = session('previous_url', route('home'));
+
+    // Hapus URL sebelumnya dari sesi
+    session()->forget('previous_url');
+
+    return redirect($previousUrl)->with('success', 'Password updated successfully.');
 }
+
 }
