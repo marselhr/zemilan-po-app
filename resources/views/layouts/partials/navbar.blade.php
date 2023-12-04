@@ -96,7 +96,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="{{ route('changePW') }}">
                                     <i class="fe fe-edit me-2"></i> Ubah Password
                                 </a>
                             </li>
