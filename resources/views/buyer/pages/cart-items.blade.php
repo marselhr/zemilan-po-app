@@ -77,7 +77,8 @@
                         <div class="alert alert-warning" role="alert" id="couponAlert{{ $coupon->id }}">
                             Gunakan Kode Kupon <strong>({{ $coupon->code }})</strong> dan dapatkan diskon
                             {{ $coupon->type == 'percent' ? $coupon->value . '%' : number_format($coupon->value, 0, '.', '.') }}!
-                            <button type="button" class="close" onclick="closeAlert('couponAlert{{ $coupon->id }}')">
+                            <button type="button" class="btn btn-warning "
+                                onclick="closeAlert('couponAlert{{ $coupon->id }}')">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
