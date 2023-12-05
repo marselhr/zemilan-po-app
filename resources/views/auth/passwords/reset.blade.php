@@ -1,11 +1,11 @@
-@extends('layouts.app')
+@extends('auth.layouts.app', ['title' => 'Auth | Reset Password'])
 
 @section('content')
     <div class="row align-items-center justify-content-center g-0 min-vh-100">
 
         <div class="col-lg-5 col-md-8 py-8 py-xl-0">
             <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+                <div class="card-header">{{ __('Atur Ulang Kata Sandi') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('password.update') }}">
@@ -31,7 +31,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Kata sandi') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password"
@@ -48,7 +48,7 @@
 
                         <div class="row mb-3">
                             <label for="password-confirm"
-                                class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
+                                class="col-md-4 col-form-label text-md-end">{{ __('Konfirmasi Kata sandi') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control"
@@ -59,7 +59,7 @@
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Reset Password') }}
+                                    {{ __('Atur Ulang Kata Sandi') }}
                                 </button>
                             </div>
                         </div>

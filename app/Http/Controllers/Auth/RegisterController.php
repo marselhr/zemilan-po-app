@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\UserShoppingCart;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
@@ -66,14 +67,19 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
+            'role' => 'buyer',
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-        
-    }
 
-    
+        // Membuat shopping cart baru untuk pengguna
+        $shoppingCart = new UserShoppingCart();
+        $shoppingCart->user_id = $user->id; // Menghubungkan dengan user_id baru
+        $shoppingCart->save();
+
+        return $user;
+    }
 }
