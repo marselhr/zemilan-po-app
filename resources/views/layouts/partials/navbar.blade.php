@@ -96,8 +96,8 @@
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fe fe-settings me-2"></i> Pengaturan
+                                <a class="dropdown-item" href="{{ route('changePW') }}">
+                                    <i class="fe fe-edit me-2"></i> Ubah Password
                                 </a>
                             </li>
                         </ul>

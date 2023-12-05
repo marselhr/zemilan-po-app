@@ -23,6 +23,11 @@ Route::get('/catalog', [App\Http\Controllers\CatalogController::class, 'index'])
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/filter-products', [CatalogController::class, 'filterProducts'])->name('filter.products');
 Route::get('/detail/{id}', [CatalogController::class, 'show'])->name('detail');
+
+//ubah pasword
+Route::get('/changepassword', [App\Http\Controllers\ChangePassword::class, 'index'])->name('changePW');
+Route::post('/changepassword', [App\Http\Controllers\ChangePassword::class, 'updatePassword'])->name('changePWpost');
+
 Route::group(['middleware' => ['auth', 'verified']], function () {
 
     Route::post('/buy/{product}', [OrderContoller::class, 'store'])->name('order.store');
