@@ -45,10 +45,12 @@ class CouponController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Coupon $coupon)
+    public function show($id)
     {
-        //
+        $coupon = Coupon::findOrFail($id);
+        return view('admin.pages.manajemen-kupon.detail', compact('coupon'));
     }
+
 
     /**
      * Show the form for editing the specified resource.

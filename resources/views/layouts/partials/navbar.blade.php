@@ -14,11 +14,12 @@
                 <a href="{{ route('buyer.cart') }}" class="btn btn-icon btn-light rounded-circle position-relative">
                     <i class="fe fe-shopping-cart align-middle"></i>
                     @if (App\Models\CartItem::getCount() > 0)
-                        <span class="badge bg-danger position-absolute top-0 start-100 translate-middle">
+                        <span class="badge bg-danger position-absolute top-0 start-100 translate-middle rounded-circle" style="border-radius: 50%;">
                             {{ Auth::user()->cartItems->count() }}
                         </span>
                     @endif
                 </a>
+
                 @if (App\Models\CartItem::getCount() > 0)
                     <div class="dropdown-menu dropdown-menu-end" style="min-width: 300px;">
                         <div class="col-12 p-4">
