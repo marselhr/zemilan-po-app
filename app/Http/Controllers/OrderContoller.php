@@ -62,9 +62,10 @@ class OrderContoller extends Controller
 
             $snapToken = \Midtrans\Snap::getSnapToken($params);
 
+            $item = OrderItem::where('order_id', $order->order_id)->first();
+            $product =  Product::where('id', $item->product_id)->first();
 
-
-            return view('buyer.pages.payment', compact('snapToken', 'order'));
+            return view('buyer.pages.payment2', compact('snapToken', 'order', 'product'));
         } catch (\Exception $e) {
             Log::channel('file')->error($e->getMessage(), ['user' => Auth::user()->first_name]);
 
