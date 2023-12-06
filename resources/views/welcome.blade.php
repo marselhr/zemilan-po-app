@@ -74,7 +74,6 @@
                                         <a href="#" class="fs-5"><i class="fe fe-heart align-middle"></i></a>
                                     </div>
                                     <h4 class="mb-2 text-truncate">{{ $product->name }}</h4>
-                                    <small>Stock: {{ $product->stock }}</small>
                                 </div>
                                 <!-- Card Footer -->
                                 <div class="card-footer">
