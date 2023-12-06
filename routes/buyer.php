@@ -68,4 +68,4 @@ Route::get('/get-regencies/{provinceId}', function ($provinceId) {
 
 //footer
 Route::view('/masukan', 'footer.masukan')->name('masukan');
-
+Route::view('/syarat', 'footer.syarat')->name('syarat');
