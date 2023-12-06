@@ -52,7 +52,7 @@
 <script>
     var selectedProvinsiNameInput = document.getElementById('selectedProvinsiName');
 
-    $(document).ready(function () {
+    $(document).ready(function() {
         // Fetch data for the province dropdown
         $.ajax({
             url: "https://api.goapi.io/regional/provinsi",
@@ -60,31 +60,33 @@
             headers: {
                 "X-API-KEY": "1b442e96-bd5a-57a5-a2e8-f8a5b8e2"
             },
-            success: function (response) {
+            success: function(response) {
                 if (response.status === "success") {
                     var provinsiSelect = $("#provinsi");
 
                     // Populate the province dropdown
-                    $.each(response.data, function (index, province) {
-                        provinsiSelect.append("<option value='" + province.id + "'>" + province.name + "</option>");
+                    $.each(response.data, function(index, province) {
+                        provinsiSelect.append("<option value='" + province.id + "'>" +
+                            province.name + "</option>");
                     });
 
                     // Add event listener for change event on the province dropdown
-                    provinsiSelect.on('change', function () {
+                    provinsiSelect.on('change', function() {
                         var selectedProvinceId = $(this).val();
                         var selectedProvinceValue = $(this).find(":selected").text();
-                        
+
                         // Update the hidden input value with the selected province name
                         selectedProvinsiNameInput.value = selectedProvinceValue;
 
                         // Fetch data for the city dropdown based on the selected province
                         $.ajax({
-                            url: "https://api.goapi.io/regional/kota?provinsi_id=" + selectedProvinceId,
+                            url: "https://api.goapi.io/regional/kota?provinsi_id=" +
+                                selectedProvinceId,
                             type: "GET",
                             headers: {
                                 "X-API-KEY": "1b442e96-bd5a-57a5-a2e8-f8a5b8e2"
                             },
-                            success: function (cityResponse) {
+                            success: function(cityResponse) {
                                 if (cityResponse.status === "success") {
                                     var kotaSelect = $("#kota");
 
@@ -92,15 +94,21 @@
                                     kotaSelect.empty();
 
                                     // Populate the city dropdown
-                                    $.each(cityResponse.data, function (index, city) {
-                                        kotaSelect.append("<option value='" + city.name + "'>" + city.name + "</option>");
+                                    $.each(cityResponse.data, function(index,
+                                        city) {
+                                        kotaSelect.append(
+                                            "<option value='" + city
+                                            .name + "'>" + city
+                                            .name + "</option>");
                                     });
                                 } else {
-                                    console.error("API returned an error:", cityResponse.message);
+                                    console.error("API returned an error:",
+                                        cityResponse.message);
                                 }
                             },
-                            error: function (cityError) {
-                                console.error("Error fetching city data:", cityError);
+                            error: function(cityError) {
+                                console.error("Error fetching city data:",
+                                    cityError);
                             }
                         });
                     });
@@ -108,7 +116,7 @@
                     console.error("API returned an error:", response.message);
                 }
             },
-            error: function (error) {
+            error: function(error) {
                 console.error("Error fetching province data:", error);
             }
         });

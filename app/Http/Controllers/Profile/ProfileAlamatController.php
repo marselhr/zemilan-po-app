@@ -42,12 +42,22 @@ class ProfileAlamatController extends Controller
         ]);
 
         // Simpan data alamat ke dalam tabel
-        $user->address()->update([
-            'province' => $request->input('selectedProvinsiName'),
-            'city' => $request->input('kota'),
-            'post_code' => $request->input('kodePos'),
-            'detail' => $request->input('detail'),
-        ]);
+        if ($user->address == null) {
+            UserAddress::create([
+                'user_id' => $user->id,
+                'province' => $request->input('selectedProvinsiName'),
+                'city' => $request->input('kota'),
+                'post_code' => $request->input('kodePos'),
+                'detail' => $request->input('detail'),
+            ]);
+        } else {
+            $user->address()->update([
+                'province' => $request->input('selectedProvinsiName'),
+                'city' => $request->input('kota'),
+                'post_code' => $request->input('kodePos'),
+                'detail' => $request->input('detail'),
+            ]);
+        }
 
         toast('Data Alamat Berhasil Disimpan', 'success', 'top-right');
 
