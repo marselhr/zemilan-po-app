@@ -5,7 +5,7 @@ use App\Http\Controllers\CouponController;
 use App\Http\Controllers\Admin\UploadController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\admin\IncomeDataController;
+use App\Http\Controllers\Admin\IncomeDataController;
 use App\Http\Controllers\Admin\ManajemenUserController;
 use App\Http\Controllers\Admin\ManagemenPesananController;
 
