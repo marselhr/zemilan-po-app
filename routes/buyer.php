@@ -65,3 +65,7 @@ Route::get('/get-regencies/{provinceId}', function ($provinceId) {
     $response = Http::get("https://emsifa.github.io/api-wilayah-indonesia/api/regencies/{$provinceId}.json");
     return $response->json();
 });
+
+//footer
+Route::view('/masukan', 'footer.masukan')->name('masukan');
+
