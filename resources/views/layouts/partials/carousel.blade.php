@@ -5,16 +5,16 @@
 
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="{{ asset('assets/images/carousei/page1.JPG') }}"class="d-block w-100 " alt="...">
+                    <img src="{{ asset('assets/images/carousei/page1.jpg') }}"class="d-block w-100 " alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src="{{ asset('assets/images/carousei/page2.JPG') }}"class="d-block w-100 " alt="...">
+                    <img src="{{ asset('assets/images/carousei/page2.jpg') }}"class="d-block w-100 " alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src="{{ asset('assets/images/carousei/page3.JPG') }}"class="d-block w-100 " alt="...">
+                    <img src="{{ asset('assets/images/carousei/page3.jpg') }}"class="d-block w-100 " alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src="{{ asset('assets/images/carousei/page4.JPG') }}"class="d-block w-100 " alt="...">
+                    <img src="{{ asset('assets/images/carousei/page4.jpg') }}"class="d-block w-100 " alt="...">
                 </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
