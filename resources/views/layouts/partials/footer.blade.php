@@ -14,8 +14,8 @@
             <div class="col-12 col-md-6">
                 <nav class="nav nav-footer justify-content-center justify-content-md-end">
                     <a class="nav-link active ps-0" href="#">Privasi</a>
-                    <a class="nav-link" href="{{ url('syarat') }}">Syarat & Ketentuan</a>
-                    <a class="nav-link" href="#">Masukan</a>
+                    <a class="nav-link" href="{{ route('syarat') }}">Syarat & Ketentuan</a>
+                    <a class="nav-link" href="{{ route('masukan') }}">Masukan</a>
                     <a class="nav-link" href="#">Dukungan</a>
                 </nav>
             </div>

@@ -32,45 +32,25 @@ class ProfileAlamatController extends Controller
 
     public function saveAlamat(Request $request)
     {
+        $user = auth()->user();
 
-        try {
+        $request->validate([
+            'selectedProvinsiName' => 'required|string|max:255',
+            'kota' => 'required|string|max:255',
+            'kodePos' => 'required|string|max:255',
+            'detail' => 'required|string|max:255',
+        ]);
 
-            $user = auth()->user();
+        // Simpan data alamat ke dalam tabel
+        $user->address()->update([
+            'province' => $request->input('selectedProvinsiName'),
+            'city' => $request->input('kota'),
+            'post_code' => $request->input('kodePos'),
+            'detail' => $request->input('detail'),
+        ]);
 
-            $request->validate([
-                'selectedProvinsiName' => 'required|string|max:255',
-                'kota' => 'required|string|max:255',
-                'kodePos' => 'required|string|max:255',
-                'detail' => 'required|string|max:255',
-            ]);
+        toast('Data Alamat Berhasil Disimpan', 'success', 'top-right');
 
-            // Simpan data alamat ke dalam tabel
-
-            $userAddress = UserAddress::where('user_id', $user->id)->first();
-            if (empty($userAddress)) {
-                UserAddress::create([
-                    'user_id' => $user->id,
-                    'province' => $request->input('selectedProvinsiName'),
-                    'city' => $request->input('kota'),
-                    'post_code' => $request->input('kodePos'),
-                    'detail' => $request->input('detail'),
-                ]);
-                toast('Data Alamat Berhasil Disimpan', 'success', 'top-right');
-                return redirect()->route('alamatprofile')->with('success', 'Alamat berhasil diperbarui.');
-            }
-
-            $userAddress->update([
-                'province' => $request->input('selectedProvinsiName'),
-                'city' => $request->input('kota'),
-                'post_code' => $request->input('kodePos'),
-                'detail' => $request->input('detail'),
-            ]);
-            toast('Data Alamat Berhasil Disimpan', 'success', 'top-right');
-
-            return redirect()->route('alamatprofile')->with('success', 'Alamat berhasil diperbarui.');
-        } catch (\Exception $e) {
-            alert('Error', "Terjadi Masalah", 'warning');
-            return redirect()->route('alamatprofile');
-        }
+        return redirect()->route('mainprofile')->with('success', 'Alamat berhasil diperbarui.');
     }
 }
