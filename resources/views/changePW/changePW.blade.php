@@ -62,7 +62,7 @@
     @include('sweetalert::alert')
     <nav class="navbar navbar-expand-lg" id="navbar">
         <div class="container px-0">
-            <a href="#" class="navbar-brand fw-bold fs-3">Zemilan</a>
+            <a href="{{ route('home') }}" class="navbar-brand fw-bold fs-3">Zemilan</a>
 
             <div class="ms-auto d-flex align-items-center order-lg-3 gap-1">
                 <div>
