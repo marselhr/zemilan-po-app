@@ -52,8 +52,8 @@
             window.snap.pay('{{ $snapToken }}', {
                 onSuccess: function(result) {
                     /* You may add your own implementation here */
-                    window.location.href = '/invoice/{{ $order->order_id }}';
-                    console.log(result);
+                    window.location.href = '{{ route('mainprofile') }}';
+                    alert('Pesanan anda telah diproses')
                 },
                 onPending: function(result) {
                     /* You may add your own implementation here */
