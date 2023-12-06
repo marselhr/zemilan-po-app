@@ -45,10 +45,12 @@ class CouponController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Coupon $coupon)
+    public function show($id)
     {
-        //
+        $coupon = Coupon::findOrFail($id);
+        return view('admin.pages.manajemen-kupon.detail', compact('coupon'));
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -109,9 +111,24 @@ class CouponController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(Coupon $coupon)
-    {
-        //
+{
+    try {
+        // Menghapus kupon jika ditemukan
+        if ($coupon) {
+            $coupon->delete();
+            alert('Berhasil', 'Kupon Telah Dihapus', 'success');
+        } else {
+            alert('Gagal', 'Kupon Tidak Ditemukan', 'error');
+        }
+
+        // Redirect ke halaman index
+        return redirect()->route('coupon.index');
+    } catch (\Exception $exception) {
+        // Tangkap dan tangani kesalahan
+        alert('Gagal', 'Terjadi Kesalahan: ' . $exception->getMessage(), 'error');
+        return redirect()->back();
     }
+}
 
     public function updateStatus(Request $request)
     {

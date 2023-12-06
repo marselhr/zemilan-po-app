@@ -97,7 +97,7 @@
                 </div>
                 <div class="px-2 col-12 col-md-6 col-xl-4">
                     <div class="mb-3">
-                        <label class="form-label" for="expirationInput">Mulai Berlaku</label>
+                        <label class="form-label" for="expirationInput">Kaduluarsa Kupon </label>
                         <input type="text" class="form-control flatpickr flatpickr-input" name="expiration_date"
                             placeholder="">
                     </div>

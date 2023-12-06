@@ -29,7 +29,7 @@ class IncomeExport implements FromCollection, WithHeadings, WithStyles
                 'No' => $loop + 1,
                 'ID Order' => $item->order_id,
                 'Nama Pemesan' => $item->user->first_name . ' ' . $item->user->last_name,
-                'Total Pembayaran' => 'Rp.' . number_format($item->gross_amount, 0, '.', '.'),
+                'Total Pembayaran' => $item->gross_amount,
                 'Tanggal' => $item->updated_at->format('Y-m-d H:i:s'),
             ];
         });
@@ -123,7 +123,7 @@ class IncomeExport implements FromCollection, WithHeadings, WithStyles
         ]);
 
         // Set nilai di dalam sel 'Total Pemasukan'
-        $sheet->setCellValue('D' . ($this->incomeData->count() + 2), 'Rp.' . number_format($totalPemasukan, 0, '.', '.'));
+        $sheet->setCellValue('D' . ($this->incomeData->count() + 2), $totalPemasukan);
         $sheet->getStyle('D' . ($this->incomeData->count() + 2))->applyFromArray([
             'font' => [
                 'bold' => true,

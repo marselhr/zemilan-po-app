@@ -64,8 +64,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'is.admin']], functi
     });
     // Coupon Management
     Route::resource('/coupon', CouponController::class);
-
     Route::post('/coupon/status', [CouponController::class, 'updateStatus'])->name('coupon.status.update');
+    Route::delete('/coupon/{coupon}', [CouponController::class, 'destroy'])->name('coupon.destroy');
+    Route::get('/show/{id}', [CouponController::class, 'show'])->name('coupon.show');
+
 
     //Data Pemasukan
     Route::get('/Data', [IncomeDataController::class, 'index'])->name('admin.income.index');
