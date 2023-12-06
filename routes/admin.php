@@ -7,7 +7,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\admin\IncomeDataController;
 use App\Http\Controllers\Admin\ManajemenUserController;
-use App\Http\Controllers\admin\ManagemenPesananController;
+use App\Http\Controllers\Admin\ManagemenPesananController;
 
 /*
 |--------------------------------------------------------------------------
