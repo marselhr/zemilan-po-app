@@ -58,7 +58,7 @@
             url: "https://api.goapi.io/regional/provinsi",
             type: "GET",
             headers: {
-                "X-API-KEY": "1b442e96-bd5a-57a5-a2e8-f8a5b8e2"
+                "X-API-KEY": "e876ce45-47d9-5fa2-66e4-19eeea69"
             },
             success: function(response) {
                 if (response.status === "success") {
@@ -84,7 +84,7 @@
                                 selectedProvinceId,
                             type: "GET",
                             headers: {
-                                "X-API-KEY": "1b442e96-bd5a-57a5-a2e8-f8a5b8e2"
+                                "X-API-KEY": "e876ce45-47d9-5fa2-66e4-19eeea69"
                             },
                             success: function(cityResponse) {
                                 if (cityResponse.status === "success") {
